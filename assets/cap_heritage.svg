@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#19203b"/>
+      <stop offset="100%" stop-color="#070913"/>
+    </radialGradient>
+    <linearGradient id="capFabric" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#232a47"/>
+      <stop offset="100%" stop-color="#0e1224"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="400" height="400" fill="url(#bgGrad)"/>
+
+  <!-- Cap Crown Dome -->
+  <path d="M 110 230 C 110 130 290 130 290 230 Z" fill="url(#capFabric)" stroke="#00f3ff" stroke-width="1.5"/>
+
+  <!-- Curved Visor Brim -->
+  <path d="M 90 235 C 150 250 250 250 310 220 C 300 245 200 265 90 235 Z" fill="#090c1a" stroke="#ff007f" stroke-width="2" filter="url(#glow)"/>
+
+  <!-- Top Button & Eyelets -->
+  <circle cx="200" cy="140" r="6" fill="#00f3ff" filter="url(#glow)"/>
+  <circle cx="160" cy="180" r="3" fill="#323b5c"/>
+  <circle cx="240" cy="180" r="3" fill="#323b5c"/>
+
+  <!-- Front Logo Icon -->
+  <path d="M 185 195 C 195 202 205 205 220 195 C 208 203 196 205 190 200 Z" fill="#ffffff"/>
+</svg>

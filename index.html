@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber Closet | Efeitos Futuristas & Vestuário Streetwear 2099</title>
+  <meta name="description" content="Cyber Closet - Plataforma e-commerce de vestuário urbano com efeitos sonoros Web Audio API, animações futuristas e o mascote Metrik.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Dynamic Particle Canvas -->
+  <canvas id="cyber-canvas"></canvas>
+  <div class="scanline-overlay"></div>
+
+  <!-- 12. GLOW ATMOSFÉRICO DIFUSO -->
+  <div class="glow-atmosphere-1"></div>
+  <div class="glow-atmosphere-2"></div>
+
+  <!-- Header Navbar with Metrik Mascot Logo -->
+  <header class="cyber-header">
+    <div class="header-container">
+      <a href="#" class="logo-brand" title="Cyber Closet & Metrik">
+        <!-- MASCOTE NA LOGO -->
+        <img src="assets/mascot.jpg" alt="Mascote Metrik" class="logo-mascot-img">
+        <div class="logo-title glitch-text" data-text="CYBER CLOSET">CYBER CLOSET</div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#hero" class="nav-link active">Início</a></li>
+          <li><a href="#looks" class="nav-link">👕 Looks & Estações</a></li>
+          <li><a href="#look-ia" class="nav-link">⚡ Gerador IA</a></li>
+          <li><a href="#mais-procurados" class="nav-link">🔥 Mais Procurados</a></li>
+          <li><a href="#catalogo" class="nav-link">🛍️ Catálogo Geral</a></li>
+          <li><a href="#sobre-empresa" class="nav-link">🏢 Empresa</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="icon-btn" id="audio-toggle" title="Alternar Som Cybernetic">
+          🔊
+        </button>
+
+        <button class="icon-btn" id="cart-btn" title="Meu Carrinho de Compras">
+          🛒
+          <span class="badge-count" id="cart-count">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrapper">
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <span>❖</span> MODA STREETWEAR & TECHWEAR 2099
+        </div>
+        
+        <!-- 13. TEXTO COM ENTRADA SUAVE -->
+        <h1 class="hero-title">
+          CYBER <span class="text-gradient-cyan">CLOSET</span>
+        </h1>
+        
+        <!-- 14. LINHA DE LUZ EXPANDINDO -->
+        <div class="hero-title-line"></div>
+
+        <p class="hero-desc">
+          Explore o acervo de jaquetas, moletons, camisetas e calças streetwear da Matrix com animações fluidas, efeitos sonoros minimalistas e o assistente <strong>Metrik</strong>!
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#catalogo" class="cyber-btn">
+            EXPLORAR VESTUÁRIO ⚡
+          </a>
+          <button class="cyber-btn cyber-btn-secondary" onclick="openDrawer('support-drawer')">
+            💬 FALAR COM METRIK
+          </button>
+        </div>
+      </div>
+
+      <!-- Holographic Fitting Showcase Hero Widget -->
+      <div class="fitting-showcase">
+        <div class="fitting-screen">
+          <div class="avatar-image-wrapper">
+            <img id="fitting-avatar-img" src="assets/avatar.png" alt="Avatar Cyber Closet">
+          </div>
+          <div class="hologram-grid-floor"></div>
+        </div>
+
+        <div class="fitting-controls">
+          <div class="color-picker">
+            <label style="font-size: 0.8rem; color: var(--text-muted);">Néon AR:</label>
+            <div class="color-dot active" data-color="#00f3ff" style="background: #00f3ff;"></div>
+            <div class="color-dot" data-color="#ff007f" style="background: #ff007f;"></div>
+            <div class="color-dot" data-color="#9d4edd" style="background: #9d4edd;"></div>
+            <div class="color-dot" data-color="#00ff88" style="background: #00ff88;"></div>
+          </div>
+          
+          <button class="cyber-btn cyber-btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.75rem;" id="generate-ai-btn">
+            ⚡ NOVO LOOK IA
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 👕 LOOKS & SUB-CATÁLOGO POR ESTAÇÃO (INVERNO VS VERÃO) -->
+    <section id="looks" style="padding: 3rem 0;">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">👕 SUB-CATÁLOGO DE <span class="text-gradient-cyan">LOOKS & ESTAÇÕES</span></h2>
+          <p class="section-sub">Filtre as coleções de vestuário entre Inverno e Verão conforme as especificações do catálogo.</p>
+        </div>
+      </div>
+
+      <!-- Sub-Catalog Season Tab Controls -->
+      <div class="season-tabs-container">
+        <button class="season-tab-btn active" data-season="all">✨ Todos os Looks</button>
+        <button class="season-tab-btn" data-season="inverno">❄️ Roupas de Inverno (Moletons, Jaquetas & Joggers)</button>
+        <button class="season-tab-btn" data-season="verao">☀️ Roupas de Verão (Camisetas, Shorts & Acessórios)</button>
+      </div>
+
+      <div class="products-grid" id="looks-grid">
+        <!-- Renderizado via JS conforme a estação selecionada -->
+      </div>
+    </section>
+
+    <!-- SEÇÃO INTERATIVA: GERADOR DE LOOK IA COM METRIK -->
+    <section id="look-ia" class="ai-generator-card">
+      <div>
+        <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 0.6rem;">
+          <span style="color: var(--neon-purple); font-size: 1.2rem;">⚡</span>
+          <span style="font-family: var(--font-subheading); color: var(--neon-purple); font-weight: bold; text-transform: uppercase;">MOTOR DE ESTILO NEURAL 2099</span>
+        </div>
+        <h2 style="font-size: 2rem; margin-bottom: 1rem;" class="text-gradient-cyan">GERADOR DE LOOK IA INTERATIVO</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.5rem;">
+          Personalize as variáveis de estilo abaixo e deixe o estilista cibernético <strong>Metrik</strong> calcular a combinação perfeita de peças de vestuário com <strong>15% de desconto no combo</strong>.
+        </p>
+
+        <!-- Dynamic Mood Selector Chips -->
+        <div style="margin-bottom: 1.5rem;">
+          <label style="display: block; font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.6rem; text-transform: uppercase;">SELECIONE O MOOD / ESTILO DA MATRIX:</label>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button class="ai-mood-chip active" data-mood="neon">🔥 Neon Nightlife</button>
+            <button class="ai-mood-chip" data-mood="cyber">⚡ Cyber Rebel</button>
+            <button class="ai-mood-chip" data-mood="stealth">🥷 Stealth Operative</button>
+            <button class="ai-mood-chip" data-mood="retro">🎨 Retro Terrace</button>
+          </div>
+        </div>
+
+        <!-- Sliders Controls -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-bottom: 1.5rem;">
+          <div>
+            <label style="display: block; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.4rem;">NÍVEL DE OUSADIA: <strong id="boldness-val" style="color: var(--neon-cyan);">75%</strong></label>
+            <input type="range" id="ai-boldness" min="10" max="100" value="75" style="width: 100%; accent-color: var(--neon-cyan);">
+          </div>
+
+          <div>
+            <label style="display: block; font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.4rem;">ORÇAMENTO MÁXIMO: <strong id="budget-val" style="color: var(--neon-green);">R$ 2.500,00</strong></label>
+            <input type="range" id="ai-budget" min="400" max="3000" step="100" value="2500" style="width: 100%; accent-color: var(--neon-green);">
+          </div>
+        </div>
+
+        <button class="cyber-btn" style="width: 100%; justify-content: center; padding: 0.9rem;" onclick="generateInteractiveAIOutfit()">
+          <span>⚡</span> GERAR OUTFIT PERSONALIZADO COM METRIK
+        </button>
+      </div>
+
+      <!-- Generated Outfit Result Box & Live Metrics -->
+      <div style="background: rgba(7, 9, 19, 0.9); border: 1px solid var(--neon-cyan); border-radius: 14px; padding: 1.5rem; position: relative;">
+        <!-- Live AI Stats Bar -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.08);">
+          <div>
+            <div style="font-size: 0.72rem; color: var(--text-muted);">SINCRONIZAÇÃO NEURAL: <span id="ai-sync-label" style="color: var(--neon-cyan); font-weight: bold;">94%</span></div>
+            <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; margin-top: 4px; overflow: hidden;">
+              <div id="ai-sync-bar" style="width: 94%; height: 100%; background: var(--neon-cyan); transition: width 0.4s ease;"></div>
+            </div>
+          </div>
+
+          <div>
+            <div style="font-size: 0.72rem; color: var(--text-muted);">OUSADIA DO OUTFIT: <span id="ai-boldness-label" style="color: var(--neon-magenta); font-weight: bold;">75%</span></div>
+            <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; margin-top: 4px; overflow: hidden;">
+              <div id="ai-boldness-bar" style="width: 75%; height: 100%; background: var(--neon-magenta); transition: width 0.4s ease;"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Rendered Outfit Card Container -->
+        <div id="ai-outfit-display">
+          <!-- Preenchido dinamicamente via JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- MASCOT METRIK BANNER -->
+    <section class="mascot-hero-card">
+      <img src="assets/mascot.jpg" alt="Mascote Metrik" class="mascot-avatar-img">
+      <div>
+        <div style="font-family: var(--font-subheading); color: var(--neon-cyan); text-transform: uppercase;">MASCOTE OFICIAL DA MARCA</div>
+        <h2 style="font-size: 1.8rem; margin: 0.2rem 0 0.5rem 0;" class="text-gradient-cyan">METRIK</h2>
+        <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">
+          "Salve! Eu sou o <strong>Metrik</strong>. Como mascote e estilista cibernético da Cyber Closet, dividi o catálogo de roupas entre as coleções de <strong>Inverno</strong> e <strong>Verão</strong> para facilitar sua busca!"
+        </p>
+        <button class="cyber-btn" onclick="openDrawer('support-drawer')">
+          <span>💬</span> CHAT COM METRIK
+        </button>
+      </div>
+    </section>
+
+    <!-- 1. SEÇÃO 🔥 MAIS PROCURADOS -->
+    <section id="mais-procurados" style="padding: 2rem 0 4rem 0;">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">🔥 VESTUÁRIO <span class="text-gradient-magenta">MAIS PROCURADO</span></h2>
+          <p class="section-sub">As camisetas, moletons e jaquetas mais cobiçados da cultura urbana.</p>
+        </div>
+      </div>
+
+      <div class="products-grid" id="featured-grid">
+        <!-- Renderizado via JS -->
+      </div>
+    </section>
+
+    <!-- 3. SEÇÃO 🛍️ CATÁLOGO COMPLETO DE VESTUÁRIO -->
+    <section id="catalogo" style="padding: 4rem 0;">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">🛍️ CATÁLOGO DE <span class="text-gradient-cyan">VESTUÁRIO</span></h2>
+          <p class="section-sub">Filtre roupas e acessórios por marca, categoria, preço e tamanho.</p>
+        </div>
+      </div>
+
+      <!-- Filter Controls Bar -->
+      <div class="filter-controls-card">
+        <div class="filter-row">
+          <!-- Brand Selector -->
+          <div>
+            <label style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 0.3rem;">MARCA:</label>
+            <select id="filter-brand" class="select-input">
+              <option value="all">Todas as Marcas</option>
+              <option value="Nike">Nike</option>
+              <option value="adidas">adidas</option>
+              <option value="ASICS">ASICS</option>
+              <option value="New Balance">New Balance</option>
+              <option value="PUMA">PUMA</option>
+              <option value="Converse">Converse</option>
+            </select>
+          </div>
+
+          <!-- Price Slider -->
+          <div>
+            <label style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 0.3rem;">PREÇO MÁXIMO: <span id="price-val" style="color: var(--neon-cyan); font-weight: bold;">R$ 3.000,00</span></label>
+            <input type="range" id="filter-price" min="100" max="3000" step="50" value="3000" style="width: 180px; accent-color: var(--neon-cyan);">
+          </div>
+
+          <!-- Search Input -->
+          <div>
+            <label style="font-size: 0.8rem; color: var(--text-muted); display: block; margin-bottom: 0.3rem;">BUSCAR ROUPAS:</label>
+            <input type="text" id="product-search" class="search-input" placeholder="Ex: Tech Fleece, Firebird, ACG, Hoodie..." style="min-width: 240px;">
+          </div>
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="filter-tabs">
+          <button class="tab-btn active" data-category="all">Todas as Roupas</button>
+          <button class="tab-btn" data-category="Camisetas">Camisetas</button>
+          <button class="tab-btn" data-category="Moletons">Moletons</button>
+          <button class="tab-btn" data-category="Jaquetas">Jaquetas</button>
+          <button class="tab-btn" data-category="Calças">Calças</button>
+          <button class="tab-btn" data-category="Shorts">Shorts</button>
+          <button class="tab-btn" data-category="Conjuntos">Conjuntos / Looks</button>
+          <button class="tab-btn" data-category="Acessórios">Acessórios</button>
+        </div>
+      </div>
+
+      <!-- Dynamic Filtered Products Grid -->
+      <div class="products-grid" id="products-grid">
+        <!-- Renderizado via JS -->
+      </div>
+    </section>
+
+    <!-- 4. SEÇÃO 🏢 SOBRE A EMPRESA & METRIK LABS (INFORMAÇÕES FICTÍCIAS) -->
+    <section id="sobre-empresa" style="padding: 4rem 0;">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title">🏢 SOBRE A <span class="text-gradient-magenta">EMPRESA</span></h2>
+          <p class="section-sub">Conheça a história da Cyber Closet Inc. & Metrik Labs em Neo-Tokyo 2099.</p>
+        </div>
+      </div>
+
+      <div style="background: var(--bg-card); border: 1px solid var(--neon-purple); border-radius: 16px; padding: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center;">
+        <div>
+          <h3 style="font-size: 1.6rem; color: var(--neon-cyan); margin-bottom: 1rem;">O FUTURO DA VESTUÁRIO DIGITAL</h3>
+          <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 1.2rem; font-size: 0.95rem;">
+            Fundada na Matrix em <strong>2099</strong> pelo engenheiro e estilista cibernético <strong>Metrik</strong>, a <strong>Cyber Closet Inc.</strong> nasceu com a missão de unificar a moda streetwear física à alta tecnologia holográfica.
+          </p>
+          <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; font-size: 0.95rem;">
+            Nossas peças combinam fios de algodão orgânico reforçados com fibra ótica néon, permitindo que cada jaqueta ou moletom troque de iluminação de acordo com o ritmo das ruas.
+          </p>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div style="background: rgba(7, 9, 19, 0.7); border: 1px solid rgba(0, 243, 255, 0.2); padding: 1rem; border-radius: 8px;">
+              <h4 style="color: var(--neon-cyan); font-size: 0.9rem;">🎯 NOSSA MISSÃO</h4>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Entregar vestuário de alta performance e estilo ilimitado na velocidade da Matrix.</p>
+            </div>
+
+            <div style="background: rgba(7, 9, 19, 0.7); border: 1px solid rgba(255, 0, 127, 0.2); padding: 1rem; border-radius: 8px;">
+              <h4 style="color: var(--neon-magenta); font-size: 0.9rem;">⚡ INOVAÇÃO AR</h4>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Pioneiros no provador virtual holográfico com o mascote Metrik.</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="background: rgba(7, 9, 19, 0.9); border: 1px solid var(--border-cyan); border-radius: 12px; padding: 2rem;">
+          <h3 style="color: #fff; font-size: 1.2rem; margin-bottom: 1rem; text-align: center;">DADOS DA CORPORAÇÃO FICTÍCIA</h3>
+          
+          <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.9rem; font-size: 0.9rem;">
+            <li style="border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.6rem;">
+              <strong style="color: var(--neon-cyan);">Razão Social:</strong> Cyber Closet Vestuários & Metrik Labs Inc.
+            </li>
+            <li style="border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.6rem;">
+              <strong style="color: var(--neon-cyan);">CNPJ (Fictício):</strong> 99.842.099/0001-77
+            </li>
+            <li style="border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.6rem;">
+              <strong style="color: var(--neon-cyan);">Sede da Empresa:</strong> Neo-Tokyo Sector 7, Cybernetics Hub - Bloco 2099
+            </li>
+            <li style="border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.6rem;">
+              <strong style="color: var(--neon-cyan);">E-mail Suporte:</strong> contato@cybercloset2099.com
+            </li>
+            <li>
+              <strong style="color: var(--neon-cyan);">Central de Atendimento:</strong> +55 (11) 99842-2099
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FLOATING MASCOT SUPPORT TRIGGER BUTTON -->
+  <div class="mascot-floating-btn" id="mascot-support-trigger" title="Suporte com o Mascote Metrik">
+    <img src="assets/mascot.jpg" alt="Metrik" class="mascot-btn-img">
+    <div class="mascot-btn-text">
+      <span class="mascot-btn-name">METRIK</span>
+      <span class="mascot-btn-sub">Suporte Cyber 24/7 💬</span>
+    </div>
+  </div>
+
+  <!-- CUSTOMER SUPPORT DRAWER WITH MASCOT METRIK -->
+  <div class="drawer-overlay" id="support-drawer">
+    <div class="drawer-content">
+      <button class="drawer-close">&times;</button>
+      
+      <!-- Mascot Header -->
+      <div style="display: flex; align-items: center; gap: 1rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 1rem;">
+        <img src="assets/mascot.jpg" alt="Metrik" style="width: 54px; height: 54px; border-radius: 50%; object-fit: cover; border: 2px solid var(--neon-cyan);">
+        <div>
+          <h3 style="color: var(--neon-cyan); font-size: 1.2rem;">METRIK</h3>
+          <div style="font-size: 0.78rem; color: var(--neon-green); font-family: var(--font-subheading);">● ONLINE NA MATRIX 24/7</div>
+        </div>
+      </div>
+
+      <!-- Quick Action Buttons -->
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 1rem;">
+        <button class="quick-chat-btn" onclick="sendQuickQuery('tamanho')">📏 Tamanho com Metrik</button>
+        <button class="quick-chat-btn" onclick="sendQuickQuery('rastreio')">🚚 Rastrear Pedido</button>
+        <button class="quick-chat-btn" onclick="sendQuickQuery('empresa')">🏢 Sobre a Empresa</button>
+        <button class="quick-chat-btn" onclick="sendQuickQuery('humano')">💬 Atendente Humano</button>
+      </div>
+
+      <!-- Messages Stream -->
+      <div class="chat-messages-container" id="chat-messages-container">
+        <!-- Preenchido via JS -->
+      </div>
+
+      <!-- User Chat Input Form -->
+      <form id="chat-form" style="display: flex; gap: 8px; margin-top: auto; padding-top: 0.8rem; border-top: 1px solid rgba(255,255,255,0.1);">
+        <input type="text" id="chat-user-input" class="search-input" placeholder="Digite sua mensagem para o Metrik..." style="flex-grow: 1;">
+        <button type="submit" class="cyber-btn" style="padding: 0.6rem 1rem;">⚡ Enviar</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Product Detail Modal -->
+  <div class="modal-overlay" id="detail-modal">
+    <div class="modal-content">
+      <button class="modal-close">&times;</button>
+      <div id="product-detail-content">
+        <!-- Preenchido dinamicamente via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Shopping Cart Side Drawer -->
+  <div class="drawer-overlay" id="cart-drawer">
+    <div class="drawer-content">
+      <button class="drawer-close">&times;</button>
+      <h3 style="color: var(--neon-cyan); font-size: 1.4rem; margin-bottom: 0.4rem;">CARRINHO DE VESTUÁRIO</h3>
+      <p style="color: var(--text-muted); font-size: 0.85rem;">Revise os itens selecionados do seu pedido.</p>
+
+      <div class="cart-items-list" id="cart-items-list">
+        <!-- Renderizado dinamicamente via JS -->
+      </div>
+
+      <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 1rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <span style="color: var(--text-muted);">VALOR TOTAL:</span>
+          <strong id="cart-total-price" style="font-size: 1.4rem; color: var(--neon-cyan); font-family: var(--font-heading);">R$ 0,00</strong>
+        </div>
+
+        <button class="cyber-btn" style="width: 100%; justify-content: center;" onclick="checkoutCart()">
+          FINALIZAR PEDIDO ⚡
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

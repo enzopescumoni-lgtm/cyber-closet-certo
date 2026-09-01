@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <radialGradient id="bgGrad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#211833"/>
+      <stop offset="100%" stop-color="#070913"/>
+    </radialGradient>
+    <filter id="glowMagenta">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="400" height="400" fill="url(#bgGrad)"/>
+
+  <!-- Outfit Set Frame -->
+  <rect x="50" y="40" width="300" height="320" rx="16" fill="rgba(14,18,36,0.6)" stroke="#ff007f" stroke-width="2" filter="url(#glowMagenta)"/>
+
+  <!-- Top Hoodie Silhouette -->
+  <path d="M 150 90 L 120 120 L 135 160 L 160 145 L 160 220 L 240 220 L 240 145 L 265 160 L 280 120 L 250 90 Z" fill="#1b213b" stroke="#00f3ff" stroke-width="1.5"/>
+
+  <!-- Bottom Pants Silhouette -->
+  <path d="M 160 230 L 240 230 L 235 340 L 210 340 L 200 270 L 190 340 L 165 340 Z" fill="#15192e" stroke="#00f3ff" stroke-width="1.5"/>
+
+  <!-- Badge Label -->
+  <rect x="130" y="325" width="140" height="26" rx="4" fill="#ff007f"/>
+  <text x="200" y="342" font-family="sans-serif" font-weight="bold" font-size="12" fill="#ffffff" text-anchor="middle">CONJUNTO COMPLETO</text>
+</svg>

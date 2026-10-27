@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <rect width="400" height="400" fill="slides" rx="20"/>
+  <circle cx="200" cy="200" r="140" fill="rgba(255,255,255,0.02)" filter="drop-shadow(0 10px 20px rgba(0,0,0,0.5))"/>
+
+</svg>

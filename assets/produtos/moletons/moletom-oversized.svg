@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <rect width="400" height="400" fill="#0b0e1b" rx="20"/>
+  <path d="M110 90 L160 60 L240 60 L290 90 L340 140 L290 200 L260 180 L260 330 L140 330 L140 180 L110 200 L60 140 Z" fill="#334155" stroke="#9d4edd" stroke-width="3"/>
+  <!-- Hoodie Pocket -->
+  <path d="M160 240 L240 240 L250 290 L150 290 Z" fill="#1e293b" stroke="#9d4edd" stroke-width="2"/>
+</svg>

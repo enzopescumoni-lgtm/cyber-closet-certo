@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cyber Closet - Visualizador do Novo Avatar Estilizado V2 (Blender Rigged)</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: #060812;
+      color: #e0e6ed;
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      overflow: hidden;
+    }
+    header {
+      background: linear-gradient(180deg, #101428 0%, #060812 100%);
+      border-bottom: 1px solid rgba(0, 243, 255, 0.25);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+    .brand-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand-title span {
+      color: #00f3ff;
+      font-size: 12px;
+      background: rgba(0, 243, 255, 0.12);
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid rgba(0, 243, 255, 0.3);
+    }
+    .main-container {
+      display: flex;
+      flex: 1;
+      position: relative;
+    }
+    #avatarContainer {
+      flex: 1;
+      position: relative;
+      background: radial-gradient(circle at center, #11182c 0%, #060812 85%);
+    }
+    #avatarCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .panel-info {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: rgba(10, 14, 28, 0.88);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 243, 255, 0.35);
+      border-radius: 12px;
+      padding: 20px;
+      width: 360px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      z-index: 10;
+    }
+    .panel-info h2 {
+      font-size: 16px;
+      color: #00f3ff;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .panel-info p {
+      font-size: 13px;
+      color: #a0aec0;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .status-badge {
+      background: rgba(0, 0, 0, 0.45);
+      border-radius: 6px;
+      padding: 8px 12px;
+      font-size: 12px;
+      margin-top: 8px;
+      font-family: monospace;
+    }
+    .control-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 16px;
+    }
+    .btn-action {
+      background: linear-gradient(135deg, rgba(0, 243, 255, 0.15) 0%, rgba(255, 0, 127, 0.15) 100%);
+      border: 1px solid rgba(0, 243, 255, 0.5);
+      color: #ffffff;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-action:hover {
+      background: linear-gradient(135deg, rgba(0, 243, 255, 0.3) 0%, rgba(255, 0, 127, 0.3) 100%);
+      border-color: #00f3ff;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 243, 255, 0.25);
+    }
+    .instructions {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(10, 14, 28, 0.75);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 12px 18px;
+      font-size: 12px;
+      color: #8a99ad;
+      pointer-events: none;
+    }
+    .instructions span {
+      color: #00f3ff;
+    }
+    a.btn-back {
+      color: #00f3ff;
+      text-decoration: none;
+      font-size: 13px;
+      border: 1px solid rgba(0, 243, 255, 0.3);
+      padding: 6px 14px;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    a.btn-back:hover {
+      background: rgba(0, 243, 255, 0.15);
+    }
+  </style>
+
+  <!-- IMPORT MAP PARA THREE.JS -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <div class="brand-title">
+      CYBER CLOSET <span>NEW STYLIZED AVATAR V2 (BLENDER RIGGED)</span>
+    </div>
+    <a href="index.html" class="btn-back">← Voltar à Loja Principal</a>
+  </header>
+
+  <div class="main-container">
+    <div id="avatarContainer">
+      <canvas id="avatarCanvas"></canvas>
+
+      <div class="panel-info">
+        <h2>Novo Avatar Estilizado V2</h2>
+        <p>Base de personagem humano estilizada criada no <strong>Blender 5.2</strong> com estética inspirada na era Xbox 360, malha anatômica contínua, olhos 3D, esqueleto humano (rigging) e animação Idle de respiração.</p>
+        
+        <div class="status-badge" id="statusText">Carregando modelo 3D...</div>
+        <div class="status-badge" id="statsText" style="margin-top: 6px;">Carregando estatísticas...</div>
+
+        <div class="control-buttons">
+          <button class="btn-action" id="btnToggleAnim">⏸️ Pausar Animação Idle</button>
+          <button class="btn-action" id="btnToggleRotate">⏸️ Pausar Rotação 360°</button>
+          <button class="btn-action" id="btnToggleWireframe">🕸️ Modo Wireframe (Malha 3D)</button>
+          <button class="btn-action" id="btnResetCamera">🎯 Centralizar Câmera</button>
+        </div>
+      </div>
+
+      <div class="instructions">
+        🖱️ <span>Arrastar:</span> Rotação 360° | 📜 <span>Scroll:</span> Aproximar / Zoom
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="avatar-v2-test.js"></script>
+</body>
+</html>

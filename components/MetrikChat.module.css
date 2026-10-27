@@ -1,0 +1,203 @@
+.floatingBtn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 999;
+  background: linear-gradient(135deg, #070913, #161d38);
+  border: 2px solid #9d4edd;
+  box-shadow: 0 0 25px rgba(157, 78, 221, 0.5);
+  border-radius: 50px;
+  padding: 0.6rem 1.4rem 0.6rem 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.floatingBtn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 35px rgba(0, 243, 255, 0.7);
+  border-color: #00f3ff;
+}
+
+.btnImg {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #00f3ff;
+}
+
+.btnText {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.btnName {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85rem;
+  color: #00f3ff;
+}
+
+.btnSub {
+  font-size: 0.75rem;
+  color: #8a99ad;
+}
+
+.drawerOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(5, 7, 15, 0.85);
+  backdrop-filter: blur(12px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.drawerOverlay.active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.drawerContent {
+  background: #070913;
+  border-left: 1px solid #9d4edd;
+  box-shadow: -10px 0 40px rgba(157, 78, 221, 0.3);
+  width: 100%;
+  max-width: 440px;
+  height: 100vh;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  background: transparent;
+  border: none;
+  color: #8a99ad;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.closeBtn:hover {
+  color: #ff007f;
+}
+
+.chatMessages {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-right: 4px;
+}
+
+.msgBot, .msgUser {
+  display: flex;
+  gap: 10px;
+  max-width: 88%;
+}
+
+.msgBot {
+  align-self: flex-start;
+}
+
+.msgUser {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.msgAvatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #00f3ff;
+  object-fit: cover;
+}
+
+.bubbleBot {
+  background: rgba(22, 29, 58, 0.9);
+  border: 1px solid rgba(0, 243, 255, 0.3);
+  color: #f0f4f8;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.bubbleUser {
+  background: linear-gradient(135deg, rgba(157, 78, 221, 0.4), rgba(255, 0, 127, 0.4));
+  border: 1px solid #ff007f;
+  color: #ffffff;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  line-height: 1.5;
+}
+
+.quickBtns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 0.8rem;
+}
+
+.quickBtn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(157, 78, 221, 0.3);
+  color: #f0f4f8;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.quickBtn:hover {
+  background: rgba(0, 243, 255, 0.15);
+  border-color: #00f3ff;
+}
+
+.inputForm {
+  display: flex;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 0.8rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.textInput {
+  flex-grow: 1;
+  background: rgba(7, 9, 19, 0.8);
+  border: 1px solid rgba(157, 78, 221, 0.3);
+  color: #f0f4f8;
+  padding: 0.62rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.sendBtn {
+  background: linear-gradient(135deg, rgba(157, 78, 221, 0.4), rgba(0, 243, 255, 0.4));
+  border: 1px solid #00f3ff;
+  color: #ffffff;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.78rem;
+  cursor: pointer;
+}

@@ -1,0 +1,554 @@
+/* ==========================================================================
+   CYBER CLOSET - LOADING SCREEN CYBERPUNK NEON
+   Design System: Deep Black (#050510), Neon Cyan (#00F5FF), Neon Purple (#9D00FF), Magenta (#FF00C8)
+   ========================================================================== */
+
+:root {
+  --cls-bg: #050510;
+  --cls-cyan: #00F5FF;
+  --cls-purple: #9D00FF;
+  --cls-magenta: #FF00C8;
+  --cls-glow-cyan: rgba(0, 245, 255, 0.65);
+  --cls-glow-purple: rgba(157, 0, 255, 0.55);
+  --cls-glow-magenta: rgba(255, 0, 200, 0.55);
+  --cls-font-head: 'Orbitron', -apple-system, sans-serif;
+  --cls-font-sub: 'Rajdhani', -apple-system, sans-serif;
+  --cls-font-mono: 'Space Grotesk', monospace;
+}
+
+/* 1. OVERLAY PRINCIPAL */
+.cyber-loading-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--cls-bg);
+  z-index: 9999999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  user-select: none;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              visibility 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.cyber-loading-overlay.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.035);
+  pointer-events: none;
+}
+
+/* 2. BACKGROUND CANVAS & GRID HOLOGRÁFICO */
+.cyber-loading-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.cyber-loading-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(0, 245, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(157, 0, 255, 0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+  -webkit-mask-image: radial-gradient(circle at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 80%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.cyber-loading-scanline {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 50%,
+    rgba(0, 245, 255, 0.02) 51%,
+    transparent 52%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.cyber-loading-radial-glow {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(157, 0, 255, 0.22) 0%, rgba(0, 245, 255, 0.12) 40%, transparent 70%);
+  filter: blur(50px);
+  pointer-events: none;
+  z-index: 2;
+  animation: clsPulseAura 4s ease-in-out infinite alternate;
+}
+
+@keyframes clsPulseAura {
+  0% { transform: scale(0.9) translate(-50%, -50%); opacity: 0.6; }
+  100% { transform: scale(1.15) translate(-50%, -50%); opacity: 0.95; }
+}
+
+/* 3. HUD TECH CORNERS & LABELS */
+.cyber-hud-corner {
+  position: absolute;
+  font-family: var(--cls-font-mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--cls-cyan);
+  text-shadow: 0 0 8px var(--cls-glow-cyan);
+  z-index: 10;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cyber-hud-tl { top: 24px; left: 24px; }
+.cyber-hud-tr { top: 24px; right: 24px; pointer-events: auto; }
+.cyber-hud-bl { bottom: 24px; left: 24px; }
+.cyber-hud-br { bottom: 24px; right: 24px; }
+
+.cyber-hud-bracket {
+  color: var(--cls-magenta);
+  font-weight: bold;
+}
+
+.cyber-audio-toggle {
+  background: rgba(10, 14, 28, 0.7);
+  border: 1px solid var(--cls-cyan);
+  color: var(--cls-cyan);
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-family: var(--cls-font-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 0 10px rgba(0, 245, 255, 0.2);
+}
+
+.cyber-audio-toggle:hover {
+  background: rgba(0, 245, 255, 0.18);
+  border-color: #fff;
+  color: #fff;
+  box-shadow: 0 0 15px var(--cls-glow-cyan);
+}
+
+/* 4. CONTEÚDO CENTRAL */
+.cyber-loading-center {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 90vw;
+}
+
+/* 5. ANIMAÇÃO CIRCULAR HOLOGRÁFICA COM ANÉIS DUPLOS */
+.cyber-rings-stage {
+  position: relative;
+  width: 250px;
+  height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+/* Anel Externo (Horário, Tracejado com marcadores HUD) */
+.cyber-ring-outer {
+  position: absolute;
+  width: 240px;
+  height: 240px;
+  border-radius: 50%;
+  border: 2px dashed rgba(0, 245, 255, 0.45);
+  border-top-color: var(--cls-cyan);
+  border-right-color: var(--cls-magenta);
+  box-shadow: 0 0 20px rgba(0, 245, 255, 0.3), inset 0 0 20px rgba(157, 0, 255, 0.2);
+  animation: clsSpinClockwise 9s linear infinite;
+}
+
+.cyber-ring-outer::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--cls-cyan);
+  box-shadow: 0 0 12px var(--cls-cyan), 0 0 24px var(--cls-cyan);
+}
+
+/* Anel Interno (Anti-Horário, Gradiente Neon Contínuo) */
+.cyber-ring-inner {
+  position: absolute;
+  width: 195px;
+  height: 195px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  border-top: 2px solid var(--cls-purple);
+  border-bottom: 2px solid var(--cls-magenta);
+  border-left: 2px solid rgba(0, 245, 255, 0.6);
+  box-shadow: 0 0 16px rgba(157, 0, 255, 0.4);
+  animation: clsSpinCounter 5.5s linear infinite;
+}
+
+.cyber-ring-inner::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cls-magenta);
+  box-shadow: 0 0 10px var(--cls-magenta), 0 0 20px var(--cls-magenta);
+}
+
+/* Anel Central Holográfico Pulsante */
+.cyber-ring-core {
+  position: absolute;
+  width: 155px;
+  height: 155px;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 245, 255, 0.25);
+  background: radial-gradient(circle, rgba(157, 0, 255, 0.15) 0%, rgba(5, 5, 16, 0.8) 75%);
+  animation: clsCorePulse 2.5s ease-in-out infinite alternate;
+}
+
+@keyframes clsSpinClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes clsSpinCounter {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes clsCorePulse {
+  0% { transform: scale(0.96); box-shadow: 0 0 10px rgba(0, 245, 255, 0.2); }
+  100% { transform: scale(1.03); box-shadow: 0 0 25px rgba(255, 0, 200, 0.35); }
+}
+
+/* 6. LOGOTIPO CENTRAL CYBER CLOSET */
+.cyber-logo-badge {
+  position: relative;
+  z-index: 5;
+  width: 115px;
+  height: 115px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #090c1e;
+  border: 2px solid var(--cls-cyan);
+  box-shadow: 0 0 18px var(--cls-glow-cyan), inset 0 0 12px rgba(157, 0, 255, 0.5);
+  overflow: hidden;
+  animation: clsLogoFloat 3s ease-in-out infinite alternate;
+}
+
+@keyframes clsLogoFloat {
+  0% { transform: translateY(-2px); }
+  100% { transform: translateY(3px); }
+}
+
+.cyber-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: contrast(1.1) brightness(1.05);
+  transition: transform 0.3s ease;
+}
+
+/* Efeito Glitch no Logo */
+.cyber-logo-glitch-active .cyber-logo-img {
+  animation: clsGlitchShake 0.28s ease-in-out;
+  filter: drop-shadow(-3px 0 var(--cls-cyan)) drop-shadow(3px 0 var(--cls-magenta));
+}
+
+@keyframes clsGlitchShake {
+  0% { transform: translate(0); }
+  20% { transform: translate(-3px, 2px); }
+  40% { transform: translate(3px, -2px); }
+  60% { transform: translate(-2px, -1px); }
+  80% { transform: translate(2px, 1px); }
+  100% { transform: translate(0); }
+}
+
+/* 7. TIPOGRAFIA DO LOGO */
+.cyber-brand-name {
+  font-family: var(--cls-font-head);
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  color: #ffffff;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  text-shadow: 0 0 10px rgba(0, 245, 255, 0.8), 0 0 25px rgba(157, 0, 255, 0.6);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cyber-brand-name span.cyan {
+  color: var(--cls-cyan);
+  text-shadow: 0 0 14px var(--cls-cyan);
+}
+
+.cyber-brand-sub {
+  font-family: var(--cls-font-sub);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--cls-magenta);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  text-shadow: 0 0 8px var(--cls-glow-magenta);
+}
+
+/* 8. BARRA DE PROGRESSO COM GRADIENTE NEON */
+.cyber-progress-container {
+  width: min(440px, 86vw);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 18px;
+}
+
+.cyber-progress-track {
+  width: 100%;
+  height: 7px;
+  background: rgba(14, 18, 38, 0.95);
+  border: 1px solid rgba(0, 245, 255, 0.35);
+  border-radius: 6px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 10px rgba(0, 245, 255, 0.15), inset 0 0 6px rgba(0,0,0,0.8);
+}
+
+.cyber-progress-fill {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--cls-cyan) 0%, var(--cls-purple) 65%, var(--cls-magenta) 100%);
+  border-radius: 6px;
+  box-shadow: 0 0 12px var(--cls-cyan), 0 0 20px var(--cls-purple);
+  transition: width 0.28s cubic-bezier(0.1, 0.8, 0.2, 1);
+  position: relative;
+}
+
+/* Leading Glow Beam */
+.cyber-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 20px;
+  background: #ffffff;
+  filter: blur(3px);
+  box-shadow: 0 0 15px #ffffff, 0 0 25px var(--cls-cyan);
+  opacity: 0.9;
+}
+
+.cyber-progress-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--cls-font-mono);
+  font-size: 13px;
+  color: #a0aec0;
+}
+
+.cyber-progress-phase {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.cyber-progress-percent {
+  font-family: var(--cls-font-head);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--cls-cyan);
+  text-shadow: 0 0 8px var(--cls-cyan);
+  min-width: 48px;
+  text-align: right;
+}
+
+/* 9. MENSAGENS DINÂMICAS HOLOGRÁFICAS */
+.cyber-status-box {
+  min-height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cyber-status-text {
+  font-family: var(--cls-font-sub);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #e2e8f0;
+  text-shadow: 0 0 8px rgba(0, 245, 255, 0.5);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.cyber-status-text.fade {
+  opacity: 0;
+  transform: translateY(4px);
+}
+
+.cyber-status-text.complete {
+  color: #00ff88;
+  font-family: var(--cls-font-head);
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: 2.5px;
+  text-shadow: 0 0 14px #00ff88, 0 0 25px rgba(0, 255, 136, 0.6);
+  animation: clsAcessoLiberadoPulse 0.5s ease-in-out infinite alternate;
+}
+
+@keyframes clsAcessoLiberadoPulse {
+  0% { transform: scale(1); filter: brightness(1); }
+  100% { transform: scale(1.05); filter: brightness(1.25); }
+}
+
+/* 10. BOTAO DE RETRY / BYPASS AMIGAVEL SE DEMORAR */
+.cyber-loading-fallback {
+  margin-top: 14px;
+  display: none;
+  animation: clsFadeIn 0.4s ease;
+}
+
+.cyber-btn-enter-fallback {
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.2) 0%, rgba(157, 0, 255, 0.3) 100%);
+  border: 1px solid var(--cls-cyan);
+  color: #ffffff;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-family: var(--cls-font-head);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(0, 245, 255, 0.3);
+  transition: all 0.2s ease;
+}
+
+.cyber-btn-enter-fallback:hover {
+  background: linear-gradient(135deg, rgba(0, 245, 255, 0.4) 0%, rgba(157, 0, 255, 0.5) 100%);
+  box-shadow: 0 0 25px var(--cls-cyan);
+  transform: translateY(-2px);
+}
+
+@keyframes clsFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 11. REVELAÇÃO SUAVE DA INTERFACE DO SITE */
+#site-content {
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform, filter;
+}
+
+body.cls-loading #site-content {
+  opacity: 0;
+  transform: scale(0.985);
+  filter: blur(8px);
+  pointer-events: none;
+}
+
+body.cls-ready #site-content {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0px);
+  pointer-events: auto;
+}
+
+/* 12. RESPONSIVIDADE */
+@media (max-width: 600px) {
+  .cyber-rings-stage {
+    width: 200px;
+    height: 200px;
+    margin-bottom: 18px;
+  }
+  .cyber-ring-outer {
+    width: 190px;
+    height: 190px;
+  }
+  .cyber-ring-inner {
+    width: 155px;
+    height: 155px;
+  }
+  .cyber-ring-core {
+    width: 120px;
+    height: 120px;
+  }
+  .cyber-logo-badge {
+    width: 90px;
+    height: 90px;
+  }
+  .cyber-brand-name {
+    font-size: 20px;
+    letter-spacing: 2.5px;
+  }
+  .cyber-brand-sub {
+    font-size: 11px;
+    letter-spacing: 2px;
+    margin-bottom: 18px;
+  }
+  .cyber-hud-tl, .cyber-hud-bl {
+    display: none;
+  }
+  .cyber-hud-tr {
+    top: 14px;
+    right: 14px;
+  }
+  .cyber-hud-br {
+    bottom: 14px;
+    right: 14px;
+    font-size: 10px;
+  }
+}
+
+/* 13. ACESSIBILIDADE: PREFERS-REDUCED-MOTION */
+@media (prefers-reduced-motion: reduce) {
+  .cyber-ring-outer,
+  .cyber-ring-inner,
+  .cyber-ring-core,
+  .cyber-loading-radial-glow,
+  .cyber-logo-badge,
+  .cyber-status-text.complete {
+    animation: none !important;
+  }
+  .cyber-loading-overlay {
+    transition: opacity 0.3s ease !important;
+  }
+  #site-content {
+    transition: opacity 0.3s ease !important;
+  }
+}

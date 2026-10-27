@@ -1,767 +1,1224 @@
 /* ==========================================================================
-   CYBER CLOSET - PRODUTOS & ANIMAÇÕES DA INTERFACE CYBERPUNK
+   CYBER CLOSET - AVATAR 3D THREE.JS WEBGL ENGINE & CATÁLOGO E-COMMERCE TECH
    ========================================================================== */
 
-// Base de Dados Oficial de Vestuário do Catálogo Cyber Closet
+// Base de Dados Oficial de Produtos da Marca Cyber Closet & Marcas Parceiras (42 Itens)
 const PRODUCTS = [
-  // --- 2. CAMISETAS (VERÃO) ---
+  // --- CAMISETAS ---
   {
-    id: "C001",
-    marca: "Nike",
-    nome: "Sportswear Club T-Shirt",
+    id: 1,
+    nome: "Camiseta Essential Branca",
+    marca: "Cyber Closet",
     categoria: "Camisetas",
-    subcategoria: "Basic",
-    estacao: "verao",
-    preco_demo: 199.99,
-    cor: "Preto",
+    preco: 79.90,
+    descricao: "Camiseta essencial de algodão pesado com caimento reto de estúdio e gola canelada.",
+    imagem: "assets/produtos/camisetas/camiseta-essential-branca.svg",
+    cores: ["Branco", "Preto"],
     tamanhos: ["PP", "P", "M", "G", "GG"],
-    descricao: "Camiseta de algodão macio de corte clássico com o tradicional logo Futura bordado no peito.",
-    tags: ["casual", "streetwear", "básico", "verao"],
-    avaliacao: 4.7,
-    avaliacoes_count: 140,
-    status: "Em estoque",
     destaque: true,
-    mais_vendido: true,
-    novo: false,
-    image: "assets/nike_club_tshirt.svg",
-    equippedType: "jacket"
+    avatar: { compativel: true, tipo: "top", modelo3d: "assets/modelos3d/camisetas/camiseta-essential-branca.glb" }
   },
   {
-    id: "C002",
-    marca: "Nike",
-    nome: "Sportswear Premium Essentials T-Shirt",
+    id: 2,
+    nome: "Camiseta Oversized Preta",
+    marca: "CYBR",
     categoria: "Camisetas",
-    subcategoria: "Oversized",
-    estacao: "verao",
-    preco_demo: 249.99,
-    cor: "Branco Off-White",
+    preco: 99.90,
+    descricao: "Confeccionada em malha pesada com caimento oversized descontraído e ombros caídos.",
+    imagem: "assets/produtos/camisetas/camiseta-oversized-preta.svg",
+    cores: ["Preto", "Cinza"],
     tamanhos: ["P", "M", "G", "GG"],
-    descricao: "Confeccionada em algodão pesado com caimento oversized descontraído e ombros caídos.",
-    tags: ["streetwear", "oversized", "premium", "verao"],
-    avaliacao: 4.8,
-    avaliacoes_count: 110,
-    status: "Em estoque",
     destaque: true,
-    mais_vendido: false,
-    novo: false,
-    image: "assets/nike_essentials_tshirt.svg",
-    equippedType: "jacket"
+    avatar: { compativel: true, tipo: "top", modelo3d: "assets/modelos3d/camisetas/camiseta-oversized-preta.glb" }
   },
   {
-    id: "C004",
-    marca: "Nike",
-    nome: "ACG T-Shirt",
+    id: 3,
+    nome: "Camiseta Neon Street Cinza",
+    marca: "Neon Street",
     categoria: "Camisetas",
-    subcategoria: "Outdoor Tech",
-    estacao: "verao",
-    preco_demo: 299.99,
-    cor: "Verde Musgo",
-    tamanhos: ["P", "M", "G", "GG"],
-    descricao: "Linha All Conditions Gear. Algodão pesado com estampa gráfica técnica e secagem rápida para exploração urbana.",
-    tags: ["techwear", "outdoor", "streetwear", "verao"],
-    avaliacao: 4.9,
-    avaliacoes_count: 70,
-    status: "Em estoque",
+    preco: 89.90,
+    descricao: "Estampa minimalista refletiva neon sobre algodão penteado cinza mescla.",
+    imagem: "assets/produtos/camisetas/camiseta-neon-street-cinza.svg",
+    cores: ["Cinza", "Preto"],
+    tamanhos: ["P", "M", "G"],
     destaque: false,
-    mais_vendido: false,
-    novo: true,
-    image: "assets/nike_acg_tshirt.svg",
-    equippedType: "jacket"
+    avatar: { compativel: true, tipo: "top", modelo3d: "assets/modelos3d/camisetas/camiseta-neon-street-cinza.glb" }
   },
   {
-    id: "C005",
-    marca: "adidas",
-    nome: "Premium Essentials T-Shirt",
+    id: 4,
+    nome: "Camiseta Urban Core Bege",
+    marca: "Urban Core",
     categoria: "Camisetas",
-    subcategoria: "Minimalist",
-    estacao: "verao",
-    preco_demo: 249.99,
-    cor: "Preto Minimal",
-    tamanhos: ["PP", "P", "M", "G", "GG"],
-    descricao: "Algodão de malha simples pesada. Trefoil sutil bordado no peito em estética limpa e moderna.",
-    tags: ["streetwear", "minimalista", "verao"],
-    avaliacao: 4.8,
-    avaliacoes_count: 95,
-    status: "Em estoque",
-    destaque: true,
-    mais_vendido: false,
-    novo: false,
-    image: "assets/tshirt_nike.svg",
-    equippedType: "jacket"
+    preco: 94.90,
+    descricao: "Modelagem street boxy em tom bege terroso de alta densidade.",
+    imagem: "assets/produtos/camisetas/camiseta-urban-core-bege.svg",
+    cores: ["Bege", "Branco"],
+    tamanhos: ["M", "G", "GG"],
+    destaque: false,
+    avatar: { compativel: true, tipo: "top", modelo3d: "assets/modelos3d/camisetas/camiseta-urban-core-bege.glb" }
   },
   {
-    id: "C006",
-    marca: "adidas",
-    nome: "Trefoil T-Shirt",
+    id: 5,
+    nome: "Camiseta CYBR Graph Azul",
+    marca: "CYBR",
     categoria: "Camisetas",
-    subcategoria: "Classic Heritage",
-    estacao: "verao",
-    preco_demo: 199.99,
-    cor: "Branco/Preto",
+    preco: 109.90,
+    descricao: "Estampa gráfica técnica em ciano e azul escuro com secagem rápida.",
+    imagem: "assets/produtos/camisetas/camiseta-cybr-graph-azul.svg",
+    cores: ["Azul", "Preto"],
     tamanhos: ["P", "M", "G", "GG"],
-    descricao: "Estampa frontal grande do ícone Trefoil. Celebrando a herança clássica dos arquivos adidas Originals.",
-    tags: ["clássico", "streetwear", "verao"],
-    avaliacao: 4.7,
-    avaliacoes_count: 130,
-    status: "Em estoque",
     destaque: false,
-    mais_vendido: true,
-    novo: false,
-    image: "assets/adidas_trefoil_tshirt.svg",
-    equippedType: "jacket"
-  },
-
-  // --- 3. MOLETONS (INVERNO) ---
-  {
-    id: "M001",
-    marca: "Nike",
-    nome: "Sportswear Tech Fleece Full-Zip Hoodie",
-    categoria: "Moletons",
-    subcategoria: "Tech Fleece",
-    estacao: "inverno",
-    preco_demo: 899.99,
-    cor: "Cinza Mescla/Preto",
-    tamanhos: ["P", "M", "G", "GG"],
-    descricao: "O Moletom de alta tecnologia definitivo. Tecido isolante leve dos dois lados que mantém o aquecimento sem volume extra.",
-    tags: ["techwear", "streetwear", "premium", "inverno"],
-    avaliacao: 4.9,
-    avaliacoes_count: 320,
-    status: "Em estoque",
-    destaque: true,
-    mais_vendido: true,
-    novo: false,
-    image: "assets/hoodie_techfleece.svg",
-    equippedType: "jacket"
+    avatar: { compativel: true, tipo: "top", modelo3d: "assets/modelos3d/camisetas/camiseta-cybr-graph-azul.glb" }
   },
   {
-    id: "M002",
-    marca: "Nike",
-    nome: "Sportswear Club Fleece Hoodie",
-    categoria: "Moletons",
-    subcategoria: "Casual Fleece",
-    estacao: "inverno",
-    preco_demo: 399.99,
-    cor: "Preto",
-    tamanhos: ["PP", "P", "M", "G", "GG"],
-    descricao: "Lã cardada macia no interior e capuz ajustável com cordão. O moletom básico mais aconchegante para o dia a dia.",
-    tags: ["básico", "conforto", "inverno"],
-    avaliacao: 4.7,
-    avaliacoes_count: 210,
-    status: "Em estoque",
-    destaque: true,
-    mais_vendido: false,
-    novo: false,
-    image: "assets/hoodie_techfleece.svg",
-    equippedType: "jacket"
-  },
-  {
-    id: "M005",
-    marca: "adidas",
-    nome: "Adicolor Classics Trefoil Hoodie",
-    categoria: "Moletons",
-    subcategoria: "Heritage",
-    estacao: "inverno",
-    preco_demo: 399.99,
-    cor: "Verde Floresta",
-    tamanhos: ["PP", "P", "M", "G", "GG"],
-    descricao: "Moletom com capuz e bolso canguru em tecido fleece de algodão ultra denso com o grande logo Trefoil bordado no peito.",
-    tags: ["heritage", "clássico", "inverno"],
-    avaliacao: 4.8,
-    avaliacoes_count: 185,
-    status: "Em estoque",
-    destaque: true,
-    mais_vendido: true,
-    novo: false,
-    image: "assets/hoodie_techfleece.svg",
-    equippedType: "jacket"
-  },
-  {
-    id: "M009",
-    marca: "New Balance",
-    nome: "Essentials Stacked Logo Hoodie",
-    categoria: "Moletons",
-    subcategoria: "Essentials",
-    estacao: "inverno",
-    preco_demo: 399.99,
-    cor: "Bege Oatmeal",
-    tamanhos: ["P", "M", "G", "GG"],
-    descricao: "Design francês de moletom felpudo com cós canelado flexível e capuz forrado.",
-    tags: ["casual", "essentials", "inverno"],
-    avaliacao: 4.8,
-    avaliacoes_count: 140,
-    status: "Em estoque",
+    id: 6,
+    nome: "Camiseta Nova Wear Verde",
+    marca: "Nova Wear",
+    categoria: "Camisetas",
+    preco: 84.90,
+    descricao: "Algodão sustentável em tom verde musgo com caimento moderno.",
+    imagem: "assets/produtos/camisetas/camiseta-nova-wear-verde.svg",
+    cores: ["Verde", "Preto"],
+    tamanhos: ["P", "M", "G"],
     destaque: false,
-    mais_vendido: false,
-    novo: false,
-    image: "assets/hoodie_techfleece.svg",
-    equippedType: "jacket"
+    avatar: { compativel: true, tipo: "top", modelo3d: "assets/modelos3d/camisetas/camiseta-nova-wear-verde.glb" }
   },
 
-  // --- 4. JAQUETAS (INVERNO) ---
+  // --- CAMISAS ---
   {
-    id: "J001",
-    marca: "Nike",
-    nome: "Sportswear Windrunner Jacket",
-    categoria: "Jaquetas",
-    subcategoria: "Corta-Vento",
-    estacao: "inverno",
-    preco_demo: 499.99,
-    cor: "Preto/Branco Chevron",
+    id: 7,
+    nome: "Camisa Street Manga Curta Preta",
+    marca: "CYBR",
+    categoria: "Camisas",
+    preco: 129.90,
+    descricao: "Camisa casual de botões em sarja leve com gola camp e bolso frontal.",
+    imagem: "assets/produtos/camisas/camisa-street-manga-curta-preta.svg",
+    cores: ["Preto", "Cinza"],
     tamanhos: ["P", "M", "G", "GG"],
-    descricao: "A clássica jaqueta corta-vento com o lendário painel em V no peito (26 graus). Tecido leve e resistente ao vento.",
-    tags: ["corta-vento", "heritage", "streetwear", "inverno"],
-    avaliacao: 4.8,
-    avaliacoes_count: 270,
-    status: "Em estoque",
     destaque: true,
-    mais_vendido: true,
-    novo: false,
-    image: "assets/jacket_firebird.svg",
-    equippedType: "jacket"
+    avatar: { compativel: true, tipo: "top", modelo3d: "assets/modelos3d/camisas/camisa-street-manga-curta-preta.glb" }
   },
   {
-    id: "J004",
-    marca: "adidas",
-    nome: "Firebird Track Jacket",
-    categoria: "Jaquetas",
-    subcategoria: "Track Jacket",
-    estacao: "inverno",
-    preco_demo: 499.99,
-    cor: "Preto/Branco",
-    tamanhos: ["PP", "P", "M", "G", "GG"],
-    descricao: "Feita em malha de poliéster brilhante com gola alta retrô, 3 listras nas mangas e o bordado Trefoil clássico.",
-    tags: ["retrô", "terracewear", "streetwear", "inverno"],
-    avaliacao: 4.9,
-    avaliacoes_count: 310,
-    status: "Em estoque",
-    destaque: true,
-    mais_vendido: true,
-    novo: false,
-    image: "assets/jacket_firebird.svg",
-    equippedType: "jacket"
+    id: 8,
+    nome: "Camisa Over Linho Branca",
+    marca: "Nova Wear",
+    categoria: "Camisas",
+    preco: 149.90,
+    descricao: "Mistura de linho e algodão respirável para o clima quente da Matrix.",
+    imagem: "assets/produtos/camisas/camisa-over-linho-branca.svg",
+    cores: ["Branco", "Bege"],
+    tamanhos: ["M", "G", "GG"],
+    destaque: false,
+    avatar: { compativel: true, tipo: "top", modelo3d: "assets/modelos3d/camisas/camisa-over-linho-branca.glb" }
   },
   {
-    id: "J008",
-    marca: "New Balance",
-    nome: "Athletics Varsity Jacket",
-    categoria: "Jaquetas",
-    subcategoria: "Varsity Jacket",
-    estacao: "inverno",
-    preco_demo: 699.99,
-    cor: "Verde/Creme",
+    id: 9,
+    nome: "Camisa Tactical Urban Verde",
+    marca: "Urban Core",
+    categoria: "Camisas",
+    preco: 159.90,
+    descricao: "Estilo utilitário com múltiplos bolsos modulares e tecido ripstop.",
+    imagem: "assets/produtos/camisas/camisa-tactical-urban-verde.svg",
+    cores: ["Verde", "Preto"],
+    tamanhos: ["P", "M", "G"],
+    destaque: false,
+    avatar: { compativel: true, tipo: "top", modelo3d: "assets/modelos3d/camisas/camisa-tactical-urban-verde.glb" }
+  },
+  {
+    id: 10,
+    nome: "Camisa Bowling Neon Roxo",
+    marca: "Neon Street",
+    categoria: "Camisas",
+    sensacao: "verao",
+    preco: 139.90,
+    descricao: "Modelagem retrô bowling com listra lateral neon roxa de alto brilho.",
+    imagem: "assets/produtos/camisas/camisa-bowling-neon-roxo.svg",
+    cores: ["Preto", "Cinza"],
     tamanhos: ["P", "M", "G", "GG"],
-    descricao: "Jaqueta estilo colegial varsity com corpo de feltro de lã sintética e mangas acopladas de couro ecológico.",
-    tags: ["varsity", "vintage", "streetwear", "inverno"],
-    avaliacao: 4.9,
-    avaliacoes_count: 140,
-    status: "Em estoque",
-    destaque: true,
-    mais_vendido: false,
-    novo: false,
-    image: "assets/nb_varsity_jacket.svg",
-    equippedType: "jacket"
+    destaque: false,
+    avatar: { compativel: true, tipo: "top", modelo3d: "assets/modelos3d/camisas/camisa-bowling-neon-roxo.glb" }
   },
 
-  // --- 5. CALÇAS (INVERNO) ---
+  // --- MOLETONS ---
   {
-    id: "P001",
-    marca: "Nike",
-    nome: "Sportswear Tech Fleece Joggers",
-    categoria: "Calças",
-    subcategoria: "Jogger Tech",
-    estacao: "inverno",
-    preco_demo: 699.99,
-    cor: "Cinza Mescla",
+    id: 11,
+    nome: "Moletom Oversized Preto",
+    marca: "Cyber Closet",
+    categoria: "Moletons",
+    preco: 179.90,
+    descricao: "Blusão de moletom felpudo pesado com capuz amplo e bolso canguru duplo.",
+    imagem: "assets/produtos/moletons/moletom-oversized-preto.svg",
+    cores: ["Preto", "Cinza"],
     tamanhos: ["P", "M", "G", "GG"],
-    descricao: "Modelagem afunilada com punhos canelados altos e o famoso bolso lateral com zíper colado de perfil futurista.",
-    tags: ["techwear", "jogger", "streetwear", "inverno"],
-    avaliacao: 4.9,
-    avaliacoes_count: 290,
-    status: "Em estoque",
     destaque: true,
-    mais_vendido: true,
-    novo: false,
-    image: "assets/pants_jogger.svg",
-    equippedType: "pants"
+    avatar: { compativel: true, tipo: "top", modelo3d: "assets/modelos3d/moletons/moletom-oversized-preto.glb" }
   },
   {
-    id: "P004",
-    marca: "adidas",
-    nome: "Firebird Track Pants",
-    categoria: "Calças",
-    subcategoria: "Track Pants",
-    estacao: "inverno",
-    preco_demo: 399.99,
-    cor: "Preto/3-Stripes",
-    tamanhos: ["PP", "P", "M", "G", "GG"],
-    descricao: "Calça esportiva clássica de caimento reto com zíper nas barras e tecido tricot reluzente de alto padrão.",
-    tags: ["retrô", "streetwear", "inverno"],
-    avaliacao: 4.8,
-    avaliacoes_count: 230,
-    status: "Em estoque",
+    id: 12,
+    nome: "Moletom Hoodie Cinza Mescla",
+    marca: "CYBR",
+    categoria: "Moletons",
+    preco: 169.90,
+    descricao: "Moletom básico com cordões planos e acabamento canelado nos punhos.",
+    imagem: "assets/produtos/moletons/moletom-hoodie-cinza-mescla.svg",
+    cores: ["Cinza", "Branco"],
+    tamanhos: ["PP", "P", "M", "G"],
+    destaque: false,
+    avatar: { compativel: true, tipo: "top", modelo3d: "assets/modelos3d/moletons/moletom-hoodie-cinza-mescla.glb" }
+  },
+  {
+    id: 13,
+    nome: "Moletom CYBR Matrix Bege",
+    marca: "CYBR",
+    categoria: "Moletons",
+    preco: 189.90,
+    descricao: "Algodão ultra denso 400g com bordado cibernético no peito.",
+    imagem: "assets/produtos/moletons/moletom-cybr-matrix-bege.svg",
+    cores: ["Bege", "Preto"],
+    tamanhos: ["M", "G", "GG"],
+    destaque: false,
+    avatar: { compativel: true, tipo: "top", modelo3d: "assets/modelos3d/moletons/moletom-cybr-matrix-bege.glb" }
+  },
+  {
+    id: 14,
+    nome: "Moletom Crewneck Urban Azul",
+    marca: "Urban Core",
+    categoria: "Moletons",
+    preco: 159.90,
+    descricao: "Gola careca sem capuz em algodão azul royal de toque macio.",
+    imagem: "assets/produtos/moletons/moletom-crewneck-urban-azul.svg",
+    cores: ["Azul", "Cinza"],
+    tamanhos: ["P", "M", "G"],
+    destaque: false,
+    avatar: { compativel: true, tipo: "top", modelo3d: "assets/modelos3d/moletons/moletom-crewneck-urban-azul.glb" }
+  },
+  {
+    id: 15,
+    nome: "Moletom Zip Tech Preto",
+    marca: "Neon Street",
+    categoria: "Moletons",
+    preco: 199.90,
+    descricao: "Fechamento por zíper metálico frontal com gola alta isolante.",
+    imagem: "assets/produtos/moletons/moletom-zip-tech-preto.svg",
+    cores: ["Preto", "Verde"],
+    tamanhos: ["P", "M", "G", "GG"],
     destaque: true,
-    mais_vendido: true,
-    novo: false,
-    image: "assets/pants_jogger.svg",
-    equippedType: "pants"
+    avatar: { compativel: true, tipo: "top", modelo3d: "assets/modelos3d/moletons/moletom-zip-tech-preto.glb" }
   },
 
-  // --- 6. SHORTS (VERÃO) ---
+  // --- JAQUETAS ---
   {
-    id: "H001",
-    marca: "Nike",
-    nome: "Sportswear Club Shorts",
+    id: 16,
+    nome: "Jaqueta Puffer Preta",
+    marca: "Cyber Closet",
+    categoria: "Jaquetas",
+    preco: 299.90,
+    descricao: "Jaqueta acolchoada de inverno isolante com repelência a água e gola alta.",
+    imagem: "assets/produtos/jaquetas/jaqueta-puffer-preta.svg",
+    cores: ["Preto", "Cinza"],
+    tamanhos: ["P", "M", "G", "GG"],
+    destaque: true,
+    avatar: { compativel: true, tipo: "top", modelo3d: "assets/modelos3d/jaquetas/jaqueta-puffer-preta.glb" }
+  },
+  {
+    id: 17,
+    nome: "Jaqueta Jeans Azul",
+    marca: "Urban Core",
+    categoria: "Jaquetas",
+    preco: 199.90,
+    descricao: "Denim pesado com botões metálicos gravados e lavagem vintage.",
+    imagem: "assets/produtos/jaquetas/jaqueta-jeans-azul.svg",
+    cores: ["Azul", "Preto"],
+    tamanhos: ["P", "M", "G"],
+    destaque: true,
+    avatar: { compativel: true, tipo: "top", modelo3d: "assets/modelos3d/jaquetas/jaqueta-jeans-azul.glb" }
+  },
+  {
+    id: 18,
+    nome: "Jaqueta Corta-Vento Neon",
+    marca: "Neon Street",
+    categoria: "Jaquetas",
+    preco: 219.90,
+    descricao: "Corta-vento leve ultra compacto com vivos néon magenta refletivos.",
+    imagem: "assets/produtos/jaquetas/jaqueta-corta-vento-neon.svg",
+    cores: ["Preto", "Verde"],
+    tamanhos: ["P", "M", "G", "GG"],
+    destaque: false,
+    avatar: { compativel: true, tipo: "top", modelo3d: "assets/modelos3d/jaquetas/jaqueta-corta-vento-neon.glb" }
+  },
+  {
+    id: 19,
+    nome: "Jaqueta Varsity Urban Verde",
+    marca: "Nova Wear",
+    categoria: "Jaquetas",
+    preco: 279.90,
+    descricao: "Modelo varsity estilo colegial retrô com mangas acopladas ecológicas.",
+    imagem: "assets/produtos/jaquetas/jaqueta-varsity-urban-verde.svg",
+    cores: ["Verde", "Bege"],
+    tamanhos: ["M", "G", "GG"],
+    destaque: false,
+    avatar: { compativel: true, tipo: "top", modelo3d: "assets/modelos3d/jaquetas/jaqueta-varsity-urban-verde.glb" }
+  },
+
+  // --- CONJUNTOS ---
+  {
+    id: 20,
+    nome: "Conjunto Street Preto",
+    marca: "Cyber Closet",
+    categoria: "Conjuntos",
+    preco: 279.90,
+    descricao: "Conjunto streetwear completo total-black com jaqueta tática e calça jogger.",
+    imagem: "assets/produtos/conjuntos/conjunto-street-preto.svg",
+    cores: ["Preto"],
+    tamanhos: ["P", "M", "G", "GG"],
+    destaque: true,
+    avatar: { compativel: true, tipo: "outfit", modelo3d: "assets/modelos3d/conjuntos/conjunto-street-preto.glb" }
+  },
+  {
+    id: 21,
+    nome: "Conjunto Moletom Bege",
+    marca: "CYBR",
+    categoria: "Conjuntos",
+    preco: 249.90,
+    descricao: "Agasalho térmico minimalista em moletom flanelado bege sand.",
+    imagem: "assets/produtos/conjuntos/conjunto-moletom-bege.svg",
+    cores: ["Bege", "Cinza"],
+    tamanhos: ["P", "M", "G"],
+    destaque: true,
+    avatar: { compativel: true, tipo: "outfit", modelo3d: "assets/modelos3d/conjuntos/conjunto-moletom-bege.glb" }
+  },
+  {
+    id: 22,
+    nome: "Conjunto Techwear Cinza",
+    marca: "Neon Street",
+    categoria: "Conjuntos",
+    preco: 299.90,
+    descricao: "Tecido impermeável inteligente com bolsos modulares integrados.",
+    imagem: "assets/produtos/conjuntos/conjunto-techwear-cinza.svg",
+    cores: ["Cinza", "Preto"],
+    tamanhos: ["M", "G", "GG"],
+    destaque: false,
+    avatar: { compativel: true, tipo: "outfit", modelo3d: "assets/modelos3d/conjuntos/conjunto-techwear-cinza.glb" }
+  },
+  {
+    id: 23,
+    nome: "Conjunto Summer Cyber Azul",
+    marca: "Nova Wear",
+    categoria: "Conjuntos",
+    preco: 229.90,
+    descricao: "Combinação casual de verão com camiseta tech e shorts de nylon.",
+    imagem: "assets/produtos/conjuntos/conjunto-summer-cyber-azul.svg",
+    cores: ["Azul", "Branco"],
+    tamanhos: ["P", "M", "G"],
+    destaque: false,
+    avatar: { compativel: true, tipo: "outfit", modelo3d: "assets/modelos3d/conjuntos/conjunto-summer-cyber-azul.glb" }
+  },
+
+  // --- SHORTS ---
+  {
+    id: 24,
+    nome: "Shorts Cargo Preto",
+    marca: "CYBR",
     categoria: "Shorts",
-    subcategoria: "Fleece Shorts",
-    estacao: "verao",
-    preco_demo: 249.99,
-    cor: "Preto",
+    preco: 129.90,
+    descricao: "Shorts utilitário com bolsos laterais tridimensionais em tecido ripstop.",
+    imagem: "assets/produtos/shorts/shorts-cargo-preto.svg",
+    cores: ["Preto", "Cinza"],
     tamanhos: ["P", "M", "G", "GG"],
-    descricao: "Confeccionados em tecido fleece macio com cós elástico ajustável. Conforto casual e estiloso.",
-    tags: ["casual", "básico", "verao"],
-    avaliacao: 4.7,
-    avaliacoes_count: 120,
-    status: "Em estoque",
-    destaque: false,
-    mais_vendido: true,
-    novo: false,
-    image: "assets/pants_jogger.svg",
-    equippedType: "pants"
+    destaque: true,
+    avatar: { compativel: true, tipo: "bottom", modelo3d: "assets/modelos3d/shorts/shorts-cargo-preto.glb" }
   },
   {
-    id: "H003",
-    marca: "adidas",
-    nome: "Adicolor 3-Stripes Shorts",
+    id: 25,
+    nome: "Shorts Jeans Azul",
+    marca: "Urban Core",
     categoria: "Shorts",
-    subcategoria: "Classics",
-    estacao: "verao",
-    preco_demo: 249.99,
-    cor: "Preto/3-Stripes",
-    tamanhos: ["PP", "P", "M", "G", "GG"],
-    descricao: "Shorts esportivo em malha tricot brilhante com as icônicas 3 listras nas laterais.",
-    tags: ["adicolor", "retrô", "verao"],
-    avaliacao: 4.8,
-    avaliacoes_count: 130,
-    status: "Em estoque",
-    destaque: true,
-    mais_vendido: false,
-    novo: false,
-    image: "assets/pants_jogger.svg",
-    equippedType: "pants"
-  },
-
-  // --- 7. CONJUNTOS ---
-  {
-    id: "L001",
-    marca: "Nike",
-    nome: "Look 01 — Tech Street (Inverno)",
-    categoria: "Conjuntos",
-    subcategoria: "Agasalho de Inverno",
-    estacao: "inverno",
-    preco_demo: 1599.98,
-    cor: "Cinza/Preto",
-    tamanhos: ["P", "M", "G", "GG"],
-    descricao: "Conjunto completo de inverno composto por: Nike Tech Fleece Full-Zip Hoodie + Nike Tech Fleece Joggers.",
-    tags: ["look completo", "techwear", "inverno"],
-    avaliacao: 5.0,
-    avaliacoes_count: 180,
-    status: "Em estoque",
-    destaque: true,
-    mais_vendido: true,
-    novo: true,
-    image: "assets/look_set.svg",
-    equippedType: "jacket"
-  },
-  {
-    id: "L002",
-    marca: "adidas",
-    nome: "Look 02 — Firebird Track Suit (Inverno)",
-    categoria: "Conjuntos",
-    subcategoria: "Agasalho de Inverno",
-    estacao: "inverno",
-    preco_demo: 899.98,
-    cor: "Preto/Branco",
-    tamanhos: ["P", "M", "G", "GG"],
-    descricao: "Agasalho completo retrô de inverno composto por: adidas Firebird Track Jacket + adidas Firebird Track Pants.",
-    tags: ["look completo", "retrô", "inverno"],
-    avaliacao: 4.9,
-    avaliacoes_count: 155,
-    status: "Em estoque",
-    destaque: true,
-    mais_vendido: true,
-    novo: false,
-    image: "assets/look_set.svg",
-    equippedType: "jacket"
-  },
-  {
-    id: "L003",
-    marca: "Nike",
-    nome: "Look 03 — Summer Breeze (Verão)",
-    categoria: "Conjuntos",
-    subcategoria: "Kit de Verão",
-    estacao: "verao",
-    preco_demo: 449.98,
-    cor: "Preto/Branco",
-    tamanhos: ["P", "M", "G", "GG"],
-    descricao: "Kit leve de verão composto por: Nike Sportswear Club T-Shirt + Nike Club Shorts + Boné Heritage86.",
-    tags: ["look completo", "verao", "casual"],
-    avaliacao: 4.9,
-    avaliacoes_count: 120,
-    status: "Em estoque",
-    destaque: true,
-    mais_vendido: false,
-    novo: true,
-    image: "assets/look_set.svg",
-    equippedType: "jacket"
-  },
-
-  // --- 8. ACESSÓRIOS (VERÃO) ---
-  {
-    id: "A001",
-    marca: "Nike",
-    nome: "Heritage86 Cap",
-    categoria: "Acessórios",
-    subcategoria: "Bonés",
-    estacao: "verao",
-    preco_demo: 149.99,
-    cor: "Preto",
-    tamanhos: ["Único"],
-    descricao: "Boné strapback ajustável em sarrulha de algodão macio com fechamento por fivela metálica de encaixe.",
-    tags: ["acessórios", "boné", "verao"],
-    avaliacao: 4.8,
-    avaliacoes_count: 190,
-    status: "Em estoque",
+    preco: 109.90,
+    descricao: "Bermuda jeans em denim encorpado com barra desfiada estilete.",
+    imagem: "assets/produtos/shorts/shorts-jeans-azul.svg",
+    cores: ["Azul"],
+    tamanhos: ["38", "40", "42", "44"],
     destaque: false,
-    mais_vendido: true,
-    novo: false,
-    image: "assets/cap_heritage.svg",
-    equippedType: "visor"
+    avatar: { compativel: true, tipo: "bottom", modelo3d: "assets/modelos3d/shorts/shorts-jeans-azul.glb" }
   },
   {
-    id: "A004",
-    marca: "adidas",
-    nome: "Adilette Slides",
-    categoria: "Acessórios",
-    subcategoria: "Chinelos",
-    estacao: "verao",
-    preco_demo: 249.99,
-    cor: "Preto/3-Stripes",
-    tamanhos: ["37", "38", "39", "40", "41", "42", "43"],
-    descricao: "O chinelo slide lendário desde 1972 com tira de bandage sintética leve e base moldada anatomicamente.",
-    tags: ["acessórios", "slides", "verao"],
-    avaliacao: 4.9,
-    avaliacoes_count: 280,
-    status: "Em estoque",
+    id: 26,
+    nome: "Shorts Fleece Cinza",
+    marca: "Cyber Closet",
+    categoria: "Shorts",
+    preco: 99.90,
+    descricao: "Shorts de moletom casual macio com cós elástico e cordão de ajuste.",
+    imagem: "assets/produtos/shorts/shorts-fleece-cinza.svg",
+    cores: ["Cinza", "Preto"],
+    tamanhos: ["P", "M", "G"],
+    destaque: false,
+    avatar: { compativel: true, tipo: "bottom", modelo3d: "assets/modelos3d/shorts/shorts-fleece-cinza.glb" }
+  },
+  {
+    id: 27,
+    nome: "Shorts Nylon Neon Verde",
+    marca: "Neon Street",
+    categoria: "Shorts",
+    preco: 119.90,
+    descricao: "Shorts d'água de secagem rápida com brilho verde neon ativo.",
+    imagem: "assets/produtos/shorts/shorts-nylon-neon-verde.svg",
+    cores: ["Verde", "Preto"],
+    tamanhos: ["P", "M", "G", "GG"],
+    destaque: false,
+    avatar: { compativel: true, tipo: "bottom", modelo3d: "assets/modelos3d/shorts/shorts-nylon-neon-verde.glb" }
+  },
+
+  // --- CALÇAS ---
+  {
+    id: 28,
+    nome: "Calça Cargo Preta",
+    marca: "CYBR",
+    categoria: "Calças",
+    preco: 189.90,
+    descricao: "Modelagem afunilada jogger com punhos altos e bolsos cargo modulares.",
+    imagem: "assets/produtos/calcas/calca-cargo-preta.svg",
+    cores: ["Preto", "Cinza"],
+    tamanhos: ["38", "40", "42", "44", "46"],
     destaque: true,
-    mais_vendido: true,
-    novo: false,
-    image: "assets/cap_heritage.svg",
-    equippedType: "accessory"
+    avatar: { compativel: true, tipo: "bottom", modelo3d: "assets/modelos3d/calcas/calca-cargo-preta.glb" }
+  },
+  {
+    id: 29,
+    nome: "Calça Jogger Cinza",
+    marca: "Cyber Closet",
+    categoria: "Calças",
+    preco: 169.90,
+    descricao: "Calça esportiva em moletom felpudo cinza mescla de caimento justo.",
+    imagem: "assets/produtos/calcas/calca-jogger-cinza.svg",
+    cores: ["Cinza", "Preto"],
+    tamanhos: ["P", "M", "G", "GG"],
+    destaque: false,
+    avatar: { compativel: true, tipo: "bottom", modelo3d: "assets/modelos3d/calcas/calca-jogger-cinza.glb" }
+  },
+  {
+    id: 30,
+    nome: "Calça Tactical Verde",
+    marca: "Urban Core",
+    categoria: "Calças",
+    preco: 199.90,
+    descricao: "Confeccionada em ripstop militar verde musgo reforçada nos joelhos.",
+    imagem: "assets/produtos/calcas/calca-tactical-verde.svg",
+    cores: ["Verde", "Preto"],
+    tamanhos: ["40", "42", "44"],
+    destaque: false,
+    avatar: { compativel: true, tipo: "bottom", modelo3d: "assets/modelos3d/calcas/calca-tactical-verde.glb" }
+  },
+
+  // --- JEANS ---
+  {
+    id: 31,
+    nome: "Jeans Baggy Azul",
+    marca: "Urban Core",
+    categoria: "Jeans",
+    preco: 179.90,
+    descricao: "Jeans de cintura média e pernas largas baggy com caimento de skate vintage.",
+    imagem: "assets/produtos/jeans/jeans-baggy-azul.svg",
+    cores: ["Azul"],
+    tamanhos: ["38", "40", "42", "44"],
+    destaque: true,
+    avatar: { compativel: true, tipo: "bottom", modelo3d: "assets/modelos3d/jeans/jeans-baggy-azul.glb" }
+  },
+  {
+    id: 32,
+    nome: "Jeans Straight Preto",
+    marca: "CYBR",
+    categoria: "Jeans",
+    preco: 169.90,
+    descricao: "Corte reto clássico em denim preto washed de alta resistência.",
+    imagem: "assets/produtos/jeans/jeans-straight-preto.svg",
+    cores: ["Preto"],
+    tamanhos: ["38", "40", "42", "44", "46"],
+    destaque: false,
+    avatar: { compativel: true, tipo: "bottom", modelo3d: "assets/modelos3d/jeans/jeans-straight-preto.glb" }
+  },
+  {
+    id: 33,
+    nome: "Jeans Wide Leg Cinza",
+    marca: "Nova Wear",
+    categoria: "Jeans",
+    preco: 189.90,
+    descricao: "Modelagem ampla wide leg com pernas soltas em denim cinza washed.",
+    imagem: "assets/produtos/jeans/jeans-wide-leg-cinza.svg",
+    cores: ["Cinza"],
+    tamanhos: ["38", "40", "42"],
+    destaque: false,
+    avatar: { compativel: true, tipo: "bottom", modelo3d: "assets/modelos3d/jeans/jeans-wide-leg-cinza.glb" }
+  },
+
+  // --- TÊNIS ---
+  {
+    id: 34,
+    nome: "Tênis Street Branco",
+    marca: "CYBR",
+    categoria: "Tênis",
+    preco: 299.90,
+    descricao: "Sneaker de perfil baixo em couro sintetizado branco com detalhes ciano.",
+    imagem: "assets/produtos/tenis/tenis-street-branco.svg",
+    cores: ["Branco", "Preto"],
+    tamanhos: ["38", "39", "40", "41", "42", "43"],
+    destaque: true,
+    avatar: { compativel: true, tipo: "shoes", modelo3d: "assets/modelos3d/tenis/tenis-street-branco.glb" }
+  },
+  {
+    id: 35,
+    nome: "Tênis Running Preto",
+    marca: "Cyber Closet",
+    categoria: "Tênis",
+    preco: 349.90,
+    descricao: "Tênis de amortecimento responsivo com cabedal respirável em mesh preto.",
+    imagem: "assets/produtos/tenis/tenis-running-preto.svg",
+    cores: ["Preto", "Cinza"],
+    tamanhos: ["38", "39", "40", "41", "42", "43"],
+    destaque: true,
+    avatar: { compativel: true, tipo: "shoes", modelo3d: "assets/modelos3d/tenis/tenis-running-preto.glb" }
+  },
+  {
+    id: 36,
+    nome: "Tênis Casual Bege",
+    marca: "Nova Wear",
+    categoria: "Tênis",
+    preco: 279.90,
+    descricao: "Solado de borracha vulcanizada em tom bege monocromático elegante.",
+    imagem: "assets/produtos/tenis/tenis-casual-bege.svg",
+    cores: ["Bege", "Branco"],
+    tamanhos: ["39", "40", "41", "42"],
+    destaque: false,
+    avatar: { compativel: true, tipo: "shoes", modelo3d: "assets/modelos3d/tenis/tenis-casual-bege.glb" }
+  },
+  {
+    id: 37,
+    nome: "Tênis Cyber Neon Ciano",
+    marca: "Neon Street",
+    categoria: "Tênis",
+    preco: 389.90,
+    descricao: "Solado com luzes de fibra ótica ativas e detalhes holográficos.",
+    imagem: "assets/produtos/tenis/tenis-cyber-neon-ciano.svg",
+    cores: ["Preto", "Verde"],
+    tamanhos: ["38", "39", "40", "41", "42", "43"],
+    destaque: true,
+    avatar: { compativel: true, tipo: "shoes", modelo3d: "assets/modelos3d/tenis/tenis-cyber-neon-ciano.glb" }
+  },
+  {
+    id: 38,
+    nome: "Tênis High-Top Preto/Rosa",
+    marca: "CYBR",
+    categoria: "Tênis",
+    preco: 369.90,
+    descricao: "Modelo de cano alto com acolchoamento no tornozelo e acabamento rosa magenta.",
+    imagem: "assets/produtos/tenis/tenis-high-top-preto-rosa.svg",
+    cores: ["Preto"],
+    tamanhos: ["38", "39", "40", "41", "42"],
+    destaque: false,
+    avatar: { compativel: true, tipo: "shoes", modelo3d: "assets/modelos3d/tenis/tenis-high-top-preto-rosa.glb" }
+  },
+
+  // --- CHINELOS ---
+  {
+    id: 39,
+    nome: "Chinelo Slide Preto",
+    marca: "CYBR",
+    categoria: "Chinelos",
+    preco: 79.90,
+    descricao: "Chinelo slide com tira larga acolchoada em EVA injetado e base ergonômica.",
+    imagem: "assets/produtos/chinelos/chinelo-slide-preto.svg",
+    cores: ["Preto", "Branco"],
+    tamanhos: ["38", "39", "40", "41", "42", "43"],
+    destaque: true,
+    avatar: { compativel: true, tipo: "shoes", modelo3d: "assets/modelos3d/chinelos/chinelo-slide-preto.glb" }
+  },
+  {
+    id: 40,
+    nome: "Chinelo Essential Branco",
+    marca: "Cyber Closet",
+    categoria: "Chinelos",
+    preco: 69.90,
+    descricao: "Slide ultraleve e impermeável com logotipo minimalista gravado.",
+    imagem: "assets/produtos/chinelos/chinelo-essential-branco.svg",
+    cores: ["Branco"],
+    tamanhos: ["38", "39", "40", "41", "42"],
+    destaque: false,
+    avatar: { compativel: true, tipo: "shoes", modelo3d: "assets/modelos3d/chinelos/chinelo-essential-branco.glb" }
+  },
+
+  // --- ACESSÓRIOS ---
+  {
+    id: 41,
+    nome: "Boné Heritage Preto",
+    marca: "Cyber Closet",
+    categoria: "Acessórios",
+    preco: 119.90,
+    descricao: "Boné strapback em sarja pesada de algodão com fivela metálica ajustável.",
+    imagem: "assets/produtos/acessorios/bone-heritage-preto.svg",
+    cores: ["Preto", "Cinza"],
+    tamanhos: ["P", "M", "G"],
+    destaque: false,
+    avatar: { compativel: true, tipo: "accessory", modelo3d: "assets/modelos3d/acessorios/bone-heritage-preto.glb" }
+  },
+  {
+    id: 42,
+    nome: "Óculos Visor Neon AR",
+    marca: "Neon Street",
+    categoria: "Acessórios",
+    preco: 149.90,
+    descricao: "Visor futurista em acrílico ciano holográfico com proteção UV400.",
+    imagem: "assets/produtos/acessorios/oculos-visor-neon-ar.svg",
+    cores: ["Preto", "Azul"],
+    tamanhos: ["M"],
+    destaque: true,
+    avatar: { compativel: true, tipo: "accessory", modelo3d: "assets/modelos3d/acessorios/oculos-visor-neon-ar.glb" }
   }
 ];
+
+// Presets Corporais
+const bodyPresets = {
+  slim: { height: 0.45, shoulderWidth: 0.35, chest: 0.3, waist: 0.25, hips: 0.35 },
+  standard: { height: 0.5, shoulderWidth: 0.5, chest: 0.5, waist: 0.5, hips: 0.5 },
+  athletic: { height: 0.55, shoulderWidth: 0.75, chest: 0.7, waist: 0.4, hips: 0.5 },
+  broad: { height: 0.5, shoulderWidth: 0.82, chest: 0.8, waist: 0.7, hips: 0.65 },
+  curvy: { height: 0.48, shoulderWidth: 0.55, chest: 0.7, waist: 0.4, hips: 0.8 }
+};
+
+// Pacotes Completos de Estilo
+const STYLE_BUNDLES = [
+  {
+    id: "rebel",
+    nome: "Cyber Rebel",
+    icon: "⚡",
+    tag: "Streetwear Cyberpunk",
+    corpo: "athletic",
+    cabelo: { style: "spiky", color: "#00f3ff" },
+    pele: "#00f3ff",
+    rosto: "cool",
+    acessorios: { visor: true, earring: true, mask: false, cap: false },
+    topId: 2,
+    bottomId: 28,
+    shoesId: 34,
+    descricao: "Visual cibernético de alta performance com tom sintético ciano e caimento atlético."
+  },
+  {
+    id: "stealth",
+    nome: "Techwear Inverno",
+    icon: "❄️",
+    tag: "Winter Stealth",
+    corpo: "broad",
+    cabelo: { style: "dreads", color: "#111424" },
+    pele: "#704225",
+    rosto: "happy",
+    acessorios: { visor: true, earring: false, mask: true, cap: false },
+    topId: 11,
+    bottomId: 28,
+    shoesId: 35,
+    descricao: "Agasalho térmico pesado com moletom Tech Fleece e máscara tech."
+  },
+  {
+    id: "summer",
+    nome: "Summer Terrace",
+    icon: "☀️",
+    tag: "Casual Verão",
+    corpo: "slim",
+    cabelo: { style: "fade", color: "#1a1a2e" },
+    pele: "#f5c6a5",
+    rosto: "happy",
+    acessorios: { visor: false, earring: false, mask: false, cap: true },
+    topId: 1,
+    bottomId: 24,
+    shoesId: 39,
+    descricao: "Outfit leve para o verão com camiseta Essential, shorts cargo e chinelo."
+  }
+];
+
+// Estado Global do Avatar 3D
+const avatarState = {
+  activeBundle: 'rebel',
+  rotationY: 0,
+  skinColor: '#f5c6a5',
+  hairStyle: 'fade',
+  hairColor: '#1a1a2e',
+  expression: 'happy',
+  bodyPreset: 'standard',
+  bodySettings: { ...bodyPresets.standard },
+  accessories: { visor: true, earring: false, mask: false, cap: false },
+  equippedTop: PRODUCTS[0],
+  equippedBottom: PRODUCTS[27],
+  equippedShoes: PRODUCTS[33]
+};
 
 // Estado Global da Aplicação
 const state = {
   cart: [],
   favorites: new Set(),
-  equipped: {
-    jacket: PRODUCTS.find(p => p.id === "M001"),
-    visor: PRODUCTS.find(p => p.id === "A001"),
-    pants: PRODUCTS.find(p => p.id === "P001")
-  },
-  activeColor: '#00f3ff',
   audioEnabled: true,
   looksSeason: 'all',
-  filters: {
-    brand: 'all',
-    category: 'all',
-    priceMax: 3000,
-    search: ''
-  },
-  aiGenerator: {
-    mood: 'neon',
-    weather: 'all',
-    boldness: 75,
-    maxBudget: 2500,
-    currentOutfit: null
-  },
-  chatMessages: [
-    { sender: 'bot', text: '⚡ Salve! Eu sou o **Metrik**, o Mascote e Guardião do Cyber Closet! Como posso te ajudar hoje?' }
-  ]
+  filters: { category: 'all', brand: 'all', priceMax: 500, size: 'all', color: 'all', search: '' },
+  aiGenerator: { mood: 'neon', boldness: 75, maxBudget: 2500, currentOutfit: null },
+  chatMessages: [ { sender: 'bot', text: '⚡ Salve! Eu sou o **Metrik**, o Mascote e Guardião do Cyber Closet! Como posso te ajudar hoje?' } ]
 };
 
-/* ==========================================================================
-   SISTEMA DE EFEITOS SONOROS WEB AUDIO API
-   ========================================================================== */
-class CyberAudioEngine {
-  constructor() {
-    this.ctx = null;
-    this.lastHoverTime = 0;
+// Renderizar o Catálogo Geral E-Commerce com Cards Elegantes em Tema Dark Tech
+function renderFullCatalog() {
+  const grid = document.getElementById('products-grid');
+  if (!grid) return;
+
+  const filtered = PRODUCTS.filter(p => {
+    const matchCat = state.filters.category === 'all' || p.categoria.toLowerCase() === state.filters.category.toLowerCase();
+    const matchBrand = state.filters.brand === 'all' || p.marca === state.filters.brand;
+    const matchPrice = p.preco <= state.filters.priceMax;
+    const matchSize = state.filters.size === 'all' || p.tamanhos.includes(state.filters.size);
+    const matchColor = state.filters.color === 'all' || p.cores.includes(state.filters.color);
+    const matchSearch = p.nome.toLowerCase().includes(state.filters.search) || p.categoria.toLowerCase().includes(state.filters.search) || p.marca.toLowerCase().includes(state.filters.search);
+    
+    return matchCat && matchBrand && matchPrice && matchSize && matchColor && matchSearch;
+  });
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 4rem 1rem;"><h3 style="font-size: 1.4rem; color: var(--neon-magenta);">NENHUM ITEM ENCONTRADO COM OS FILTROS SELECIONADOS</h3></div>`;
+    return;
   }
 
-  init() {
-    if (!this.ctx) {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      this.ctx = new AudioCtx();
-    }
+  // Cards com marcas, cores e ações rápidas
+  grid.innerHTML = filtered.map(item => {
+    const isFav = state.favorites.has(item.id);
+    const colorChips = item.cores.map(c => `<span class="color-dot-chip" style="background: ${getColorHex(c)};" title="${c}"></span>`).join('');
+
+    return `
+      <div class="product-card">
+        <span class="brand-badge">${item.marca}</span>
+        
+        <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite(${item.id}, this)" title="Favoritar">
+          <span>${isFav ? '❤️' : '🤍'}</span>
+        </button>
+
+        <div class="card-img-wrapper" onclick="openProductDetail(${item.id})">
+          <img src="${item.imagem}" alt="${item.nome}" loading="lazy">
+        </div>
+
+        <div class="card-body">
+          <span class="card-category">${item.categoria}</span>
+          <h3 class="card-title" onclick="openProductDetail(${item.id})">${item.nome}</h3>
+          
+          <div class="card-color-chips">
+            ${colorChips}
+          </div>
+
+          <div class="card-price">${formatBRL(item.preco)}</div>
+
+          <div class="card-actions-duo">
+            <button class="cyber-btn cyber-btn-secondary card-btn-action" onclick="equipProductOnAvatar3D(${item.id})" title="Experimentar no Avatar 3D">
+              ⚡ Experimentar
+            </button>
+            <button class="cyber-btn cyber-btn-buy card-btn-action" onclick="handleBuyProduct(${item.id})" title="Comprar este produto">
+              🛍️ Comprar
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+function getColorHex(colorName) {
+  const map = {
+    'Preto': '#111827',
+    'Branco': '#f8fafc',
+    'Cinza': '#64748b',
+    'Azul': '#2563eb',
+    'Bege': '#d4a373',
+    'Verde': '#166534'
+  };
+  return map[colorName] || '#00f3ff';
+}
+
+// Resetar Todos os Filtros do Catálogo
+window.resetAllCatalogFilters = function() {
+  state.filters = { category: 'all', brand: 'all', priceMax: 500, size: 'all', color: 'all', search: '' };
+  
+  const search = document.getElementById('product-search'); if (search) search.value = '';
+  const brand = document.getElementById('filter-brand'); if (brand) brand.value = 'all';
+  const size = document.getElementById('filter-size'); if (size) size.value = 'all';
+  const color = document.getElementById('filter-color'); if (color) color.value = 'all';
+  const price = document.getElementById('filter-price'); if (price) price.value = 500;
+  
+  const priceVal = document.getElementById('price-val');
+  if (priceVal) priceVal.textContent = formatBRL(500);
+
+  document.querySelectorAll('.tab-btn').forEach(t => t.classList.toggle('active', t.dataset.category === 'all'));
+
+  renderFullCatalog();
+  audio.playDescendingClick();
+  showToast('🔄 Filtros do catálogo restaurados!');
+};
+
+window.toggleFavorite = function(id, btnElement) {
+  if (state.favorites.has(id)) {
+    state.favorites.delete(id); showToast('Item removido dos favoritos.'); audio.playDescendingClick();
+  } else {
+    state.favorites.add(id); showToast('❤️ Item adicionado aos seus favoritos!'); audio.playTinySparkle();
   }
+  if (btnElement) {
+    btnElement.classList.toggle('active');
+    const span = btnElement.querySelector('span');
+    if (span) span.textContent = state.favorites.has(id) ? '❤️' : '🤍';
+  } else { renderFullCatalog(); }
+};
+
+// Vestir produto selecionado no Avatar 3D e navegar até a seção Meu Avatar
+window.equipProductOnAvatar3D = function(id) {
+  const item = PRODUCTS.find(p => p.id === id);
+  if (!item) return;
+
+  equipItemOnAvatar(item.id);
+
+  const avatarSection = document.getElementById('avatar-3d-section');
+  if (avatarSection) {
+    avatarSection.scrollIntoView({ behavior: 'smooth' });
+  }
+
+  audio.playCartChime();
+  showToast(`👕 "${item.nome}" (${item.marca}) enviada para vestir no seu Avatar 3D!`);
+};
+
+// Renderizar Pacotes de Estilo
+function renderStyleBundles() {
+  const container = document.getElementById('bundles-container');
+  if (!container) return;
+
+  container.innerHTML = STYLE_BUNDLES.map(b => {
+    const isActive = avatarState.activeBundle === b.id;
+    const topItem = PRODUCTS.find(p => p.id === b.topId);
+    const bottomItem = PRODUCTS.find(p => p.id === b.bottomId);
+
+    return `
+      <div class="bundle-card ${isActive ? 'active' : ''}">
+        <div class="bundle-header-row">
+          <div class="bundle-icon-title">
+            <span>${b.icon}</span> ${b.nome}
+          </div>
+          <span class="bundle-tag">${b.tag}</span>
+        </div>
+
+        <p style="font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.8rem; line-height: 1.4;">${b.descricao}</p>
+
+        <div class="bundle-specs">
+          <span>🏋️ Corpo: <strong>${b.corpo.toUpperCase()}</strong></span>
+          <span>💈 Cabelo: <strong>${b.cabelo.style.toUpperCase()}</strong></span>
+          <span>👤 Tom de Pele: <strong style="color: ${b.pele};">${b.pele}</strong></span>
+          <span>👕 Roupas: <strong>${topItem?.nome || 'Jaqueta'} + ${bottomItem?.nome || 'Calça'}</strong></span>
+        </div>
+
+        <button class="cyber-btn ${isActive ? '' : 'cyber-btn-secondary'}" style="width: 100%; justify-content: center; font-size: 0.75rem; padding: 0.55rem;" onclick="applyStyleBundle('${b.id}')">
+          ${isActive ? '✅ PACOTE ATIVO' : '⚡ EQUIPAR PACOTE COMPLETO'}
+        </button>
+      </div>
+    `;
+  }).join('');
+}
+
+window.applyStyleBundle = function(bundleId) {
+  const bundle = STYLE_BUNDLES.find(b => b.id === bundleId);
+  if (!bundle) return;
+
+  avatarState.activeBundle = bundle.id;
+
+  applyBodyPreset(bundle.corpo);
+  setAvatarHair(bundle.cabelo.style, bundle.cabelo.color);
+  setAvatarSkin(bundle.pele);
+  setAvatarExpression(bundle.rosto);
+
+  avatarState.accessories = { ...bundle.acessorios };
+
+  if (bundle.topId) equipItemOnAvatar(bundle.topId);
+  if (bundle.bottomId) equipItemOnAvatar(bundle.bottomId);
+  if (bundle.shoesId) equipItemOnAvatar(bundle.shoesId);
+
+  renderStyleBundles();
+  audio.playGlassChime();
+  showToast(`🎉 Pacote de Estilo "${bundle.nome.toUpperCase()}" equipado com sucesso no avatar 3D!`);
+};
+
+window.switchCustTab = function(tabKey) {
+  document.querySelectorAll('.cust-tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === tabKey));
+  document.querySelectorAll('.cust-tab-content').forEach(c => c.classList.toggle('active', c.id === `tab-${tabKey}`));
+  audio.playMechanicalClick();
+};
+
+window.applyBodyPreset = function(presetKey) {
+  if (!bodyPresets[presetKey]) return;
+  avatarState.bodyPreset = presetKey;
+  
+  if (typeof window.setAvatarBodyPreset3D === 'function') {
+    window.setAvatarBodyPreset3D(presetKey);
+  }
+
+  audio.playMechanicalClick();
+};
+
+window.updateBodySetting = function(key, val) {
+  const numVal = parseFloat(val);
+  avatarState.bodySettings[key] = numVal;
+
+  const valLabel = document.getElementById(`val-${key}`);
+  if (valLabel) valLabel.textContent = numVal.toFixed(2);
+
+  if (typeof window.setAvatarBodySlider3D === 'function') {
+    window.setAvatarBodySlider3D(key, numVal);
+  }
+};
+
+window.resetBodySettings = function() {
+  if (typeof window.resetAvatarPosition3D === 'function') {
+    window.resetAvatarPosition3D();
+  } else {
+    window.applyBodyPreset('standard');
+  }
+  showToast('🔄 Posição e corpo do Avatar restaurados para o padrão.');
+};
+
+window.salvarAvatarCompleto = function() {
+  audio.playGlassChime();
+  showToast('⭐ Avatar 3D completo salvo com sucesso no seu perfil Cyber Closet!');
+};
+
+function renderHeroAvatarSVG() {
+  const container = document.getElementById('hero-avatar-viewport');
+  if (!container) return;
+
+  const skin = avatarState.skinColor || '#f5c6a5';
+  const hairColor = avatarState.hairColor || '#00f3ff';
+  const topColor = avatarState.equippedTop?.cores?.[0] === 'Branco' ? '#f8fafc' : '#111424';
+  const bottomColor = avatarState.equippedBottom?.cores?.[0] === 'Azul' ? '#2563eb' : '#181f38';
+
+  container.innerHTML = `
+    <svg class="avatar-3d-svg" viewBox="0 0 300 450" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="heroAvatarGlow" cx="50%" cy="30%" r="70%">
+          <stop offset="0%" stop-color="#00f3ff" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#070913" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="heroShadow" x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx="0" dy="12" stdDeviation="10" flood-color="#000000" flood-opacity="0.7"/>
+          <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="#00f3ff" flood-opacity="0.35"/>
+        </filter>
+      </defs>
+
+      <g filter="url(#heroShadow)">
+        <!-- CABEÇA & PESCOÇO -->
+        <rect x="138" y="92" width="24" height="25" rx="10" fill="${skin}" stroke="#00f3ff" stroke-width="1.5"/>
+        <ellipse cx="150" cy="62" rx="42" ry="46" fill="${skin}" stroke="#00f3ff" stroke-width="2"/>
+        
+        <!-- CABELO CYBER STYLED -->
+        <path d="M110 58 C110 20, 190 20, 190 58 C190 45, 170 30, 150 30 C130 30, 110 45, 110 58 Z" fill="${hairColor}"/>
+        <path d="M125 35 L135 15 L150 28 L165 10 L178 35 Z" fill="${hairColor}" stroke="#ffffff" stroke-width="1"/>
+
+        <!-- OLHOS & EXPRESSÃO -->
+        <ellipse cx="132" cy="62" rx="7" ry="9" fill="#ffffff"/>
+        <ellipse cx="168" cy="62" rx="7" ry="9" fill="#ffffff"/>
+        <circle cx="134" cy="62" r="4" fill="#00f3ff"/>
+        <circle cx="166" cy="62" r="4" fill="#00f3ff"/>
+        <circle cx="135" cy="61" r="1.5" fill="#ffffff"/>
+        <circle cx="167" cy="61" r="1.5" fill="#ffffff"/>
+        
+        <!-- SOBRANCELHAS & SORRISO -->
+        <path d="M124 50 Q134 46 142 51" stroke="#11111a" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <path d="M158 51 Q166 46 176 50" stroke="#11111a" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <path d="M138 80 Q150 90 162 80" stroke="#7a3e2e" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+
+        <!-- ACESSÓRIO VISOR CYBER AR -->
+        <path d="M112 55 L188 55 L180 70 L120 70 Z" fill="rgba(0,243,255,0.75)" stroke="#ffffff" stroke-width="1.5"/>
+
+        <!-- CORRENTE CYBER NO PESCOÇO -->
+        <path d="M132 104 C132 120, 168 120, 168 104" fill="none" stroke="#ff007f" stroke-width="3.5"/>
+
+        <!-- TRONCO / CAMISETA VESTIDA -->
+        <path d="M105 110 L140 100 L160 100 L195 110 L230 145 L200 185 L180 168 L180 270 L120 270 L120 168 L100 185 L70 145 Z" fill="${topColor}" stroke="#00f3ff" stroke-width="2.5"/>
+        <!-- LOGO PATRIMÔNIO DA MARCA NO PEITO -->
+        <rect x="135" y="140" width="30" height="15" rx="3" fill="#ff007f"/>
+        <text x="150" y="151" font-family="sans-serif" font-size="8" font-weight="bold" fill="#ffffff" text-anchor="middle">CYBR</text>
+
+        <!-- BRAÇOS -->
+        <path d="M85 158 L70 230" stroke="${skin}" stroke-width="14" stroke-linecap="round"/>
+        <path d="M215 158 L230 230" stroke="${skin}" stroke-width="14" stroke-linecap="round"/>
+
+        <!-- PERNAS & CALÇA CARGO -->
+        <path d="M122 270 L178 270 L172 400 L148 400 L150 310 L146 310 L148 400 L128 400 Z" fill="${bottomColor}" stroke="#00f3ff" stroke-width="2.5"/>
+        <!-- BOLSOS CARGO NAS PERNAS -->
+        <rect x="110" y="310" width="18" height="35" rx="4" fill="#20263c" stroke="#00f3ff" stroke-width="1.5"/>
+        <rect x="172" y="310" width="18" height="35" rx="4" fill="#20263c" stroke="#00f3ff" stroke-width="1.5"/>
+
+        <!-- TÊNIS STREET BRANCO/CIANO -->
+        <path d="M110 395 C115 375, 140 375, 150 395 L150 415 L100 415 Z" fill="#f8fafc" stroke="#00f3ff" stroke-width="2"/>
+        <path d="M150 395 C160 375, 185 375, 190 395 L200 415 L150 415 Z" fill="#f8fafc" stroke="#00f3ff" stroke-width="2"/>
+      </g>
+    </svg>
+  `;
+}
+
+function updateAvatar3DRender() {
+  renderHeroAvatarSVG();
+  updateAvatarLookAnalysis();
+}
+
+window.rotateAvatar3D = function(deltaDegree) {
+  avatarState.rotationY = (avatarState.rotationY + deltaDegree + 360) % 360;
+  updateAvatar3DRender();
+  audio.playHoverTick();
+};
+
+function triggerEquipReaction(type) {
+  const heroSweep = document.getElementById('hero-light-sweep');
+  const mainSweep = document.getElementById('customizer-light-sweep');
+  [heroSweep, mainSweep].forEach(s => {
+    if (s) {
+      s.classList.remove('active');
+      void s.offsetWidth;
+      s.classList.add('active');
+    }
+  });
+
+  updateAvatar3DRender();
+}
+
+function updateAvatarLookAnalysis() {
+  const scoreVal = document.getElementById('look-score-val');
+  const styleTag = document.getElementById('look-style-tag');
+  const descText = document.getElementById('look-desc-text');
+  const recText = document.getElementById('look-recommendation-text');
+
+  if (!scoreVal) return;
+
+  const topName = avatarState.equippedTop?.nome || 'Camiseta Essential';
+  const bottomName = avatarState.equippedBottom?.nome || 'Calça Cargo';
+
+  const score = Math.min(99, Math.floor(88 + Math.random() * 10));
+  scoreVal.textContent = `${score}%`;
+
+  if (styleTag) styleTag.textContent = 'Streetwear Tech';
+  if (descText) descText.textContent = `Combinação de alta proteção com ${topName} + ${bottomName}.`;
+  if (recText) recText.textContent = `💡 Metrik sugere: "Adicione os Tênis Street Brancos CYBR para completar o outfit!"`;
+}
+
+window.salvarLookFavorito = function() {
+  audio.playTinySparkle();
+  showToast(`⭐ Look do Avatar salvo com sucesso na sua conta!`);
+};
+
+window.setAvatarHair = function(style, color) {
+  avatarState.hairStyle = style;
+  if (color) avatarState.hairColor = color;
+  if (typeof window.set3DAvatarHair === 'function') {
+    window.set3DAvatarHair(style, color);
+  }
+  updateAvatar3DRender();
+  audio.playMinimalPop();
+};
+
+window.setAvatarHairColor = function(color) {
+  avatarState.hairColor = color;
+  if (typeof window.set3DAvatarHair === 'function') {
+    window.set3DAvatarHair(avatarState.hairStyle, color);
+  }
+  updateAvatar3DRender();
+  audio.playMinimalPop();
+};
+
+window.setAvatarSkin = function(color) {
+  avatarState.skinColor = color;
+  if (typeof window.set3DAvatarSkin === 'function') {
+    window.set3DAvatarSkin(color);
+  }
+  updateAvatar3DRender();
+  audio.playMinimalPop();
+};
+
+window.setAvatarExpression = function(exp) {
+  avatarState.expression = exp;
+  updateAvatar3DRender();
+  audio.playMinimalPop();
+};
+
+window.toggleAvatarAccessory = function(acc) {
+  avatarState.accessories[acc] = !avatarState.accessories[acc];
+  updateAvatar3DRender();
+  audio.playMinimalPop();
+};
+
+function filterAvatarCatalog(cat) {
+  const container = document.getElementById('avatar-clothes-selector');
+  if (!container) return;
+
+  const items = PRODUCTS.filter(p => {
+    if (cat === 'Moletons') return p.categoria === 'Moletons' || p.categoria === 'Jaquetas';
+    if (cat === 'Camisetas') return p.categoria === 'Camisetas' || p.categoria === 'Camisas';
+    if (cat === 'Calças') return p.categoria === 'Calças' || p.categoria === 'Jeans' || p.categoria === 'Shorts';
+    return p.categoria === 'Acessórios' || p.categoria === 'Tênis' || p.categoria === 'Chinelos';
+  });
+
+  container.innerHTML = items.map(item => `
+    <div class="avatar-cloth-item" onclick="equipItemOnAvatar(${item.id})">
+      <img src="${item.imagem}" alt="${item.nome}">
+      <div style="font-size: 0.72rem; font-weight: bold;">${item.nome}</div>
+      <div style="font-size: 0.68rem; color: var(--neon-cyan);">${formatBRL(item.preco)}</div>
+    </div>
+  `).join('');
+}
+
+window.equipItemOnAvatar = function(id) {
+  const item = PRODUCTS.find(p => p.id === id);
+  if (!item) return;
+
+  if (item.categoria === 'Calças' || item.categoria === 'Jeans' || item.categoria === 'Shorts') {
+    avatarState.equippedBottom = item;
+    triggerEquipReaction('bottom');
+  } else if (item.categoria === 'Acessórios' || item.categoria === 'Tênis' || item.categoria === 'Chinelos') {
+    avatarState.equippedShoes = item;
+    triggerEquipReaction('shoes');
+  } else {
+    avatarState.equippedTop = item;
+    triggerEquipReaction('top');
+  }
+
+  if (typeof window.equipClothingOn3DAvatar === 'function') {
+    window.equipClothingOn3DAvatar(item);
+  }
+
+  audio.playCartChime();
+};
+
+// AUDIO ENGINE
+class CyberAudioEngine {
+  constructor() { this.ctx = null; this.lastHoverTime = 0; }
+  init() { if (!this.ctx) { const AudioCtx = window.AudioContext || window.webkitAudioContext; this.ctx = new AudioCtx(); } }
 
   playHoverTick() {
     if (!state.audioEnabled) return;
-    const now = Date.now();
-    if (now - this.lastHoverTime < 50) return;
-    this.lastHoverTime = now;
-
+    const now = Date.now(); if (now - this.lastHoverTime < 50) return; this.lastHoverTime = now;
     try {
-      this.init();
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(1200, this.ctx.currentTime);
+      this.init(); const osc = this.ctx.createOscillator(); const gain = this.ctx.createGain();
+      osc.type = 'sine'; osc.frequency.setValueAtTime(1200, this.ctx.currentTime);
       osc.frequency.exponentialRampToValueAtTime(400, this.ctx.currentTime + 0.03);
-      
-      gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.03);
-
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start();
-      osc.stop(this.ctx.currentTime + 0.03);
+      gain.gain.setValueAtTime(0.08, this.ctx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.03);
+      osc.connect(gain); gain.connect(this.ctx.destination); osc.start(); osc.stop(this.ctx.currentTime + 0.03);
     } catch (e) {}
   }
-
   playMinimalPop() {
     if (!state.audioEnabled) return;
     try {
-      this.init();
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(550, this.ctx.currentTime);
+      this.init(); const osc = this.ctx.createOscillator(); const gain = this.ctx.createGain();
+      osc.type = 'sine'; osc.frequency.setValueAtTime(550, this.ctx.currentTime);
       osc.frequency.exponentialRampToValueAtTime(150, this.ctx.currentTime + 0.06);
-
-      gain.gain.setValueAtTime(0.12, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.06);
-
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start();
-      osc.stop(this.ctx.currentTime + 0.06);
+      gain.gain.setValueAtTime(0.12, this.ctx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.06);
+      osc.connect(gain); gain.connect(this.ctx.destination); osc.start(); osc.stop(this.ctx.currentTime + 0.06);
     } catch (e) {}
   }
-
   playCartChime() {
     if (!state.audioEnabled) return;
     try {
-      this.init();
-      const t = this.ctx.currentTime;
-      
-      const osc1 = this.ctx.createOscillator();
-      const gain1 = this.ctx.createGain();
-      osc1.type = 'triangle';
-      osc1.frequency.setValueAtTime(523.25, t);
-      gain1.gain.setValueAtTime(0.18, t);
-      gain1.gain.exponentialRampToValueAtTime(0.001, t + 0.15);
-      osc1.connect(gain1);
-      gain1.connect(this.ctx.destination);
-      osc1.start(t);
-      osc1.stop(t + 0.15);
-
-      const osc2 = this.ctx.createOscillator();
-      const gain2 = this.ctx.createGain();
-      osc2.type = 'triangle';
-      osc2.frequency.setValueAtTime(659.25, t + 0.08);
-      gain2.gain.setValueAtTime(0.18, t + 0.08);
-      gain2.gain.exponentialRampToValueAtTime(0.001, t + 0.28);
-      osc2.connect(gain2);
-      gain2.connect(this.ctx.destination);
-      osc2.start(t + 0.08);
-      osc2.stop(t + 0.28);
+      this.init(); const t = this.ctx.currentTime;
+      const osc1 = this.ctx.createOscillator(); const gain1 = this.ctx.createGain();
+      osc1.type = 'triangle'; osc1.frequency.setValueAtTime(523.25, t);
+      gain1.gain.setValueAtTime(0.18, t); gain1.gain.exponentialRampToValueAtTime(0.001, t + 0.15);
+      osc1.connect(gain1); gain1.connect(this.ctx.destination); osc1.start(t); osc1.stop(t + 0.15);
+      const osc2 = this.ctx.createOscillator(); const gain2 = this.ctx.createGain();
+      osc2.type = 'triangle'; osc2.frequency.setValueAtTime(659.25, t + 0.08);
+      gain2.gain.setValueAtTime(0.18, t + 0.08); gain2.gain.exponentialRampToValueAtTime(0.001, t + 0.28);
+      osc2.connect(gain2); gain2.connect(this.ctx.destination); osc2.start(t + 0.08); osc2.stop(t + 0.28);
     } catch (e) {}
   }
-
   playDescendingClick() {
     if (!state.audioEnabled) return;
     try {
-      this.init();
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(450, this.ctx.currentTime);
+      this.init(); const osc = this.ctx.createOscillator(); const gain = this.ctx.createGain();
+      osc.type = 'sine'; osc.frequency.setValueAtTime(450, this.ctx.currentTime);
       osc.frequency.exponentialRampToValueAtTime(120, this.ctx.currentTime + 0.06);
-
-      gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.06);
-
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start();
-      osc.stop(this.ctx.currentTime + 0.06);
+      gain.gain.setValueAtTime(0.08, this.ctx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.06);
+      osc.connect(gain); gain.connect(this.ctx.destination); osc.start(); osc.stop(this.ctx.currentTime + 0.06);
     } catch (e) {}
   }
-
   playTinySparkle() {
     if (!state.audioEnabled) return;
     try {
-      this.init();
-      const notes = [1046.50, 1318.51, 1567.98];
-      notes.forEach((freq, idx) => {
-        const t = this.ctx.currentTime + (idx * 0.04);
-        const osc = this.ctx.createOscillator();
-        const gain = this.ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, t);
-        gain.gain.setValueAtTime(0.10, t);
-        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
-        osc.connect(gain);
-        gain.connect(this.ctx.destination);
-        osc.start(t);
-        osc.stop(t + 0.12);
+      this.init(); [1046.50, 1318.51, 1567.98].forEach((freq, idx) => {
+        const t = this.ctx.currentTime + (idx * 0.04); const osc = this.ctx.createOscillator(); const gain = this.ctx.createGain();
+        osc.type = 'sine'; osc.frequency.setValueAtTime(freq, t);
+        gain.gain.setValueAtTime(0.10, t); gain.gain.exponentialRampToValueAtTime(0.001, t + 0.12);
+        osc.connect(gain); gain.connect(this.ctx.destination); osc.start(t); osc.stop(t + 0.12);
       });
     } catch (e) {}
   }
-
   playMechanicalClick() {
     if (!state.audioEnabled) return;
     try {
-      this.init();
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'square';
-      osc.frequency.setValueAtTime(900, this.ctx.currentTime);
+      this.init(); const osc = this.ctx.createOscillator(); const gain = this.ctx.createGain();
+      osc.type = 'square'; osc.frequency.setValueAtTime(900, this.ctx.currentTime);
       osc.frequency.exponentialRampToValueAtTime(200, this.ctx.currentTime + 0.04);
-
-      gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.04);
-
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start();
-      osc.stop(this.ctx.currentTime + 0.04);
+      gain.gain.setValueAtTime(0.08, this.ctx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.04);
+      osc.connect(gain); gain.connect(this.ctx.destination); osc.start(); osc.stop(this.ctx.currentTime + 0.04);
     } catch (e) {}
   }
-
   playShortWhoosh() {
     if (!state.audioEnabled) return;
     try {
-      this.init();
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(220, this.ctx.currentTime);
+      this.init(); const osc = this.ctx.createOscillator(); const gain = this.ctx.createGain();
+      osc.type = 'sine'; osc.frequency.setValueAtTime(220, this.ctx.currentTime);
       osc.frequency.exponentialRampToValueAtTime(650, this.ctx.currentTime + 0.12);
-
-      gain.gain.setValueAtTime(0.08, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.12);
-
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start();
-      osc.stop(this.ctx.currentTime + 0.12);
+      gain.gain.setValueAtTime(0.08, this.ctx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.12);
+      osc.connect(gain); gain.connect(this.ctx.destination); osc.start(); osc.stop(this.ctx.currentTime + 0.12);
     } catch (e) {}
   }
-
   playGlassChime() {
     if (!state.audioEnabled) return;
     try {
-      this.init();
-      const notes = [523.25, 659.25, 783.99];
-      notes.forEach((freq, idx) => {
-        const t = this.ctx.currentTime + (idx * 0.07);
-        const osc = this.ctx.createOscillator();
-        const gain = this.ctx.createGain();
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, t);
-        gain.gain.setValueAtTime(0.20, t);
-        gain.gain.exponentialRampToValueAtTime(0.001, t + 0.45);
-        osc.connect(gain);
-        gain.connect(this.ctx.destination);
-        osc.start(t);
-        osc.stop(t + 0.45);
+      this.init(); [523.25, 659.25, 783.99].forEach((freq, idx) => {
+        const t = this.ctx.currentTime + (idx * 0.07); const osc = this.ctx.createOscillator(); const gain = this.ctx.createGain();
+        osc.type = 'sine'; osc.frequency.setValueAtTime(freq, t);
+        gain.gain.setValueAtTime(0.20, t); gain.gain.exponentialRampToValueAtTime(0.001, t + 0.45);
+        osc.connect(gain); gain.connect(this.ctx.destination); osc.start(t); osc.stop(t + 0.45);
       });
     } catch (e) {}
   }
-
   playDigitalConfirmation() {
     if (!state.audioEnabled) return;
     try {
-      this.init();
-      const t = this.ctx.currentTime;
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(880, t);
-      osc.frequency.setValueAtTime(1174, t + 0.05);
-
-      gain.gain.setValueAtTime(0.08, t);
-      gain.gain.exponentialRampToValueAtTime(0.001, t + 0.10);
-
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start(t);
-      osc.stop(t + 0.10);
+      this.init(); const t = this.ctx.currentTime; const osc = this.ctx.createOscillator(); const gain = this.ctx.createGain();
+      osc.type = 'triangle'; osc.frequency.setValueAtTime(880, t); osc.frequency.setValueAtTime(1174, t + 0.05);
+      gain.gain.setValueAtTime(0.08, t); gain.gain.exponentialRampToValueAtTime(0.001, t + 0.10);
+      osc.connect(gain); gain.connect(this.ctx.destination); osc.start(t); osc.stop(t + 0.10);
     } catch (e) {}
   }
-
   playSoftBuzz() {
     if (!state.audioEnabled) return;
     try {
-      this.init();
-      const osc = this.ctx.createOscillator();
-      const gain = this.ctx.createGain();
-      osc.type = 'sawtooth';
-      osc.frequency.setValueAtTime(140, this.ctx.currentTime);
-
-      gain.gain.setValueAtTime(0.10, this.ctx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.12);
-
-      osc.connect(gain);
-      gain.connect(this.ctx.destination);
-      osc.start();
-      osc.stop(this.ctx.currentTime + 0.12);
+      this.init(); const osc = this.ctx.createOscillator(); const gain = this.ctx.createGain();
+      osc.type = 'sawtooth'; osc.frequency.setValueAtTime(140, this.ctx.currentTime);
+      gain.gain.setValueAtTime(0.10, this.ctx.currentTime); gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.12);
+      osc.connect(gain); gain.connect(this.ctx.destination); osc.start(); osc.stop(this.ctx.currentTime + 0.12);
     } catch (e) {}
   }
 }
 
 const audio = new CyberAudioEngine();
 
-// 10. PARTÍCULAS EXTREMAMENTE DISCRETAS & MOVIENDO LENTAMENTE
 function initCyberCanvas() {
-  const canvas = document.getElementById('cyber-canvas');
-  if (!canvas) return;
+  const canvas = document.getElementById('cyber-canvas'); if (!canvas) return;
   const ctx = canvas.getContext('2d');
-
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize(); window.addEventListener('resize', resize);
   const particles = Array.from({ length: 25 }, () => ({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    size: Math.random() * 1.5 + 0.5,
-    speedX: (Math.random() - 0.5) * 0.25,
-    speedY: (Math.random() - 0.5) * 0.25,
-    color: Math.random() > 0.5 ? 'rgba(0, 243, 255, 0.25)' : 'rgba(255, 0, 127, 0.25)'
+    x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+    size: Math.random() * 1.5 + 0.5, speedX: (Math.random() - 0.5) * 0.25, speedY: (Math.random() - 0.5) * 0.25,
+    color: Math.random() > 0.5 ? 'rgba(157, 78, 221, 0.3)' : 'rgba(0, 243, 255, 0.3)'
   }));
-
   function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     particles.forEach(p => {
       p.x += p.speedX; p.y += p.speedY;
-      if (p.x < 0) p.x = canvas.width;
-      if (p.x > canvas.width) p.x = 0;
-      if (p.y < 0) p.y = canvas.height;
-      if (p.y > canvas.height) p.y = 0;
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = p.color;
-      ctx.shadowBlur = 4;
-      ctx.shadowColor = p.color;
-      ctx.fill();
+      if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
+      ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fillStyle = p.color; ctx.shadowBlur = 4; ctx.shadowColor = p.color; ctx.fill();
     });
     requestAnimationFrame(animate);
   }
@@ -772,67 +1229,51 @@ function formatBRL(val) {
   return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(val);
 }
 
-// 5. ANIMAÇÃO DO PRODUTO VOANDO PARA O CARRINHO
 function animateFlyToCart(btnElement, imgSrc) {
-  const cartBtn = document.getElementById('cart-btn');
-  if (!cartBtn || !btnElement) return;
-
-  const btnRect = btnElement.getBoundingClientRect();
-  const cartRect = cartBtn.getBoundingClientRect();
-
-  const flyer = document.createElement('img');
-  flyer.src = imgSrc || 'assets/jacket.png';
-  flyer.className = 'flying-product-img';
-  flyer.style.left = `${btnRect.left + btnRect.width / 2 - 30}px`;
-  flyer.style.top = `${btnRect.top + btnRect.height / 2 - 30}px`;
-
+  const cartBtn = document.getElementById('cart-btn'); if (!cartBtn || !btnElement) return;
+  const btnRect = btnElement.getBoundingClientRect(); const cartRect = cartBtn.getBoundingClientRect();
+  const flyer = document.createElement('img'); flyer.src = imgSrc || 'assets/produtos/camisetas/camiseta-essential-branca.svg'; flyer.className = 'flying-product-img';
+  flyer.style.left = `${btnRect.left + btnRect.width / 2 - 30}px`; flyer.style.top = `${btnRect.top + btnRect.height / 2 - 30}px`;
   document.body.appendChild(flyer);
-
   requestAnimationFrame(() => {
     flyer.style.left = `${cartRect.left + cartRect.width / 2 - 15}px`;
     flyer.style.top = `${cartRect.top + cartRect.height / 2 - 15}px`;
-    flyer.style.transform = 'scale(0.2) rotate(360deg)';
-    flyer.style.opacity = '0.3';
+    flyer.style.transform = 'scale(0.2) rotate(360deg)'; flyer.style.opacity = '0.3';
   });
-
   setTimeout(() => {
-    flyer.remove();
-    // 6. NÚMERO DO CARRINHO PULSANDO
-    const badge = document.getElementById('cart-count');
-    if (badge) {
-      badge.classList.remove('pulse');
-      void badge.offsetWidth; // Trigger reflow
-      badge.classList.add('pulse');
-    }
+    flyer.remove(); const badge = document.getElementById('cart-count');
+    if (badge) { badge.classList.remove('pulse'); void badge.offsetWidth; badge.classList.add('pulse'); }
   }, 750);
 }
 
 // DOM Setup
 document.addEventListener('DOMContentLoaded', () => {
   initCyberCanvas();
+  renderStyleBundles();
   renderFeaturedGrid();
-  renderNewGrid();
   renderLooksGrid(state.looksSeason);
   renderFullCatalog();
+  filterAvatarCatalog('Moletons');
+  updateAvatar3DRender();
 
-  // 15. PARALLAX NO MOUSE MOVE
-  document.addEventListener('mousemove', (e) => {
-    const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-    const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-    const heroShowcase = document.querySelector('.fitting-showcase');
-    if (heroShowcase) {
-      heroShowcase.style.transform = `translate3d(${moveX}px, ${moveY}px, 0)`;
-    }
+  document.querySelectorAll('.cust-tab-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      document.querySelectorAll('.cust-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.cust-tab-content').forEach(c => c.classList.remove('active'));
+      
+      e.target.classList.add('active');
+      const targetId = `tab-${e.target.dataset.tab}`;
+      document.getElementById(targetId)?.classList.add('active');
+      audio.playMechanicalClick();
+    });
   });
 
-  // Hover Sound Delegate (Volume 8% - Soft Digital Tick)
   document.body.addEventListener('mouseover', (e) => {
-    if (e.target.closest('.cyber-btn, .product-card, .tab-btn, .season-tab-btn, .icon-btn, .fav-btn, .quick-chat-btn')) {
+    if (e.target.closest('.cyber-btn, .product-card, .tab-btn, .season-tab-btn, .icon-btn, .fav-btn, .quick-chat-btn, .option-chip, .cust-tab-btn, .avatar-cloth-item, .bundle-card')) {
       audio.playHoverTick();
     }
   });
 
-  // Audio Toggle Switch
   document.getElementById('audio-toggle')?.addEventListener('click', () => {
     state.audioEnabled = !state.audioEnabled;
     const btn = document.getElementById('audio-toggle');
@@ -841,18 +1282,6 @@ document.addEventListener('DOMContentLoaded', () => {
     showToast(state.audioEnabled ? '🔊 Efeitos Sonoros Ativados' : '🔇 Efeitos Sonoros Desativados');
   });
 
-  // Color Selector for Fitting Room
-  document.querySelectorAll('.color-dot').forEach(dot => {
-    dot.addEventListener('click', (e) => {
-      document.querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
-      e.target.classList.add('active');
-      state.activeColor = e.target.dataset.color;
-      updateFittingRoom();
-      audio.playMinimalPop();
-    });
-  });
-
-  // Season Sub-Catalog Tab Listeners (Inverno vs Verão)
   document.querySelectorAll('.season-tab-btn').forEach(tab => {
     tab.addEventListener('click', (e) => {
       document.querySelectorAll('.season-tab-btn').forEach(t => t.classList.remove('active'));
@@ -863,14 +1292,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Brand Filter
-  document.getElementById('filter-brand')?.addEventListener('change', (e) => {
-    state.filters.brand = e.target.value;
-    renderFullCatalog();
-    audio.playMechanicalClick();
-  });
-
-  // Category Tabs
   document.querySelectorAll('.tab-btn').forEach(tab => {
     tab.addEventListener('click', (e) => {
       document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
@@ -881,51 +1302,66 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Price Slider Filter
+  document.getElementById('filter-brand')?.addEventListener('change', (e) => {
+    state.filters.brand = e.target.value; renderFullCatalog(); audio.playMechanicalClick();
+  });
+
+  document.getElementById('filter-size')?.addEventListener('change', (e) => {
+    state.filters.size = e.target.value; renderFullCatalog(); audio.playMechanicalClick();
+  });
+
+  document.getElementById('filter-color')?.addEventListener('change', (e) => {
+    state.filters.color = e.target.value; renderFullCatalog(); audio.playMechanicalClick();
+  });
+
   document.getElementById('filter-price')?.addEventListener('input', (e) => {
     state.filters.priceMax = parseFloat(e.target.value);
-    document.getElementById('price-val').textContent = formatBRL(state.filters.priceMax);
+    const label = document.getElementById('price-val');
+    if (label) label.textContent = formatBRL(state.filters.priceMax);
     renderFullCatalog();
   });
 
-  // Search Input with Digital Confirmation sound
   document.getElementById('product-search')?.addEventListener('input', (e) => {
     state.filters.search = e.target.value.toLowerCase().trim();
     renderFullCatalog();
     if (state.filters.search.length > 2) audio.playDigitalConfirmation();
   });
 
-  // Modals & Drawers
   document.getElementById('cart-btn')?.addEventListener('click', () => {
-    openDrawer('cart-drawer');
-    renderCartDrawer();
-    audio.playShortWhoosh();
+    openDrawer('cart-drawer'); renderCartDrawer(); audio.playShortWhoosh();
   });
 
-  // Support Floating Button Toggle
   document.getElementById('mascot-support-trigger')?.addEventListener('click', () => {
-    openDrawer('support-drawer');
-    renderChatMessages();
-    audio.playShortWhoosh();
+    openDrawer('support-drawer'); renderChatMessages(); audio.playShortWhoosh();
   });
 
   document.querySelectorAll('.modal-close, .drawer-close').forEach(btn => {
-    btn.addEventListener('click', () => {
-      closeAllModals();
-      audio.playShortWhoosh();
-    });
+    btn.addEventListener('click', () => { closeAllModals(); audio.playShortWhoosh(); });
   });
 
-  // Chat Form Listener
-  document.getElementById('chat-form')?.addEventListener('submit', handleUserChatMessage);
+  const chatForm = document.getElementById('chat-form');
+  if (chatForm) {
+    chatForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const input = document.getElementById('chat-user-input');
+      if (input) sendUserChatMessage(input.value);
+    });
+  }
 
-  // AI Outfit Generator Mood Listeners
+  const chatInput = document.getElementById('chat-user-input');
+  if (chatInput) {
+    chatInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendUserChatMessage(chatInput.value);
+      }
+    });
+  }
+
   document.querySelectorAll('.ai-mood-chip').forEach(chip => {
     chip.addEventListener('click', (e) => {
       document.querySelectorAll('.ai-mood-chip').forEach(c => c.classList.remove('active'));
-      e.target.classList.add('active');
-      state.aiGenerator.mood = e.target.dataset.mood;
-      audio.playMechanicalClick();
+      e.target.classList.add('active'); state.aiGenerator.mood = e.target.dataset.mood; audio.playMechanicalClick();
     });
   });
 
@@ -940,277 +1376,184 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.getElementById('generate-ai-btn')?.addEventListener('click', generateInteractiveAIOutfit);
-  
-  // Initial AI Outfit Load
   generateInteractiveAIOutfit();
 });
 
-// Render Featured
 function renderFeaturedGrid() {
-  const container = document.getElementById('featured-grid');
-  if (!container) return;
-  const featured = PRODUCTS.filter(p => p.destaque);
-  container.innerHTML = featured.map(item => createProductCardHTML(item)).join('');
-}
-
-// Render New
-function renderNewGrid() {
-  const container = document.getElementById('new-grid');
-  if (!container) return;
-  const newItems = PRODUCTS.filter(p => p.novo || p.destaque).slice(0, 6);
-  container.innerHTML = newItems.map(item => createProductCardHTML(item)).join('');
-}
-
-// Render Looks Grid
-function renderLooksGrid(season = 'all') {
-  const container = document.getElementById('looks-grid');
-  if (!container) return;
-
-  const filtered = PRODUCTS.filter(p => {
-    if (season === 'all') return p.categoria === 'Conjuntos' || p.destaque;
-    return p.estacao === season;
-  });
-
-  if (filtered.length === 0) {
-    container.innerHTML = `
-      <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 3rem 1rem;">
-        <h4 style="font-size: 1.3rem; color: var(--neon-cyan);">NENHUM LOOK NESTA ESTAÇÃO</h4>
-      </div>
-    `;
-    return;
-  }
-
-  container.innerHTML = filtered.map(item => {
-    const seasonBadge = item.estacao === 'inverno' ? 
-      `<span class="season-badge inverno">❄️ INVERNO</span>` : 
-      `<span class="season-badge verao">☀️ VERÃO</span>`;
-
-    return `
-      <div class="product-card" style="border-color: ${item.estacao === 'inverno' ? 'var(--neon-cyan)' : 'var(--neon-yellow)'};">
-        ${seasonBadge}
-        <div class="card-img-wrapper" onclick="openProductDetail('${item.id}')">
-          <img src="${item.image}" alt="${item.nome}" loading="lazy">
-        </div>
-        <div class="card-body">
-          <span class="card-category">${item.marca} • ${item.subcategoria}</span>
-          <h3 class="card-title">${item.nome}</h3>
-          <p style="font-size: 0.82rem; color: var(--text-muted); margin-bottom: 1rem;">${item.descricao}</p>
-          <div class="card-footer">
-            <span class="card-price">${formatBRL(item.preco_demo)}</span>
-            <div class="card-actions">
-              <button class="cyber-btn cyber-btn-secondary" style="padding: 0.4rem 0.6rem; font-size: 0.75rem;" onclick="equipItem('${item.id}')">
-                Provador
-              </button>
-              <button class="cyber-btn" style="padding: 0.4rem 0.6rem; font-size: 0.75rem;" onclick="addToCart('${item.id}', this)">
-                + Carrinho
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-  }).join('');
-}
-
-// Render Full Catalog
-function renderFullCatalog() {
-  const grid = document.getElementById('products-grid');
-  if (!grid) return;
-
-  const filtered = PRODUCTS.filter(p => {
-    const matchBrand = state.filters.brand === 'all' || p.marca === state.filters.brand;
-    const matchCat = state.filters.category === 'all' || p.categoria === state.filters.category;
-    const matchPrice = p.preco_demo <= state.filters.priceMax;
-    const matchSearch = p.nome.toLowerCase().includes(state.filters.search) || 
-                        p.marca.toLowerCase().includes(state.filters.search) ||
-                        p.tags.some(t => t.toLowerCase().includes(state.filters.search));
-    return matchBrand && matchCat && matchPrice && matchSearch;
-  });
-
-  if (filtered.length === 0) {
-    grid.innerHTML = `
-      <div style="grid-column: 1/-1; text-align: center; color: var(--text-muted); padding: 4rem 1rem;">
-        <h3 style="font-size: 1.5rem; color: var(--neon-magenta);">NENHUM ITEM ENCONTRADO NA MATRIX</h3>
-        <p>Tente ajustar os filtros por marca, preço ou categoria.</p>
-      </div>
-    `;
-    return;
-  }
-
-  grid.innerHTML = filtered.map(item => createProductCardHTML(item)).join('');
-}
-
-// Card HTML Creator
-function createProductCardHTML(item) {
-  const isFav = state.favorites.has(item.id);
-  const seasonTag = item.estacao === 'inverno' ? `<span class="card-badge" style="border-color: var(--neon-cyan); color: var(--neon-cyan);">❄️ INVERNO</span>` :
-                    `<span class="card-badge" style="border-color: var(--neon-yellow); color: var(--neon-yellow);">☀️ VERÃO</span>`;
-
-  return `
+  const container = document.getElementById('featured-grid'); if (!container) return;
+  const featured = PRODUCTS.filter(p => p.destaque).slice(0, 8);
+  container.innerHTML = featured.map(item => `
     <div class="product-card">
-      ${seasonTag}
-      <button class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFavorite('${item.id}', this)" title="Favoritar">
-        <span>${isFav ? '❤️' : '🤍'}</span>
-      </button>
-      
-      <div class="card-img-wrapper" onclick="openProductDetail('${item.id}')">
-        <img src="${item.image}" alt="${item.nome}" loading="lazy">
+      <span class="brand-badge">${item.marca}</span>
+      <div class="card-img-wrapper" onclick="openProductDetail(${item.id})">
+        <img src="${item.imagem}" alt="${item.nome}" loading="lazy">
       </div>
-      
       <div class="card-body">
-        <span class="card-category">${item.marca} • ${item.categoria}</span>
-        <h3 class="card-title" onclick="openProductDetail('${item.id}')">${item.nome}</h3>
-        
-        <div class="card-stats">
-          <span>⭐ ${item.avaliacao} (${item.avaliacoes_count})</span>
-          <span style="color: ${item.status === 'Em estoque' ? 'var(--neon-green)' : 'var(--neon-yellow)'};">${item.status}</span>
-        </div>
-
-        <div class="card-footer">
-          <div>
-            <div class="card-price">${formatBRL(item.preco_demo)}</div>
-            <div style="font-size: 0.68rem; color: var(--text-muted);">Preço demonstrativo</div>
-          </div>
-          
-          <div class="card-actions">
-            <button class="cyber-btn cyber-btn-secondary" style="padding: 0.45rem 0.75rem; font-size: 0.75rem;" onclick="equipItem('${item.id}')" title="Testar no Provador">
-              Provador
-            </button>
-            <button class="cyber-btn" style="padding: 0.45rem 0.75rem; font-size: 0.75rem;" onclick="addToCart('${item.id}', this)">
-              + Carrinho
-            </button>
-          </div>
+        <h3 class="card-title" onclick="openProductDetail(${item.id})">${item.nome}</h3>
+        <span class="card-category">${item.categoria}</span>
+        <div class="card-price">${formatBRL(item.preco)}</div>
+        <div class="card-actions-duo">
+          <button class="cyber-btn cyber-btn-secondary card-btn-action" onclick="equipProductOnAvatar3D(${item.id})" title="Experimentar no Avatar 3D">
+            ⚡ Experimentar
+          </button>
+          <button class="cyber-btn cyber-btn-buy card-btn-action" onclick="handleBuyProduct(${item.id})" title="Comprar este produto">
+            🛍️ Comprar
+          </button>
         </div>
       </div>
     </div>
-  `;
+  `).join('');
 }
 
-// Favorite Toggle com som Tiny Sparkle (Volume 10%) e microanimação (7.)
-window.toggleFavorite = function(id, btnElement) {
-  if (state.favorites.has(id)) {
-    state.favorites.delete(id);
-    showToast('Item removido dos favoritos.');
-    audio.playDescendingClick();
-  } else {
-    state.favorites.add(id);
-    showToast('❤️ Item adicionado aos seus favoritos!');
-    audio.playTinySparkle();
-  }
+function renderLooksGrid(season = 'all') {
+  const container = document.getElementById('looks-grid'); if (!container) return;
+  const filtered = PRODUCTS.filter(p => {
+    if (season === 'all') return p.categoria === 'Conjuntos' || p.destaque;
+    return season === 'inverno' ? p.categoria === 'Moletons' || p.categoria === 'Jaquetas' || p.categoria === 'Conjuntos' : p.categoria === 'Camisetas' || p.categoria === 'Shorts';
+  }).slice(0, 8);
 
-  if (btnElement) {
-    btnElement.classList.toggle('active');
-    const span = btnElement.querySelector('span');
-    if (span) {
-      span.textContent = state.favorites.has(id) ? '❤️' : '🤍';
-      span.style.animation = 'none';
-      void span.offsetWidth; // Trigger reflow
-      span.style.animation = 'heartPulse 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards';
-    }
-  } else {
-    renderFullCatalog();
-    renderFeaturedGrid();
-  }
-};
+  container.innerHTML = filtered.map(item => `
+    <div class="product-card">
+      <span class="brand-badge">${item.marca}</span>
+      <div class="card-img-wrapper" onclick="openProductDetail(${item.id})">
+        <img src="${item.imagem}" alt="${item.nome}" loading="lazy">
+      </div>
+      <div class="card-body">
+        <h3 class="card-title" onclick="openProductDetail(${item.id})">${item.nome}</h3>
+        <span class="card-category">${item.categoria}</span>
+        <div class="card-price">${formatBRL(item.preco)}</div>
+        <div class="card-actions-duo">
+          <button class="cyber-btn cyber-btn-secondary card-btn-action" onclick="equipProductOnAvatar3D(${item.id})" title="Experimentar no Avatar 3D">
+            ⚡ Experimentar
+          </button>
+          <button class="cyber-btn cyber-btn-buy card-btn-action" onclick="handleBuyProduct(${item.id})" title="Comprar este produto">
+            🛍️ Comprar
+          </button>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
 
-// Detail Modal com Minimal Pop
 window.openProductDetail = function(id) {
-  const item = PRODUCTS.find(p => p.id === id);
-  if (!item) return;
-
-  const content = document.getElementById('product-detail-content');
-  if (!content) return;
-
+  const item = PRODUCTS.find(p => p.id === id); if (!item) return;
+  const content = document.getElementById('product-detail-content'); if (!content) return;
   const sizeOptions = item.tamanhos.map(s => `<button class="size-chip" onclick="selectSize(this)">${s}</button>`).join('');
+  
+  const colorChips = item.cores.map((c, idx) => `
+    <button class="option-chip product-color-btn ${idx === 0 ? 'active' : ''}" onclick="selectProductDetailColor('${c}', '${getColorHex(c)}', this)" style="display: inline-flex; align-items: center; gap: 6px; padding: 0.35rem 0.75rem; font-size: 0.78rem;">
+      <span style="display: inline-block; width: 11px; height: 11px; border-radius: 50%; background: ${getColorHex(c)}; border: 1px solid rgba(255,255,255,0.4);"></span>
+      ${c}
+    </button>
+  `).join('');
+
+  const glbPath = (item.avatar && item.avatar.modelo3d) ? item.avatar.modelo3d : 'assets/modelos3d/camisetas/camiseta-essential-branca.glb';
+  const initialColor = getColorHex(item.cores[0]);
 
   content.innerHTML = `
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;">
-      <div style="background: radial-gradient(circle at center, rgba(0, 243, 255, 0.1) 0%, rgba(7, 9, 19, 0.9) 100%); border-radius: 12px; padding: 2rem; text-align: center; border: 1px solid rgba(255, 255, 255, 0.1);">
-        <img src="${item.image}" alt="${item.nome}" style="max-height: 260px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 0 20px rgba(0, 243, 255, 0.4));">
+      <div style="background: radial-gradient(circle at center, rgba(157, 78, 221, 0.15) 0%, rgba(7, 9, 19, 0.9) 100%); border-radius: 12px; padding: 1.5rem; text-align: center; border: 1px solid rgba(255, 255, 255, 0.1); position: relative;">
+        <div style="display: flex; justify-content: center; gap: 8px; margin-bottom: 1rem;">
+          <button id="btn-view-2d" class="cyber-btn cyber-btn-secondary" style="font-size: 0.72rem; padding: 0.35rem 0.75rem;" onclick="switchProductViewMode('2d')">🖼️ Imagem 2D</button>
+          <button id="btn-view-3d" class="cyber-btn" style="font-size: 0.72rem; padding: 0.35rem 0.75rem;" onclick="switchProductViewMode('3d', '${glbPath}', '${initialColor}')">📦 Modelo 3D GLB</button>
+        </div>
+        
+        <div id="product-img-view" style="display: block;">
+          <img src="${item.imagem}" alt="${item.nome}" style="max-height: 240px; max-width: 100%; object-fit: contain; filter: drop-shadow(0 0 20px rgba(157, 78, 221, 0.4));">
+        </div>
+
+        <div id="product-3d-view" style="display: none; width: 100%; height: 240px; position: relative;">
+          <canvas id="product3dCanvas" style="width: 100%; height: 100%; display: block; cursor: grab; border-radius: 8px;"></canvas>
+          <div style="position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%); font-size: 0.68rem; color: var(--neon-cyan); background: rgba(0,0,0,0.7); padding: 3px 8px; border-radius: 4px; pointer-events: none; border: 1px solid rgba(0,243,255,0.3); white-space: nowrap;">
+            🖱️ Arraste para girar 360° • Scroll / Pinça para zoom
+          </div>
+        </div>
       </div>
 
       <div>
-        <div style="font-family: var(--font-subheading); color: var(--neon-cyan); text-transform: uppercase;">${item.marca} • ${item.categoria} (${item.estacao === 'inverno' ? '❄️ Inverno' : '☀️ Verão'})</div>
+        <div style="font-family: var(--font-subheading); color: var(--neon-purple); text-transform: uppercase; font-weight: bold;">MARCA: ${item.marca} • ${item.categoria}</div>
         <h2 style="font-size: 1.8rem; margin: 0.4rem 0;">${item.nome}</h2>
-        <div style="font-size: 1.6rem; font-family: var(--font-heading); color: #fff; margin-bottom: 0.5rem;">${formatBRL(item.preco_demo)}</div>
-        <div style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 1.2rem;">* Valor demonstrativo do catálogo Cyber Closet</div>
-
-        <p style="color: var(--text-muted); line-height: 1.5; font-size: 0.95rem; margin-bottom: 1.5rem;">${item.descricao}</p>
-
-        <div style="margin-bottom: 1.2rem;">
-          <label style="display: block; font-family: var(--font-subheading); color: var(--text-muted); margin-bottom: 0.5rem;">SELECIONAR TAMANHO:</label>
-          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            ${sizeOptions}
-          </div>
+        <div style="font-size: 1.6rem; font-family: var(--font-heading); color: #fff; margin-bottom: 0.5rem;">${formatBRL(item.preco)}</div>
+        <p style="color: var(--text-muted); line-height: 1.5; font-size: 0.95rem; margin-bottom: 1rem;">${item.descricao}</p>
+        
+        <div style="margin-bottom: 1rem;">
+          <label style="display: block; font-family: var(--font-subheading); color: var(--text-muted); margin-bottom: 0.4rem; font-size: 0.82rem;">
+            CORES DISPONÍVEIS: <strong id="selected-color-label" style="color: var(--neon-cyan);">${item.cores[0]}</strong>
+          </label>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">${colorChips}</div>
         </div>
 
-        <div style="display: flex; gap: 1rem; margin-top: 2rem;">
-          <button class="cyber-btn" style="flex: 1; justify-content: center;" onclick="addToCart('${item.id}', this)">
+        <div style="margin-bottom: 1.2rem;">
+          <label style="display: block; font-family: var(--font-subheading); color: var(--text-muted); margin-bottom: 0.5rem; font-size: 0.82rem;">SELECIONAR TAMANHO:</label>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">${sizeOptions}</div>
+        </div>
+
+        <div class="product-detail-actions-trio">
+          <button class="cyber-btn" style="justify-content: center; font-size: 0.74rem; padding: 0.7rem 0.3rem;" onclick="addToCart(${item.id}, this)">
             🛒 ADICIONAR AO CARRINHO
           </button>
-          <button class="cyber-btn cyber-btn-secondary" onclick="equipItem('${item.id}')">
-            ⚡ PROVADOR AR
+          <button class="cyber-btn cyber-btn-secondary" style="justify-content: center; font-size: 0.74rem; padding: 0.7rem 0.3rem;" onclick="equipProductOnAvatar3D(${item.id})">
+            ⚡ EXPERIMENTAR NO AVATAR
+          </button>
+          <button class="cyber-btn cyber-btn-buy-now" style="justify-content: center; font-size: 0.76rem; padding: 0.7rem 0.4rem;" onclick="handleBuyProduct(${item.id})">
+            ⚡ COMPRAR AGORA
           </button>
         </div>
       </div>
     </div>
   `;
+  openModal('detail-modal'); audio.playMinimalPop();
+  switchProductViewMode('3d', glbPath, initialColor);
+};
 
-  openModal('detail-modal');
-  audio.playMinimalPop();
+window.selectProductDetailColor = function(colorName, colorHex, btn) {
+  document.querySelectorAll('.product-color-btn').forEach(b => b.classList.remove('active'));
+  if (btn) btn.classList.add('active');
+  const label = document.getElementById('selected-color-label');
+  if (label) label.textContent = colorName;
+  if (typeof window.updateProduct3DColor === 'function') {
+    window.updateProduct3DColor(colorHex);
+  }
+  if (audio && audio.playMechanicalClick) audio.playMechanicalClick();
+};
+
+window.switchProductViewMode = function(mode, glbPath, initialColor) {
+  const imgView = document.getElementById('product-img-view');
+  const view3d = document.getElementById('product-3d-view');
+  const btn2d = document.getElementById('btn-view-2d');
+  const btn3d = document.getElementById('btn-view-3d');
+
+  if (mode === '3d') {
+    if (imgView) imgView.style.display = 'none';
+    if (view3d) view3d.style.display = 'block';
+    if (btn2d) { btn2d.classList.remove('cyber-btn'); btn2d.classList.add('cyber-btn-secondary'); }
+    if (btn3d) { btn3d.classList.remove('cyber-btn-secondary'); btn3d.classList.add('cyber-btn'); }
+    
+    if (typeof window.initProduct3DViewer === 'function' && glbPath) {
+      setTimeout(() => {
+        window.initProduct3DViewer('product-3d-view', 'product3dCanvas', glbPath, initialColor);
+      }, 50);
+    }
+  } else {
+    if (imgView) imgView.style.display = 'block';
+    if (view3d) view3d.style.display = 'none';
+    if (btn2d) { btn2d.classList.remove('cyber-btn-secondary'); btn2d.classList.add('cyber-btn'); }
+    if (btn3d) { btn3d.classList.remove('cyber-btn'); btn3d.classList.add('cyber-btn-secondary'); }
+  }
 };
 
 window.selectSize = function(btn) {
   document.querySelectorAll('.size-chip').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  audio.playMechanicalClick();
+  btn.classList.add('active'); audio.playMechanicalClick();
 };
 
-// Equip Item no Provador Holográfico
-window.equipItem = function(id) {
-  const item = PRODUCTS.find(p => p.id === id);
-  if (!item) return;
-
-  if (item.categoria === 'Calças' || item.categoria === 'Shorts') state.equipped.pants = item;
-  else if (item.categoria === 'Acessórios') state.equipped.visor = item;
-  else state.equipped.jacket = item;
-
-  updateFittingRoom();
-  audio.playShortWhoosh();
-  showToast(`⚡ "${item.nome}" foi equipado no Provador Holográfico!`);
-};
-
-function updateFittingRoom() {
-  const avatarImg = document.getElementById('fitting-avatar-img');
-  const jacketName = document.getElementById('equipped-jacket-name');
-  const visorName = document.getElementById('equipped-visor-name');
-  const pantsName = document.getElementById('equipped-pants-name');
-
-  if (jacketName) jacketName.textContent = state.equipped.jacket?.nome || 'Jaqueta Padrão';
-  if (visorName) visorName.textContent = state.equipped.visor?.nome || 'Acessório Padrão';
-  if (pantsName) pantsName.textContent = state.equipped.pants?.nome || 'Calça Padrão';
-
-  if (avatarImg) {
-    avatarImg.style.filter = `drop-shadow(0 0 25px ${state.activeColor})`;
-  }
-}
-
-// Carrinho de Compras com 2-Note Soft Chime, produto voando (5.) e contador pulsando (6.)
 window.addToCart = function(id, btnElement) {
-  const item = PRODUCTS.find(p => p.id === id);
-  if (!item) return;
-
+  const item = PRODUCTS.find(p => p.id === id); if (!item) return;
   const existing = state.cart.find(c => c.id === item.id);
-  if (existing) {
-    existing.qty += 1;
-  } else {
-    state.cart.push({ ...item, qty: 1, selectedSize: item.tamanhos[0] });
-  }
-
-  updateCartBadge();
-  audio.playCartChime();
-  if (btnElement) animateFlyToCart(btnElement, item.image);
-  showToast(`🛒 ${item.nome} adicionado ao seu carrinho!`);
+  if (existing) { existing.qty += 1; } else { state.cart.push({ ...item, qty: 1, selectedSize: item.tamanhos[0] }); }
+  updateCartBadge(); audio.playCartChime();
+  if (btnElement) animateFlyToCart(btnElement, item.imagem);
+  showToast(`🛒 ${item.nome} (${item.marca}) adicionado ao seu carrinho!`);
 };
 
 function updateCartBadge() {
@@ -1220,33 +1563,22 @@ function updateCartBadge() {
 }
 
 function renderCartDrawer() {
-  const list = document.getElementById('cart-items-list');
-  const totalEl = document.getElementById('cart-total-price');
-
+  const list = document.getElementById('cart-items-list'); const totalEl = document.getElementById('cart-total-price');
   if (!list) return;
-
   if (state.cart.length === 0) {
-    list.innerHTML = `
-      <div style="text-align: center; color: var(--text-muted); padding: 3rem 1rem;">
-        <h4 style="font-size: 1.2rem; color: var(--neon-cyan);">SEU CARRINHO ESTÁ VAZIO</h4>
-        <p>Explore nosso catálogo e adicione suas peças de vestuário favoritas.</p>
-      </div>
-    `;
-    if (totalEl) totalEl.textContent = formatBRL(0);
-    return;
+    list.innerHTML = `<div style="text-align: center; color: var(--text-muted); padding: 3rem 1rem;"><h4 style="font-size: 1.2rem; color: var(--neon-cyan);">SEU CARRINHO ESTÁ VAZIO</h4></div>`;
+    if (totalEl) totalEl.textContent = formatBRL(0); return;
   }
-
   let total = 0;
   list.innerHTML = state.cart.map((item, index) => {
-    const subtotal = item.preco_demo * item.qty;
-    total += subtotal;
+    const subtotal = item.preco * item.qty; total += subtotal;
     return `
       <div class="cart-item">
-        <img src="${item.image}" alt="${item.nome}">
+        <img src="${item.imagem}" alt="${item.nome}">
         <div class="cart-item-info">
           <div class="cart-item-title">${item.nome}</div>
-          <div style="font-size: 0.75rem; color: var(--text-muted);">Tam: ${item.selectedSize}</div>
-          <div class="cart-item-price">${formatBRL(item.preco_demo)}</div>
+          <div style="font-size: 0.75rem; color: var(--text-muted);">${item.marca} • Tam: ${item.selectedSize}</div>
+          <div class="cart-item-price">${formatBRL(item.preco)}</div>
         </div>
         <div style="display: flex; align-items: center; gap: 6px;">
           <button class="cyber-btn cyber-btn-secondary" style="padding: 0.2rem 0.5rem;" onclick="changeQty(${index}, -1)">-</button>
@@ -1256,80 +1588,47 @@ function renderCartDrawer() {
       </div>
     `;
   }).join('');
-
   if (totalEl) totalEl.textContent = formatBRL(total);
 }
 
 window.changeQty = function(index, delta) {
   state.cart[index].qty += delta;
-  if (state.cart[index].qty <= 0) {
-    state.cart.splice(index, 1);
-    audio.playDescendingClick();
-  } else {
-    audio.playMinimalPop();
-  }
-  updateCartBadge();
-  renderCartDrawer();
+  if (state.cart[index].qty <= 0) { state.cart.splice(index, 1); audio.playDescendingClick(); } else { audio.playMinimalPop(); }
+  updateCartBadge(); renderCartDrawer();
 };
 
-// Finalizar Compra com Premium Glass Chime de 3 Notas (Volume 20%)
 window.checkoutCart = function() {
   if (state.cart.length === 0) {
     audio.playSoftBuzz();
-    showToast('Adicione produtos antes de finalizar o pedido!');
+    showToast('Adicione produtos ao carrinho antes de finalizar!');
     return;
   }
-
-  const total = state.cart.reduce((sum, item) => sum + (item.preco_demo * item.qty), 0);
-  state.cart = [];
-  updateCartBadge();
   closeAllModals();
-  audio.playGlassChime();
-
-  showToast(`🎉 Pedido Finalizado com Sucesso pelo Metrik! Total: ${formatBRL(total)}`);
+  openUnavailableModal({ nome: 'Pedido do Carrinho de Compras' });
+  audio.playSoftBuzz();
 };
 
-// Gerador de Look IA
 function generateInteractiveAIOutfit() {
   audio.playShortWhoosh();
-  
   const card = document.getElementById('ai-outfit-display');
-  if (card) {
-    card.style.opacity = '0.4';
-    card.style.filter = 'blur(4px)';
-  }
+  if (card) { card.style.opacity = '0.4'; card.style.filter = 'blur(4px)'; }
 
   setTimeout(() => {
     const budget = state.aiGenerator.maxBudget;
-    const candidatesTops = PRODUCTS.filter(p => (p.categoria === 'Moletons' || p.categoria === 'Jaquetas' || p.categoria === 'Camisetas') && p.preco_demo <= budget);
-    const candidatesBottoms = PRODUCTS.filter(p => (p.categoria === 'Calças' || p.categoria === 'Shorts') && p.preco_demo <= budget);
-    const candidatesAcc = PRODUCTS.filter(p => p.categoria === 'Acessórios') || [PRODUCTS[0]];
+    const candidatesTops = PRODUCTS.filter(p => (p.categoria === 'Moletons' || p.categoria === 'Jaquetas' || p.categoria === 'Camisetas' || p.categoria === 'Camisas') && p.preco <= budget);
+    const candidatesBottoms = PRODUCTS.filter(p => (p.categoria === 'Calças' || p.categoria === 'Jeans' || p.categoria === 'Shorts') && p.preco <= budget);
+    const candidatesAcc = PRODUCTS.filter(p => p.categoria === 'Tênis' || p.categoria === 'Chinelos' || p.categoria === 'Acessórios') || [PRODUCTS[0]];
 
     const top = candidatesTops[Math.floor(Math.random() * candidatesTops.length)] || PRODUCTS[0];
-    const bottom = candidatesBottoms[Math.floor(Math.random() * candidatesBottoms.length)] || PRODUCTS[1];
-    const acc = candidatesAcc[Math.floor(Math.random() * candidatesAcc.length)] || PRODUCTS[2];
+    const bottom = candidatesBottoms[Math.floor(Math.random() * candidatesBottoms.length)] || PRODUCTS[27];
+    const acc = candidatesAcc[Math.floor(Math.random() * candidatesAcc.length)] || PRODUCTS[33];
 
-    const comboTotal = top.preco_demo + bottom.preco_demo + acc.preco_demo;
+    const comboTotal = top.preco + bottom.preco + acc.preco;
     const comboDiscountPrice = comboTotal * 0.85;
-
     state.aiGenerator.currentOutfit = { top, bottom, acc, comboTotal, comboDiscountPrice };
 
-    const syncStat = Math.min(99, Math.floor(Math.random() * 12 + 88));
-    const boldnessStat = state.aiGenerator.boldness;
-
-    const syncBar = document.getElementById('ai-sync-bar');
-    const syncLabel = document.getElementById('ai-sync-label');
-    const boldnessBar = document.getElementById('ai-boldness-bar');
-    const boldnessLabel = document.getElementById('ai-boldness-label');
-
-    if (syncBar) syncBar.style.width = `${syncStat}%`;
-    if (syncLabel) syncLabel.textContent = `${syncStat}%`;
-    if (boldnessBar) boldnessBar.style.width = `${boldnessStat}%`;
-    if (boldnessLabel) boldnessLabel.textContent = `${boldnessStat}%`;
-
     if (card) {
-      card.style.opacity = '1';
-      card.style.filter = 'none';
+      card.style.opacity = '1'; card.style.filter = 'none';
       card.innerHTML = `
         <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem;">
           <img src="assets/mascot.jpg" style="width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--neon-cyan);" alt="Metrik">
@@ -1338,178 +1637,318 @@ function generateInteractiveAIOutfit() {
             <div style="font-size: 0.8rem; color: var(--text-muted);">Look #${Math.floor(Math.random() * 8999 + 1000)} • Mood: ${state.aiGenerator.mood.toUpperCase()}</div>
           </div>
         </div>
-
         <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; background: rgba(7,9,19,0.8); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 0.8rem; margin-bottom: 1rem;">
-          <div style="text-align: center;">
-            <img src="${top.image}" style="height: 60px; object-fit: contain;">
-            <div style="font-size: 0.72rem; font-weight: bold; margin-top: 4px;">${top.nome}</div>
-            <div style="font-size: 0.7rem; color: var(--neon-cyan);">${formatBRL(top.preco_demo)}</div>
-          </div>
-
-          <div style="text-align: center;">
-            <img src="${bottom.image}" style="height: 60px; object-fit: contain;">
-            <div style="font-size: 0.72rem; font-weight: bold; margin-top: 4px;">${bottom.nome}</div>
-            <div style="font-size: 0.7rem; color: var(--neon-cyan);">${formatBRL(bottom.preco_demo)}</div>
-          </div>
-
-          <div style="text-align: center;">
-            <img src="${acc.image}" style="height: 60px; object-fit: contain;">
-            <div style="font-size: 0.72rem; font-weight: bold; margin-top: 4px;">${acc.nome}</div>
-            <div style="font-size: 0.7rem; color: var(--neon-cyan);">${formatBRL(acc.preco_demo)}</div>
-          </div>
+          <div style="text-align: center;"><img src="${top.imagem}" style="height: 60px; object-fit: contain;"><div style="font-size: 0.72rem; font-weight: bold; margin-top: 4px;">${top.nome}</div><div style="font-size: 0.7rem; color: var(--neon-cyan);">${formatBRL(top.preco)}</div></div>
+          <div style="text-align: center;"><img src="${bottom.imagem}" style="height: 60px; object-fit: contain;"><div style="font-size: 0.72rem; font-weight: bold; margin-top: 4px;">${bottom.nome}</div><div style="font-size: 0.7rem; color: var(--neon-cyan);">${formatBRL(bottom.preco)}</div></div>
+          <div style="text-align: center;"><img src="${acc.imagem}" style="height: 60px; object-fit: contain;"><div style="font-size: 0.72rem; font-weight: bold; margin-top: 4px;">${acc.nome}</div><div style="font-size: 0.7rem; color: var(--neon-cyan);">${formatBRL(acc.preco)}</div></div>
         </div>
-
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-          <div>
-            <span style="font-size: 0.78rem; color: var(--text-muted);">COMBO (15% OFF): </span>
-            <strong style="font-family: var(--font-heading); color: var(--neon-green); font-size: 1.1rem;">${formatBRL(comboDiscountPrice)}</strong>
-            <span style="font-size: 0.75rem; text-decoration: line-through; color: var(--text-muted); margin-left: 6px;">${formatBRL(comboTotal)}</span>
-          </div>
-        </div>
-
         <div style="display: flex; gap: 8px;">
-          <button class="cyber-btn" style="flex: 1; justify-content: center; font-size: 0.75rem; padding: 0.5rem;" onclick="equipComboOutfit()">
-            ⚡ EQUIPAR NO PROVADOR
-          </button>
-          <button class="cyber-btn cyber-btn-secondary" style="flex: 1; justify-content: center; font-size: 0.75rem; padding: 0.5rem;" onclick="addComboToCart(this)">
-            🛒 ADD COMBO AO CARRINHO
-          </button>
+          <button class="cyber-btn" style="flex: 1; justify-content: center; font-size: 0.75rem; padding: 0.5rem;" onclick="equipComboOutfit()">⚡ EXPERIMENTAR NO AVATAR 3D</button>
+          <button class="cyber-btn cyber-btn-secondary" style="flex: 1; justify-content: center; font-size: 0.75rem; padding: 0.5rem;" onclick="addComboToCart(this)">🛒 ADD COMBO AO CARRINHO</button>
         </div>
       `;
     }
-
     audio.playDigitalConfirmation();
-    showToast('⚡ Novo Outfit IA gerado com sucesso pelo Metrik!');
   }, 400);
 }
 
 window.equipComboOutfit = function() {
   if (!state.aiGenerator.currentOutfit) return;
   const { top, bottom, acc } = state.aiGenerator.currentOutfit;
-  state.equipped.jacket = top;
-  state.equipped.pants = bottom;
-  state.equipped.visor = acc;
-  updateFittingRoom();
-  audio.playShortWhoosh();
-  showToast('⚡ Todo o look foi equipado no Provador Holográfico!');
+  equipItemOnAvatar(top.id);
+  equipItemOnAvatar(bottom.id);
+  equipItemOnAvatar(acc.id);
+  const avatarSection = document.getElementById('avatar-3d-section');
+  if (avatarSection) avatarSection.scrollIntoView({ behavior: 'smooth' });
 };
 
 window.addComboToCart = function(btnElement) {
   if (!state.aiGenerator.currentOutfit) return;
   const { top, bottom, acc } = state.aiGenerator.currentOutfit;
-  addToCart(top.id, btnElement);
-  addToCart(bottom.id);
-  addToCart(acc.id);
-  audio.playCartChime();
-  showToast('🎉 Combo de Vestuário com 15% OFF adicionado ao seu carrinho!');
+  addToCart(top.id, btnElement); addToCart(bottom.id); addToCart(acc.id);
+  audio.playCartChime(); showToast('🎉 Combo com 15% OFF adicionado ao carrinho!');
 };
 
-// METRIK CHATBOT
+/* ==========================================================================
+   METRIK 24/7 - CHATBOT BACKEND INTEGRATION & SESSION HISTORY
+   ========================================================================== */
+
+function getFormattedTime() {
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  return `${hours}:${minutes}`;
+}
+
+function getChatHistory() {
+  const stored = sessionStorage.getItem('cyber_closet_chat_history');
+  if (stored) {
+    try {
+      return JSON.parse(stored);
+    } catch (e) {
+      console.error('Erro ao ler chat history do sessionStorage:', e);
+    }
+  }
+  const initial = [
+    {
+      sender: 'bot',
+      text: 'Olá! Eu sou o Metrik, assistente virtual do Cyber Closet. Posso ajudar com roupas, looks, tamanhos, catálogo e o avatar 3D. Como posso ajudar?',
+      time: getFormattedTime()
+    }
+  ];
+  sessionStorage.setItem('cyber_closet_chat_history', JSON.stringify(initial));
+  return initial;
+}
+
+function saveChatHistory(history) {
+  sessionStorage.setItem('cyber_closet_chat_history', JSON.stringify(history));
+}
+
+function escapeAndFormatText(text) {
+  if (!text) return '';
+  let escaped = text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+
+  escaped = escaped.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+  escaped = escaped.replace(/\*(.*?)\*/g, '<em>$1</em>');
+  escaped = escaped.replace(/\n/g, '<br>');
+  return escaped;
+}
+
 function renderChatMessages() {
   const container = document.getElementById('chat-messages-container');
   if (!container) return;
+  const history = getChatHistory();
 
-  container.innerHTML = state.chatMessages.map(msg => `
-    <div class="chat-msg ${msg.sender}">
-      ${msg.sender === 'bot' ? '<img src="assets/mascot.jpg" class="chat-avatar" alt="Metrik">' : ''}
-      <div class="chat-bubble">${msg.text}</div>
-    </div>
-  `).join('');
+  container.innerHTML = history.map(msg => {
+    const isBot = msg.sender === 'bot';
+    const avatarHtml = isBot ? `<img src="assets/mascot.jpg" class="msg-avatar-small" alt="Metrik">` : '';
+    const timeHtml = msg.time ? `<span class="msg-time">${msg.time}</span>` : '';
+    const formattedText = escapeAndFormatText(msg.text);
+
+    return `
+      <div class="chat-msg ${msg.sender}">
+        ${avatarHtml}
+        <div class="chat-bubble">
+          ${formattedText}
+          ${timeHtml}
+        </div>
+      </div>
+    `;
+  }).join('');
 
   container.scrollTop = container.scrollHeight;
 }
 
-window.sendQuickQuery = function(type) {
-  let userText = '';
-  let botReply = '';
+async function sendUserChatMessage(textInput) {
+  const inputEl = document.getElementById('chat-user-input');
+  const btnEl = document.getElementById('chat-send-btn');
+  const typingEl = document.getElementById('metrik-typing');
 
-  if (type === 'tamanho') {
-    userText = 'Qual o meu tamanho ideal de roupa com o Metrik?';
-    botReply = '📏 **Guia de Tamanhos do Metrik**:\n• **Moletons & Jaquetas Tech Fleece**: Possuem caimento justo. Se gosta de um estilo oversized mais solto, peça 1 tamanho maior (ex: G se usar M).\n• **Camisetas & Oversized**: Caimento descontraído com ombros caídos. Peça seu tamanho padrão (PP, P, M, G, GG).';
-  } else if (type === 'rastreio') {
-    userText = 'Onde está o meu pedido de vestuário?';
-    const code = 'METRIK-' + Math.floor(Math.random() * 89999 + 10000) + '-BR';
-    botReply = `🚚 **Rastreamento com o Metrik**:\nCódigo na Matrix: **${code}**\nStatus: *Suas roupas foram seladas na cápsula e estão a caminho pela frota Cyber Express*. Previsão: 24h a 48h!`;
-  } else if (type === 'empresa') {
-    userText = 'Quem é a empresa Cyber Closet e o Metrik?';
-    botReply = '🏢 **Sobre a Cyber Closet & Metrik Labs**:\nFundada em 2099 na Matrix em Neo-Tokyo pelo ciborgue estilista Metrik. Somos pioneiros na integração de moda física de alta costura com tecidos inteligentes e iluminação néon por fibra ótica!';
-  } else if (type === 'humano') {
-    userText = 'Quero falar com um atendente humano';
-    botReply = '⚡ O Metrik está conectando você à nossa Central de Atendimento Humano... Um especialista responderá em instantes!';
-  }
+  const text = textInput ? textInput.trim() : '';
+  if (!text) return;
 
-  state.chatMessages.push({ sender: 'user', text: userText });
+  const history = getChatHistory();
+  const time = getFormattedTime();
+  history.push({ sender: 'user', text: text, time: time });
+  saveChatHistory(history);
+
+  if (inputEl) inputEl.value = '';
   renderChatMessages();
-  audio.playMinimalPop();
+  if (typeof audio !== 'undefined' && audio.playMinimalPop) audio.playMinimalPop();
 
-  setTimeout(() => {
-    state.chatMessages.push({ sender: 'bot', text: botReply });
-    renderChatMessages();
-    audio.playDigitalConfirmation();
-  }, 600);
-};
+  if (inputEl) inputEl.disabled = true;
+  if (btnEl) btnEl.disabled = true;
+  if (typingEl) typingEl.style.display = 'flex';
 
-function handleUserChatMessage(e) {
-  e.preventDefault();
-  const input = document.getElementById('chat-user-input');
-  if (!input || !input.value.trim()) return;
+  const container = document.getElementById('chat-messages-container');
+  if (container) container.scrollTop = container.scrollHeight;
 
-  const text = input.value.trim();
-  state.chatMessages.push({ sender: 'user', text: text });
-  input.value = '';
-  renderChatMessages();
-  audio.playMinimalPop();
+  try {
+    const res = await fetch('/api/metrik', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message: text })
+    });
 
-  setTimeout(() => {
-    let reply = '⚡ Entendi sua dúvida! O **Metrik** está verificando as diretrizes da Cyber Closet na Matrix. Você também pode escolher os atalhos rápidos acima!';
-    
-    if (text.toLowerCase().includes('frete') || text.toLowerCase().includes('entrega')) {
-      reply = '🚚 O **Metrik** garante **Frete Grátis** para todo o Brasil em compras a partir de R$ 299,00 via Cyber Express!';
-    } else if (text.toLowerCase().includes('troca') || text.toLowerCase().includes('devolucao')) {
-      reply = '🔄 Na Cyber Closet você tem **30 dias de garantia total** para trocas e devoluções sem custo!';
-    } else if (text.toLowerCase().includes('metrik') || text.toLowerCase().includes('empresa') || text.toLowerCase().includes('cnpj')) {
-      reply = '🏢 **Cyber Closet Inc. & Metrik Labs**\nCNPJ Fictício: 99.842.099/0001-77\nSede: Neo-Tokyo Sector 7, Cybernetics Hub - Bloco 2099.\nE-mail: contato@cybercloset2099.com';
+    let botReplyText = '';
+    if (res.ok) {
+      const data = await res.json();
+      botReplyText = data.answer || data.reply || data.output || "Recebi sua mensagem!";
+    } else {
+      botReplyText = "⚡ Tive um problema ao processar sua solicitação no servidor. Tente novamente em instantes.";
     }
 
-    state.chatMessages.push({ sender: 'bot', text: reply });
+    const currentHistory = getChatHistory();
+    currentHistory.push({ sender: 'bot', text: botReplyText, time: getFormattedTime() });
+    saveChatHistory(currentHistory);
+
+    if (typeof audio !== 'undefined' && audio.playDigitalConfirmation) audio.playDigitalConfirmation();
+  } catch (err) {
+    console.error('Erro na chamada /api/metrik:', err);
+    const currentHistory = getChatHistory();
+    currentHistory.push({
+      sender: 'bot',
+      text: "⚡ Não foi possível conectar ao servidor do Metrik no momento. Verifique se o servidor backend está ativo.",
+      time: getFormattedTime()
+    });
+    saveChatHistory(currentHistory);
+  } finally {
+    if (typingEl) typingEl.style.display = 'none';
+    if (inputEl) {
+      inputEl.disabled = false;
+      inputEl.focus();
+    }
+    if (btnEl) btnEl.disabled = false;
     renderChatMessages();
-    audio.playDigitalConfirmation();
-  }, 700);
+  }
 }
 
-// Modal Helpers
-function openModal(id) {
-  const modal = document.getElementById(id);
-  if (modal) modal.classList.add('active');
-}
+window.sendQuickQueryText = function(text) {
+  sendUserChatMessage(text);
+};
 
-function openDrawer(id) {
-  const drawer = document.getElementById(id);
-  if (drawer) drawer.classList.add('active');
-}
+window.clearMetrikChat = function() {
+  sessionStorage.removeItem('cyber_closet_chat_history');
+  renderChatMessages();
+  if (typeof showToast === 'function') showToast('Conversa com o Metrik reiniciada.');
+  if (typeof audio !== 'undefined' && audio.playDescendingClick) audio.playDescendingClick();
+};
 
+function openModal(id) { const modal = document.getElementById(id); if (modal) modal.classList.add('active'); }
+function openDrawer(id) { const drawer = document.getElementById(id); if (drawer) drawer.classList.add('active'); }
 function closeAllModals() {
   document.querySelectorAll('.modal-overlay, .drawer-overlay').forEach(m => m.classList.remove('active'));
+  if (typeof window.cleanupProduct3DViewer === 'function') {
+    window.cleanupProduct3DViewer();
+  }
 }
 
-// Toast Notifications
 function showToast(message) {
   let container = document.getElementById('toast-container');
-  if (!container) {
-    container = document.createElement('div');
-    container.id = 'toast-container';
-    container.className = 'toast-container';
-    document.body.appendChild(container);
+  if (!container) { container = document.createElement('div'); container.id = 'toast-container'; container.className = 'toast-container'; document.body.appendChild(container); }
+  const toast = document.createElement('div'); toast.className = 'cyber-toast';
+  toast.innerHTML = `<span>⚡</span> ${message}`; container.appendChild(toast);
+  setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateX(100%)'; setTimeout(() => toast.remove(), 300); }, 3200);
+}
+
+/* ==========================================================================
+   SISTEMA DE COMPRA FUTURISTA & MODAL HOLOGRÁFICO CYBERPUNK NEON
+   ========================================================================== */
+
+// Inicializa explicitamente a propriedade de disponibilidade para todos os produtos
+PRODUCTS.forEach(p => {
+  if (p.disponivel === undefined) {
+    p.disponivel = false; // Produtos virtuais do acervo; mude para true para compras reais
+  }
+});
+
+window.handleBuyProduct = function(id) {
+  const item = PRODUCTS.find(p => p.id === id);
+  if (!item) return;
+
+  // Se o item estiver desbloqueado para compra real
+  if (item.disponivel === true) {
+    addToCart(id);
+    showToast(`🛍️ ${item.nome} pronto para compra!`);
+    return;
   }
 
-  const toast = document.createElement('div');
-  toast.className = 'cyber-toast';
-  toast.innerHTML = `<span>⚡</span> ${message}`;
-  container.appendChild(toast);
+  // Produto indisponível: abrir janela holográfica
+  openUnavailableModal(item);
+};
+
+window.openUnavailableModal = function(item) {
+  const modal = document.getElementById('unavailable-modal');
+  if (!modal) return;
+
+  modal.classList.remove('closing');
+  modal.classList.add('active');
+  modal.setAttribute('aria-hidden', 'false');
+
+  const siteContent = document.getElementById('site-content');
+  if (siteContent) siteContent.classList.add('modal-blur-active');
+
+  if (typeof audio !== 'undefined' && audio.playDigitalConfirmation) {
+    audio.playDigitalConfirmation();
+  }
+
+  initUnavailableModalParticles();
+};
+
+window.closeUnavailableModal = function() {
+  const modal = document.getElementById('unavailable-modal');
+  if (!modal || !modal.classList.contains('active')) return;
+
+  modal.classList.add('closing');
+  modal.setAttribute('aria-hidden', 'true');
+
+  if (typeof audio !== 'undefined' && audio.playShortWhoosh) {
+    audio.playShortWhoosh();
+  }
 
   setTimeout(() => {
-    toast.style.opacity = '0';
-    toast.style.transform = 'translateX(100%)';
-    setTimeout(() => toast.remove(), 300);
-  }, 3200);
+    modal.classList.remove('active', 'closing');
+    const siteContent = document.getElementById('site-content');
+    if (siteContent) siteContent.classList.remove('modal-blur-active');
+  }, 240);
+};
+
+function initUnavailableModalParticles() {
+  const canvas = document.getElementById('unavailable-particles-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    if (canvas.parentElement) {
+      canvas.width = canvas.parentElement.clientWidth || 540;
+      canvas.height = canvas.parentElement.clientHeight || 460;
+    }
+  }
+  resize();
+
+  const particles = Array.from({ length: 22 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    radius: Math.random() * 1.6 + 0.6,
+    speedX: (Math.random() - 0.5) * 0.35,
+    speedY: (Math.random() - 0.5) * 0.35,
+    color: Math.random() > 0.5 ? 'rgba(0, 245, 255, 0.45)' : 'rgba(157, 0, 255, 0.45)'
+  }));
+
+  function render() {
+    const modal = document.getElementById('unavailable-modal');
+    if (!modal || !modal.classList.contains('active')) return;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(p => {
+      p.x += p.speedX;
+      p.y += p.speedY;
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.y > canvas.height) p.y = 0;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.shadowBlur = 4;
+      ctx.shadowColor = p.color;
+      ctx.fill();
+    });
+
+    requestAnimationFrame(render);
+  }
+
+  render();
 }
+
+// Fechamento via Tecla ESC
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeUnavailableModal();
+    closeAllModals();
+  }
+});

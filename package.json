@@ -1,0 +1,10 @@
+{
+  "name": "cyber-closet",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cyber Closet - Moda Streetwear & Provador Avatar 3D WebGL 2099",
+  "scripts": {
+    "start": "node server-local.js",
+    "dev": "node server-local.js"
+  }
+}

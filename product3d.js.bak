@@ -1,0 +1,129 @@
+/* ==========================================================================
+   CYBER CLOSET - PRODUCT 3D GLB MODEL VIEWER (THREE.JS + ORBIT CONTROLS)
+   ========================================================================== */
+
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+let scene, camera, renderer, controls, currentModel;
+let animationFrameId;
+
+window.initProduct3DViewer = function(containerId, canvasId, glbPath) {
+  const container = document.getElementById(containerId);
+  const canvas = document.getElementById(canvasId);
+
+  if (!container || !canvas) return;
+
+  if (animationFrameId) {
+    cancelAnimationFrame(animationFrameId);
+  }
+
+  // 1. SCENE
+  scene = new THREE.Scene();
+
+  // 2. CAMERA
+  camera = new THREE.PerspectiveCamera(
+    45,
+    container.clientWidth / container.clientHeight || 1,
+    0.1,
+    100
+  );
+  camera.position.set(0, 0.4, 1.6);
+
+  // 3. RENDERER
+  renderer = new THREE.WebGLRenderer({
+    canvas: canvas,
+    alpha: true,
+    antialias: true
+  });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(container.clientWidth, container.clientHeight);
+  renderer.shadowMap.enabled = true;
+  renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+
+  // 4. LIGHTING
+  const ambientLight = new THREE.HemisphereLight(0xffffff, 0x111122, 2.5);
+  scene.add(ambientLight);
+
+  const keyLight = new THREE.DirectionalLight(0xffffff, 3.0);
+  keyLight.position.set(2, 3, 3);
+  keyLight.castShadow = true;
+  scene.add(keyLight);
+
+  const cyanLight = new THREE.SpotLight(0x00f3ff, 6.0, 10, Math.PI / 3, 0.5);
+  cyanLight.position.set(-2, 2, -1);
+  scene.add(cyanLight);
+
+  const magentaLight = new THREE.SpotLight(0xff007f, 5.0, 10, Math.PI / 3, 0.5);
+  magentaLight.position.set(2, 1, -1);
+  scene.add(magentaLight);
+
+  // 5. CONTROLS (Girar e Aproximar)
+  controls = new OrbitControls(camera, renderer.domElement);
+  controls.enablePan = false;
+  controls.enableZoom = true;
+  controls.enableDamping = true;
+  controls.dampingFactor = 0.08;
+  controls.minDistance = 0.6;
+  controls.maxDistance = 3.5;
+  controls.autoRotate = true;
+  controls.autoRotateSpeed = 2.0;
+
+  // 6. CARREGAR GLB COM GLTFLOADER
+  const loader = new GLTFLoader();
+  loader.load(
+    glbPath,
+    (gltf) => {
+      if (currentModel) scene.remove(currentModel);
+      currentModel = gltf.scene;
+
+      currentModel.traverse((child) => {
+        if (child.isMesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+        }
+      });
+
+      // Escala e Centralização Automática
+      const box = new THREE.Box3().setFromObject(currentModel);
+      const size = box.getSize(new THREE.Vector3());
+
+      const maxDim = Math.max(size.x, size.y, size.z);
+      const targetSize = 0.8;
+      const scale = maxDim > 0 ? targetSize / maxDim : 1;
+      currentModel.scale.set(scale, scale, scale);
+
+      currentModel.updateMatrixWorld(true);
+
+      const scaledBox = new THREE.Box3().setFromObject(currentModel);
+      const scaledCenter = scaledBox.getCenter(new THREE.Vector3());
+
+      currentModel.position.set(-scaledCenter.x, -scaledCenter.y, -scaledCenter.z);
+      scene.add(currentModel);
+
+      console.log('Modelo GLB do produto carregado com sucesso:', glbPath);
+    },
+    undefined,
+    (error) => {
+      console.warn('Erro ao carregar modelo GLB do produto:', glbPath, error);
+    }
+  );
+
+  // 7. RENDER LOOP
+  const clock = new THREE.Clock();
+
+  function animate() {
+    animationFrameId = requestAnimationFrame(animate);
+    const time = clock.getElapsedTime();
+
+    if (currentModel) {
+      currentModel.position.y = Math.sin(time * 2) * 0.015;
+    }
+
+    controls.update();
+    renderer.render(scene, camera);
+  }
+
+  animate();
+};

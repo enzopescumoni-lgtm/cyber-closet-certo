@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="studioGlow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#141936" stop-opacity="0.9"/>
+      <stop offset="60%" stop-color="#090c1e" stop-opacity="0.95"/>
+      <stop offset="100%" stop-color="#050711"/>
+    </radialGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="15" flood-color="#000000" flood-opacity="0.6"/>
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#00f3ff" flood-opacity="0.3"/>
+    </filter>
+    <linearGradient id="neonGloss" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f3ff" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#00f3ff" stop-opacity="0.2"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Studio Box -->
+  <rect width="500" height="500" rx="24" fill="url(#studioGlow)"/>
+  
+  <!-- Studio Circular Podium Light -->
+  <ellipse cx="250" cy="410" rx="160" ry="40" fill="rgba(0,243,255,0.03)" filter="drop-shadow(0 0 20px #00f3ff)"/>
+  <ellipse cx="250" cy="410" rx="120" ry="25" fill="none" stroke="#00f3ff" stroke-width="1.5" opacity="0.4"/>
+
+  <g filter="url(#softShadow)">
+    <!-- T-Shirt Body -->
+    <path d="M150 120 L200 90 L300 90 L350 120 L410 170 L360 230 L320 200 L320 400 L180 400 L180 200 L140 230 L90 170 Z" fill="#1e3a8a" stroke="#00f3ff" stroke-width="3.5" stroke-linejoin="round"/>
+    <!-- Collar -->
+    <path d="M200 90 C225 125, 275 125, 300 90" fill="none" stroke="#00f3ff" stroke-width="4.5"/>
+    <!-- Sleeve Seams -->
+    <line x1="150" y1="120" x2="180" y2="200" stroke="rgba(255,255,255,0.15)" stroke-width="2.5"/>
+    <line x1="350" y1="120" x2="320" y2="200" stroke="rgba(255,255,255,0.15)" stroke-width="2.5"/>
+    <!-- Brand Graphic Logo -->
+    <rect x="215" y="210" width="70" height="28" rx="6" fill="url(#neonGloss)"/>
+    <text x="250" y="229" font-family="sans-serif" font-size="13" font-weight="900" fill="#ffffff" text-anchor="middle" letter-spacing="2">CYBR</text>
+  </g>
+
+</svg>

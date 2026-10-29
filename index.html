@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cyber Closet | Catálogo Geral Streetwear & Avatar 3D WebGL 2099</title>
-  <meta name="description" content="Cyber Closet - Catálogo Geral Streetwear com tema dark tech em roxo/neon, marcas exclusivas (CYBR, Urban Core, Neon Street), filtros completos e opção de experimentar no avatar 3D.">
+  <title>Cyber Closet 2.0 | Plataforma de Moda Virtual Premium</title>
+  <meta name="description" content="Cyber Closet 2.0 - Plataforma de Moda Virtual Luxury Tech: personalize seu avatar 3D, explore o catálogo de streetwear futurista e converse com o assistente Metrik 24/7.">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="loading-screen.css">
   <link rel="stylesheet" href="unavailable-modal.css">
@@ -12,206 +12,310 @@
 <body>
   <!-- LOADING SCREEN CYBERPUNK NEON -->
   <div id="cyber-loading-screen" class="cyber-loading-overlay">
-    <!-- Fundo de Partículas & Scanlines -->
     <canvas id="cls-particles-canvas" class="cyber-loading-canvas"></canvas>
     <div class="cyber-loading-grid"></div>
     <div class="cyber-loading-scanline"></div>
     <div class="cyber-loading-radial-glow"></div>
 
-    <!-- HUD Tech Corners -->
     <div class="cyber-hud-corner cyber-hud-tl">
-      <span class="cyber-hud-bracket">[</span> SYS.CORE // NODE: MATRIX-2099 <span class="cyber-hud-bracket">]</span>
+      <span class="cyber-hud-bracket">[</span> SYS.CORE // LUXURY-2.0 <span class="cyber-hud-bracket">]</span>
     </div>
     <div class="cyber-hud-corner cyber-hud-tr">
-      <button class="cyber-audio-toggle" id="cls-audio-toggle" title="Alternar som da tela de carregamento">
+      <button class="cyber-audio-toggle" id="cls-audio-toggle" title="Alternar som">
         🔇 SOM DESATIVADO
       </button>
     </div>
     <div class="cyber-hud-corner cyber-hud-bl">
-      <span class="cyber-hud-bracket">[</span> STATUS: SINCRONIZANDO EXPERIÊNCIA <span class="cyber-hud-bracket">]</span>
+      <span class="cyber-hud-bracket">[</span> STATUS: CARREGANDO UNIVERSO <span class="cyber-hud-bracket">]</span>
     </div>
     <div class="cyber-hud-corner cyber-hud-br">
-      <span class="cyber-hud-bracket">[</span> PROTOCOLO: HTTPS // 60FPS <span class="cyber-hud-bracket">]</span>
+      <span class="cyber-hud-bracket">[</span> PROTOCOLO: 60FPS // WEBGL <span class="cyber-hud-bracket">]</span>
     </div>
 
-    <!-- Conteúdo Central -->
     <div class="cyber-loading-center">
-      <!-- Anéis Holográficos com Logotipo -->
       <div class="cyber-rings-stage">
         <div class="cyber-ring-outer"></div>
         <div class="cyber-ring-inner"></div>
         <div class="cyber-ring-core"></div>
-        
         <div class="cyber-logo-badge" id="cls-logo-badge" title="Cyber Closet Oficial">
-          <img src="assets/hanger_logo.jpg" alt="Cyber Closet Logo Cabide" class="cyber-logo-img">
+          <img src="assets/hanger_logo.jpg" alt="Cyber Closet Logo" class="cyber-logo-img">
         </div>
       </div>
 
-      <!-- Tipografia Oficial -->
       <h1 class="cyber-brand-name">CYBER <span class="cyan">CLOSET</span></h1>
-      <div class="cyber-brand-sub">FASHION TECH • MATRIX 2099</div>
+      <p class="cyber-tagline-text">NEURAL FASHION MATRIX // v2.0 LUXURY TECH</p>
 
-      <!-- Barra de Progresso Neon -->
-      <div class="cyber-progress-container">
-        <div class="cyber-progress-track">
-          <div class="cyber-progress-fill" id="cls-progress-fill"></div>
-        </div>
-        <div class="cyber-progress-stats">
-          <span class="cyber-progress-phase" id="cls-progress-phase">INICIALIZANDO SUBSISTEMAS...</span>
-          <span class="cyber-progress-percent" id="cls-progress-percent">0%</span>
+      <div class="cyber-progress-track">
+        <div class="cyber-progress-fill" id="cls-progress-bar">
+          <div class="cyber-progress-beam"></div>
         </div>
       </div>
 
-      <!-- Mensagens Dinâmicas -->
-      <div class="cyber-status-box">
-        <span class="cyber-status-text" id="cls-status-text">Inicializando Cyber Closet...</span>
+      <div class="cyber-status-row">
+        <span class="cyber-status-message" id="cls-status-msg">INICIALIZANDO CYBER CLOSET 2.0...</span>
+        <span class="cyber-status-percentage" id="cls-percentage">0%</span>
       </div>
 
-      <!-- Fallback amigável caso ocorra demora de rede -->
-      <div class="cyber-loading-fallback" id="cls-fallback-box">
-        <button class="cyber-btn-enter-fallback" id="cls-btn-enter">
-          ⚡ ACESSAR DIRETAMENTE
-        </button>
+      <div class="cyber-fallback-row" id="cls-fallback-box" style="display: none;">
+        <button class="cyber-skip-btn" id="cls-skip-btn">PULAR INTRODUÇÃO ⚡</button>
       </div>
     </div>
   </div>
 
-  <!-- Dynamic Particle Canvas & Background Glow -->
+  <!-- CANVAS DE MICRO-PARTÍCULAS DE FUNDO -->
   <canvas id="cyber-canvas"></canvas>
-  <div class="scanline-overlay"></div>
-  <div class="glow-atmosphere-1"></div>
-  <div class="glow-atmosphere-2"></div>
 
-  <!-- CONTEÚDO PRINCIPAL DO SITE CYBER CLOSET -->
-  <div id="site-content">
-    <!-- Header Navbar -->
-    <header class="cyber-header">
-      <div class="header-container">
-        <!-- LOGO OFICIAL COM A IMAGEM DO CABIDE CYBER -->
-        <a href="#" class="logo-brand" title="Cyber Closet">
-          <img src="assets/hanger_logo.jpg" alt="Cyber Closet Logo Cabide" class="logo-img-hanger">
+  <div id="site-content" class="site-content cls-loading">
+    <!-- HEADER FLUTUANTE PREMIUM LUXURY TECH -->
+    <header class="luxury-header-wrapper">
+      <div class="luxury-header">
+        <a href="#hero" class="header-brand-logo" title="Cyber Closet 2.0">
+          <div class="header-brand-text">
+            <span class="brand-top">CYBER</span>
+            <span class="brand-bottom">CLOSET</span>
+          </div>
         </a>
 
-        <nav>
-          <ul class="nav-links">
-            <li><a href="#hero" class="nav-link active">Início</a></li>
-            <li><a href="#catalogo" class="nav-link">🛍️ Catálogo Geral</a></li>
-            <li><a href="#avatar-3d-section" class="nav-link">👤 Personagem 3D</a></li>
-            <li><a href="#looks" class="nav-link">👕 Looks & Estações</a></li>
-            <li><a href="#mais-procurados" class="nav-link">🔥 Mais Procurados</a></li>
-            <li><a href="#sobre-empresa" class="nav-link">🏢 Empresa</a></li>
-          </ul>
+        <!-- NAVEGAÇÃO DE ABAS CENTRAIS -->
+        <nav class="header-nav-tabs">
+          <a href="#hero" class="nav-tab-item active" id="tab-nav-inicio">
+            <span>🏠</span> Início
+          </a>
+          <a href="#catalogo-section" class="nav-tab-item" id="tab-nav-catalogo">
+            <span>📁</span> Catálogo
+          </a>
+          <a href="#hero" class="nav-tab-item" id="tab-nav-avatar" onclick="activateCustomizerCategory('body')">
+            <span>👤</span> Avatar
+          </a>
+          <a href="#colecoes-section" class="nav-tab-item" id="tab-nav-looks">
+            <span>✨</span> Looks
+          </a>
+          <button class="nav-tab-item" id="tab-nav-favoritos" onclick="filterFavorites()">
+            <span>🤍</span> Favoritos
+          </button>
+          <button class="nav-tab-item" id="tab-nav-carrinho" onclick="openCartDrawer()" title="Opções de Compra e Carrinho">
+            <span>🛍️</span> Compras
+          </button>
         </nav>
 
-        <div class="header-actions">
-          <button class="icon-btn" id="audio-toggle" title="Alternar Som Cybernetic">
+        <!-- AÇÕES À DIREITA: ÁUDIO, CARRINHO, METRIK, PERFIL -->
+        <div class="header-actions-group">
+          <button class="action-icon-pill" id="audio-toggle" title="Alternar Efeitos Sonoros">
             🔊
           </button>
 
-          <button class="icon-btn" id="cart-btn" title="Meu Carrinho de Compras">
+          <button class="action-icon-pill" id="cart-btn" onclick="openCartDrawer()" title="Opções de Compra e Carrinho">
             🛒
-            <span class="badge-count" id="cart-count">0</span>
+            <span class="cart-count-badge" id="cart-count">0</span>
+          </button>
+
+          <button class="action-icon-pill" id="header-metrik-btn" onclick="openMetrikChat()" title="Abrir Metrik 24/7">
+            <img src="assets/metrik_robot.svg" alt="Metrik" style="width: 24px; height: 24px;">
+          </button>
+
+          <button class="profile-pill-btn" id="profile-btn" onclick="openAuthModal()" title="Minha Conta">
+            <span>👤</span> Perfil
           </button>
         </div>
       </div>
     </header>
 
-    <main class="main-wrapper">
-      <!-- Hero Section com Avatar 3D estilo Xbox 360 -->
-      <section id="hero" class="hero-section">
-        <div class="hero-content">
-          <div class="hero-tag">
-            <span>❖</span> CATÁLOGO GERAL STREETWEAR & AVATAR 3D WEBGL
+    <main class="container-app">
+      <!-- HERO SHOWCASE UNIFICADO (CYBER CLOSET 2.0) -->
+      <section id="hero" class="hero-stage-container">
+        <!-- Silhueta Decorativa Futurista -->
+        <img src="assets/auth_mannequins.svg" alt="" class="hero-backdrop-silhouette">
+
+        <!-- LADO ESQUERDO: MENU LATERAL 'PERSONALIZAR' -->
+        <div class="hero-customize-sidepanel">
+          <div class="customize-glass-card">
+            <div class="customize-card-title">
+              <span>❖</span> Personalizar
+            </div>
+            <div class="customize-menu-list">
+              <button class="custom-menu-btn active" onclick="activateCustomizerCategory('body')">
+                <span class="icon">👤</span> Corpo
+              </button>
+              <button class="custom-menu-btn" onclick="activateCustomizerCategory('face')">
+                <span class="icon">😊</span> Rosto
+              </button>
+              <button class="custom-menu-btn" onclick="activateCustomizerCategory('hair')">
+                <span class="icon">💈</span> Cabelo
+              </button>
+              <button class="custom-menu-btn" onclick="activateCustomizerCategory('skin')">
+                <span class="icon">👤</span> Pele
+              </button>
+              <button class="custom-menu-btn" onclick="activateCustomizerCategory('clothes')">
+                <span class="icon">👕</span> Roupas
+              </button>
+              <button class="custom-menu-btn" onclick="activateCustomizerCategory('accessories')">
+                <span class="icon">🕶️</span> Acessórios
+              </button>
+            </div>
           </div>
-          
-          <h1 class="hero-title">
-            CYBER <span class="text-gradient-cyan">CLOSET</span>
-          </h1>
-          
-          <div class="hero-title-line"></div>
 
-          <p class="hero-desc">
-            Explore o **Catálogo Geral Streetwear** com tema dark tech em roxo e neon! Filtre por marca (**CYBR, Urban Core, Neon Street, Nova Wear, Cyber Closet**), preço, cor, tamanho e experimente no **Avatar 3D**.
-          </p>
-
-          <div class="hero-buttons">
-            <a href="#catalogo" class="cyber-btn">
-              🛍️ VER CATÁLOGO GERAL
-            </a>
-            <a href="#avatar-3d-section" class="cyber-btn cyber-btn-secondary">
-              👤 MEU AVATAR 3D
-            </a>
+          <!-- BOTÕES DE ROTAÇÃO CIRCULARES [↺] [↻] -->
+          <div class="hero-rotation-bar">
+            <button class="circle-rotate-btn" id="rotateLeft" onclick="rotateAvatar3D(-45)" title="Girar para Esquerda">
+              ↺
+            </button>
+            <button class="circle-rotate-btn" id="rotateRight" onclick="rotateAvatar3D(45)" title="Girar para Direita">
+              ↻
+            </button>
           </div>
         </div>
 
-        <!-- HERO WIDGET: SHOWCASE DO AVATAR 3D NO PÓDIO HOLOGRÁFICO -->
-        <div class="fitting-showcase">
-          <div class="virtual-closet-stage" id="hero-closet-stage">
-            <div class="light-beam-sweep" id="hero-light-sweep"></div>
-            
-            <div class="avatar-3d-viewport" id="hero-avatar-viewport">
-              <!-- SVG do Avatar renderizado dinamicamente via JS -->
-            </div>
+        <!-- CENTRO: PALCO DO AVATAR 3D WEBGL -->
+        <div class="hero-avatar-centerstage" id="customizer-closet-stage">
+          <div class="avatar-podium-glow"></div>
+          <div class="avatar-podium-rings"></div>
+          
+          <div class="avatar-viewport-canvas-box">
+            <canvas id="avatarCanvas"></canvas>
+          </div>
+        </div>
 
-            <div class="avatar-podium">
-              <div class="podium-ring ring-1"></div>
-              <div class="podium-ring ring-2"></div>
-              <div class="avatar-shadow"></div>
+        <!-- LADO DIREITO: TEXTO DE IMPACTO E CTA -->
+        <div class="hero-impact-textblock">
+          <h1 class="hero-main-title">
+            Vista<br>
+            Experimente<br>
+            Crie seu estilo
+          </h1>
+          <p class="hero-sub-description">
+            Monte looks, personalize seu avatar e explore o futuro da moda.
+          </p>
+          <a href="#catalogo-section" class="hero-cta-btn">
+            Começar agora →
+          </a>
+        </div>
+      </section>
+
+      <!-- SEÇÃO: CATÁLOGO EM DESTAQUE (6 CARDS LUXURY TECH) -->
+      <section class="catalog-featured-section">
+        <div class="section-headline-row">
+          <h2 class="section-clean-title">Catálogo em destaque</h2>
+        </div>
+
+        <div class="catalog-featured-pills-row">
+          <div class="category-featured-card" onclick="filterCategoryFromPill('Camisetas')">
+            <div class="category-thumb-wrapper">
+              <img src="assets/produtos/camisetas/camiseta-essential-branca.svg" alt="Camisetas">
+            </div>
+            <span class="category-card-name">Camisetas</span>
+          </div>
+
+          <div class="category-featured-card" onclick="filterCategoryFromPill('Moletons')">
+            <div class="category-thumb-wrapper">
+              <img src="assets/produtos/moletons/moletom-hoodie-cinza-mescla.svg" alt="Moletons">
+            </div>
+            <span class="category-card-name">Moletons</span>
+          </div>
+
+          <div class="category-featured-card" onclick="filterCategoryFromPill('Jaquetas')">
+            <div class="category-thumb-wrapper">
+              <img src="assets/produtos/jaquetas/jaqueta-puffer-preta.svg" alt="Jaquetas">
+            </div>
+            <span class="category-card-name">Jaquetas</span>
+          </div>
+
+          <div class="category-featured-card" onclick="filterCategoryFromPill('Calças')">
+            <div class="category-thumb-wrapper">
+              <img src="assets/produtos/calcas/calca-cargo-preta.svg" alt="Calças">
+            </div>
+            <span class="category-card-name">Calças</span>
+          </div>
+
+          <div class="category-featured-card" onclick="filterCategoryFromPill('Tênis')">
+            <div class="category-thumb-wrapper">
+              <img src="assets/produtos/tenis/tenis-street-branco.svg" alt="Tênis">
+            </div>
+            <span class="category-card-name">Tênis</span>
+          </div>
+
+          <div class="category-featured-card" onclick="filterCategoryFromPill('Acessórios')">
+            <div class="category-thumb-wrapper">
+              <img src="assets/produtos/acessorios/oculos-visor-neon-ar.svg" alt="Acessórios">
+            </div>
+            <span class="category-card-name">Acessórios</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SEÇÃO: COLEÇÕES (3 BANNERS LUXUOSOS) -->
+      <section id="colecoes-section" class="collections-section-wrapper">
+        <div class="section-headline-row">
+          <h2 class="section-clean-title">Coleções</h2>
+        </div>
+
+        <div class="collections-banners-grid">
+          <div class="collection-banner-card" onclick="filterSeasonFromBanner('verao')">
+            <img src="assets/banner_verao.svg" alt="Coleção Verão" class="collection-banner-img">
+            <div class="collection-card-overlay"></div>
+            <div class="collection-banner-content">
+              <h3 class="collection-title-text">Coleção Verão</h3>
+              <p class="collection-sub-text">Estilo leve e autêntico.</p>
             </div>
           </div>
 
-          <div class="fitting-controls">
-            <button class="cyber-btn cyber-btn-secondary" style="padding: 0.4rem 0.8rem; font-size: 0.78rem;" onclick="rotateAvatar3D(90)">
-              ↻ Girar Personagem
-            </button>
+          <div class="collection-banner-card" onclick="filterSeasonFromBanner('inverno')">
+            <img src="assets/banner_inverno.svg" alt="Coleção Inverno" class="collection-banner-img">
+            <div class="collection-card-overlay"></div>
+            <div class="collection-banner-content">
+              <h3 class="collection-title-text">Coleção Inverno</h3>
+              <p class="collection-sub-text">Conforto e atitude.</p>
+            </div>
+          </div>
 
-            <div class="color-picker">
-              <label style="font-size: 0.78rem; color: var(--text-muted);">Luz Pódio:</label>
-              <div class="color-dot active" data-color="#00f3ff" style="background: #00f3ff;"></div>
-              <div class="color-dot" data-color="#ff007f" style="background: #ff007f;"></div>
-              <div class="color-dot" data-color="#9d4edd" style="background: #9d4edd;"></div>
-              <div class="color-dot" data-color="#00ff88" style="background: #00ff88;"></div>
+          <div class="collection-banner-card" onclick="filterSeasonFromBanner('limitada')">
+            <img src="assets/banner_limited.svg" alt="Edição Limitada" class="collection-banner-img">
+            <div class="collection-card-overlay"></div>
+            <div class="collection-banner-content">
+              <h3 class="collection-title-text">Edição Limitada</h3>
+              <p class="collection-sub-text">Drops exclusivos.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- SEÇÃO 🛍️ CATÁLOGO GERAL E-COMMERCE TECH (ROXO/NEON + FILTROS COMPLETOS) -->
-      <section id="catalogo" style="padding: 4rem 0;">
-        <div class="section-header">
+      <!-- SEÇÃO: CATÁLOGO GERAL STREETWEAR COMPLETO (FILTROS & GRADE DE PRODUTOS) -->
+      <section id="catalogo-section" class="catalog-main-container">
+        <div class="section-headline-row">
           <div>
-            <h2 class="section-title">🛍️ CATÁLOGO <span class="text-gradient-cyan">GERAL STREETWEAR</span></h2>
-            <p class="section-sub">Filtre por categoria, marca, faixa de preço, cor e tamanho. Experimente cada peça no seu Avatar 3D!</p>
+            <h2 class="section-clean-title">Catálogo Completo Streetwear</h2>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 0.3rem;">
+              Filtre por categoria, marca, faixa de preço, cor e tamanho. Experimente cada peça no seu Avatar 3D!
+            </p>
           </div>
         </div>
 
-        <!-- BARRA DE CATEGORIAS PRINCIPAL DO CATÁLOGO GERAL -->
-        <div class="filter-tabs">
-          <button class="tab-btn active" data-category="all">Todos</button>
-          <button class="tab-btn" data-category="Camisetas">Camisetas</button>
-          <button class="tab-btn" data-category="Camisas">Camisas</button>
-          <button class="tab-btn" data-category="Moletons">Moletons</button>
-          <button class="tab-btn" data-category="Jaquetas">Jaquetas</button>
-          <button class="tab-btn" data-category="Conjuntos">Conjuntos</button>
-          <button class="tab-btn" data-category="Shorts">Shorts</button>
-          <button class="tab-btn" data-category="Calças">Calças</button>
-          <button class="tab-btn" data-category="Jeans">Jeans</button>
-          <button class="tab-btn" data-category="Tênis">Tênis</button>
-          <button class="tab-btn" data-category="Chinelos">Chinelos</button>
-          <button class="tab-btn" data-category="Acessórios">Acessórios</button>
+        <!-- ABAS DE CATEGORIAS -->
+        <div class="filter-tabs-luxury">
+          <button class="tab-btn-pill active" data-category="all">Todos</button>
+          <button class="tab-btn-pill" data-category="Camisetas">Camisetas</button>
+          <button class="tab-btn-pill" data-category="Camisas">Camisas</button>
+          <button class="tab-btn-pill" data-category="Moletons">Moletons</button>
+          <button class="tab-btn-pill" data-category="Jaquetas">Jaquetas</button>
+          <button class="tab-btn-pill" data-category="Conjuntos">Conjuntos</button>
+          <button class="tab-btn-pill" data-category="Shorts">Shorts</button>
+          <button class="tab-btn-pill" data-category="Calças">Calças</button>
+          <button class="tab-btn-pill" data-category="Jeans">Jeans</button>
+          <button class="tab-btn-pill" data-category="Tênis">Tênis</button>
+          <button class="tab-btn-pill" data-category="Chinelos">Chinelos</button>
+          <button class="tab-btn-pill" data-category="Acessórios">Acessórios</button>
         </div>
 
-        <div class="catalog-section-wrapper">
-          <!-- PAINEL LATERAL DE FILTROS COMPLETOS -->
-          <aside class="catalog-sidebar-card">
+        <div class="catalog-layout-grid">
+          <!-- SIDEBAR DE FILTROS -->
+          <aside class="luxury-filter-sidebar">
             <div>
-              <div class="filter-group-title">🔍 BUSCA RÁPIDA</div>
-              <input type="text" id="product-search" class="search-input" placeholder="Buscar por produto ou tag...">
+              <div class="filter-group-header">🔍 Busca Rápida</div>
+              <input type="text" id="product-search" class="search-input-luxury" placeholder="Buscar peça...">
             </div>
 
             <div>
-              <div class="filter-group-title">🏷️ MARCAS</div>
-              <select id="filter-brand" class="select-input">
+              <div class="filter-group-header">🏷️ Marcas</div>
+              <select id="filter-brand" class="select-luxury">
                 <option value="all">Todas as Marcas</option>
                 <option value="CYBR">CYBR</option>
                 <option value="Urban Core">Urban Core</option>
@@ -222,17 +326,17 @@
             </div>
 
             <div>
-              <div class="filter-group-title">💰 PREÇO MÁXIMO</div>
+              <div class="filter-group-header">💰 Preço Máximo</div>
               <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 0.4rem; color: var(--text-muted);">
                 <span>Até:</span>
                 <strong id="price-val" style="color: var(--neon-cyan);">R$ 500,00</strong>
               </div>
-              <input type="range" id="filter-price" min="50" max="500" step="10" value="500" style="width: 100%; accent-color: var(--neon-cyan);">
+              <input type="range" id="filter-price" min="50" max="500" step="10" value="500" style="width: 100%; accent-color: var(--neon-purple);">
             </div>
 
             <div>
-              <div class="filter-group-title">📏 TAMANHO</div>
-              <select id="filter-size" class="select-input">
+              <div class="filter-group-header">📏 Tamanho</div>
+              <select id="filter-size" class="select-luxury">
                 <option value="all">Todos os Tamanhos</option>
                 <option value="PP">PP</option>
                 <option value="P">P</option>
@@ -249,8 +353,8 @@
             </div>
 
             <div>
-              <div class="filter-group-title">🎨 COR PRINCIPAL</div>
-              <select id="filter-color" class="select-input">
+              <div class="filter-group-header">🎨 Cor Principal</div>
+              <select id="filter-color" class="select-luxury">
                 <option value="all">Todas as Cores</option>
                 <option value="Preto">Preto</option>
                 <option value="Branco">Branco</option>
@@ -261,423 +365,214 @@
               </select>
             </div>
 
-            <button class="cyber-btn cyber-btn-secondary" style="width: 100%; justify-content: center; font-size: 0.78rem; padding: 0.6rem;" onclick="resetAllCatalogFilters()">
+            <button class="cyber-btn cyber-btn-secondary" style="width: 100%; justify-content: center; font-size: 0.78rem; padding: 0.65rem;" onclick="resetAllCatalogFilters()">
               🔄 LIMPAR FILTROS
             </button>
           </aside>
 
-          <!-- GRADE RESPONSIVA DE PRODUTOS (4-5 Desktop, 3 Tablet, 2 Celular) -->
-          <div class="products-grid" id="products-grid">
+          <!-- GRADE RESPONSIVA DE PRODUTOS (CARDS COM EXPERIMENTAR & COMPRAR) -->
+          <div class="products-grid-luxury" id="products-grid">
             <!-- Renderizado via JS -->
           </div>
         </div>
       </section>
 
-      <!-- SEÇÃO 👤 PERSONAGEM 3D & PACOTES DE ESTILO (THREE.JS WEBGL) -->
-      <section id="avatar-3d-section" style="padding: 4rem 0;">
-        <div class="section-header">
-          <div>
-            <h2 class="section-title">👤 PERSONAGEM 3D WEBGL & <span class="text-gradient-cyan">MEU AVATAR</span></h2>
-            <p class="section-sub">Veja os produtos vestindo o avatar humano 3D ou personalize cada detalhe corporal!</p>
-          </div>
+      <!-- SEÇÃO EXPANSÍVEL: CUSTOMIZADOR AVANÇADO DO AVATAR -->
+      <section id="avatar-customizer-section" style="display: none; margin-bottom: 4rem;">
+        <div class="section-headline-row">
+          <h2 class="section-clean-title">Personalização Avançada do Avatar</h2>
+          <button class="cyber-btn cyber-btn-secondary" onclick="closeCustomizerSection()">Fechar ✕</button>
         </div>
 
-        <div class="avatar-customizer-wrapper">
-          <div class="avatar-stage-card">
-            <div class="virtual-closet-stage main-stage" id="customizer-closet-stage">
-              <div class="avatar-stage-sidebar">
-                <button class="stage-side-btn active" onclick="switchCustTab('bundles')" title="Pacotes Completos">🎁</button>
-                <button class="stage-side-btn" onclick="switchCustTab('body')" title="Corpo">👤</button>
-                <button class="stage-side-btn" onclick="switchCustTab('clothes')" title="Vestuário">👕</button>
-                <button class="stage-side-btn" onclick="filterAvatarCatalog('Calças'); switchCustTab('clothes');" title="Calças">👖</button>
-                <button class="stage-side-btn" onclick="filterAvatarCatalog('Acessórios'); switchCustTab('clothes');" title="Calçados">👟</button>
-                <button class="stage-side-btn" onclick="toggleAvatarAccessory('cap')" title="Acessórios">🧢</button>
-              </div>
-
-              <div class="light-beam-sweep" id="customizer-light-sweep"></div>
-              
-              <div class="avatar-viewer">
-                <canvas id="avatarCanvas"></canvas>
-              </div>
-
-              <div class="avatar-podium">
-                <div class="podium-ring ring-1"></div>
-                <div class="podium-ring ring-2"></div>
-                <div class="avatar-shadow"></div>
-              </div>
-            </div>
-
-            <div class="rotation-controls-bar">
-              <button class="cyber-btn cyber-btn-secondary" id="rotateLeft" style="padding: 0.4rem 0.8rem; font-size: 0.75rem;">
-                ↶ Girar Esq.
-              </button>
-              
-              <div style="display: flex; align-items: center; gap: 8px; flex-grow: 1; margin: 0 12px;">
-                <label style="font-size: 0.75rem; color: var(--text-muted);">ÂNGULO 3D:</label>
-                <input type="range" id="avatar-rotation-slider" min="0" max="360" value="0" style="flex-grow: 1; accent-color: var(--neon-cyan);">
-                <span id="rotation-angle-val" style="font-size: 0.75rem; color: var(--neon-cyan); font-weight: bold; min-width: 32px;">0°</span>
-              </div>
-
-              <button class="cyber-btn cyber-btn-secondary" id="rotateRight" style="padding: 0.4rem 0.8rem; font-size: 0.75rem;">
-                ↷ Girar Dir.
-              </button>
-            </div>
-
-            <div class="look-analysis-card" id="avatar-look-analysis">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.6rem;">
-                <span class="analysis-badge">LOOK <strong id="look-score-val">94%</strong></span>
-                <span style="font-size: 0.8rem; color: var(--neon-cyan); font-weight: bold;" id="look-style-tag">Streetwear Casual</span>
-              </div>
-              <p style="font-size: 0.85rem; color: var(--text-main); margin-bottom: 0.5rem;" id="look-desc-text">Combinação equilibrada com caimento perfeito no seu avatar 3D.</p>
-              <p style="font-size: 0.8rem; color: var(--neon-yellow); font-style: italic; margin-bottom: 0.8rem;" id="look-recommendation-text">💡 Metrik sugere: "Experimente a Jaqueta Firebird para elevar a ousadia do look!"</p>
-              
-              <button class="cyber-btn" style="width: 100%; justify-content: center; font-size: 0.78rem; padding: 0.55rem;" onclick="salvarLookFavorito()">
-                VER DICAS DE ESTILO
-              </button>
-            </div>
+        <div style="background: rgba(14, 14, 28, 0.75); border: 1px solid var(--border-glass); border-radius: 20px; padding: 2rem;">
+          <div class="customizer-tabs" style="display: flex; gap: 8px; margin-bottom: 1.5rem; flex-wrap: wrap;">
+            <button class="cust-tab-btn active" data-tab="body">🏋️ Tipo de Corpo</button>
+            <button class="cust-tab-btn" data-tab="clothes">👕 Vestuário</button>
+            <button class="cust-tab-btn" data-tab="hair">💈 Cabelo</button>
+            <button class="cust-tab-btn" data-tab="face">😊 Rosto & Pele</button>
+            <button class="cust-tab-btn" data-tab="bundles">🎁 Pacotes</button>
           </div>
 
-          <div class="avatar-controls-card">
-            <div class="customizer-tabs">
-              <button class="cust-tab-btn active" data-tab="bundles">🎁 Pacotes Prontos</button>
-              <button class="cust-tab-btn" data-tab="body">🏋️ Tipo de Corpo</button>
-              <button class="cust-tab-btn" data-tab="clothes">👕 Vestuário</button>
-              <button class="cust-tab-btn" data-tab="hair">💈 Cabelo</button>
-              <button class="cust-tab-btn" data-tab="face">😊 Rosto & Pele</button>
-              <button class="cust-tab-btn" data-tab="accessories">🕶️ Acessórios</button>
+          <div class="cust-tab-content active" id="tab-body">
+            <h4 style="color: var(--neon-purple); font-size: 0.9rem; margin-bottom: 0.8rem;">PRESETS DE CORPO:</h4>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.2rem;">
+              <button class="option-chip body-preset-btn" onclick="applyBodyPreset('slim')">🕺 Slim</button>
+              <button class="option-chip body-preset-btn active" onclick="applyBodyPreset('standard')">👤 Padrão</button>
+              <button class="option-chip body-preset-btn" onclick="applyBodyPreset('athletic')">⚡ Atlético</button>
+              <button class="option-chip body-preset-btn" onclick="applyBodyPreset('broad')">🏋️ Largo</button>
             </div>
-
-            <div class="cust-tab-content active" id="tab-bundles">
-              <h4 style="color: var(--neon-cyan); font-size: 0.9rem; margin-bottom: 0.8rem;">ESCOLHA UM PACOTE COMPLETO DE ESTILO:</h4>
-              <div class="bundles-grid" id="bundles-container"></div>
-            </div>
-
-            <div class="cust-tab-content" id="tab-body">
-              <h4 style="color: var(--neon-cyan); font-size: 0.9rem; margin-bottom: 0.8rem;">PRESETS DE TIPO DE CORPO:</h4>
-              <div class="options-chip-grid">
-                <button class="option-chip body-preset-btn" data-preset="slim" onclick="applyBodyPreset('slim')">🕺 Slim</button>
-                <button class="option-chip body-preset-btn active" data-preset="standard" onclick="applyBodyPreset('standard')">👤 Padrão</button>
-                <button class="option-chip body-preset-btn" data-preset="athletic" onclick="applyBodyPreset('athletic')">⚡ Atlético</button>
-                <button class="option-chip body-preset-btn" data-preset="broad" onclick="applyBodyPreset('broad')">🏋️ Largo</button>
-                <button class="option-chip body-preset-btn" data-preset="curvy" onclick="applyBodyPreset('curvy')">✨ Curvilíneo</button>
-              </div>
-
-              <h4 style="color: var(--neon-cyan); font-size: 0.9rem; margin: 1.2rem 0 0.8rem 0;">AJUSTES CORPORAIS (MORPHING SLIDERS):</h4>
-              
-              <div class="body-slider-group">
-                <div class="slider-label-row">
-                  <span>Altura</span>
-                  <strong id="val-height">0.50</strong>
-                </div>
-                <input type="range" class="body-slider" id="slider-height" min="0.2" max="0.9" step="0.02" value="0.5" oninput="updateBodySetting('height', this.value)">
-              </div>
-
-              <div class="body-slider-group">
-                <div class="slider-label-row">
-                  <span>Largura dos Ombros</span>
-                  <strong id="val-shoulderWidth">0.50</strong>
-                </div>
-                <input type="range" class="body-slider" id="slider-shoulderWidth" min="0.3" max="0.9" step="0.02" value="0.5" oninput="updateBodySetting('shoulderWidth', this.value)">
-              </div>
-
-              <div class="body-slider-group">
-                <div class="slider-label-row">
-                  <span>Tronco / Peitoral</span>
-                  <strong id="val-chest">0.50</strong>
-                </div>
-                <input type="range" class="body-slider" id="slider-chest" min="0.25" max="0.9" step="0.02" value="0.5" oninput="updateBodySetting('chest', this.value)">
-              </div>
-
-              <div class="body-slider-group">
-                <div class="slider-label-row">
-                  <span>Cintura</span>
-                  <strong id="val-waist">0.50</strong>
-                </div>
-                <input type="range" class="body-slider" id="slider-waist" min="0.2" max="0.85" step="0.02" value="0.5" oninput="updateBodySetting('waist', this.value)">
-              </div>
-
-              <div class="body-slider-group">
-                <div class="slider-label-row">
-                  <span>Quadril</span>
-                  <strong id="val-hips">0.50</strong>
-                </div>
-                <input type="range" class="body-slider" id="slider-hips" min="0.25" max="0.85" step="0.02" value="0.5" oninput="updateBodySetting('hips', this.value)">
-              </div>
-
-              <div style="display: flex; gap: 10px; margin-top: 1.5rem;">
-                <button class="cyber-btn cyber-btn-secondary" style="flex: 1; justify-content: center; font-size: 0.78rem; padding: 0.6rem;" onclick="resetBodySettings()">
-                  🔄 RESTAURAR
-                </button>
-                <button class="cyber-btn" style="flex: 1; justify-content: center; font-size: 0.78rem; padding: 0.6rem;" onclick="salvarAvatarCompleto()">
-                  ⭐ SALVAR AVATAR
-                </button>
-              </div>
-            </div>
-
-            <div class="cust-tab-content" id="tab-clothes">
-              <h4 style="color: var(--neon-cyan); font-size: 0.9rem; margin-bottom: 0.8rem;">EQUIPAR PEÇAS DE VESTUÁRIO:</h4>
-              <div class="avatar-clothes-grid" id="avatar-clothes-selector"></div>
-            </div>
-
-            <div class="cust-tab-content" id="tab-hair">
-              <h4 style="color: var(--neon-cyan); font-size: 0.9rem; margin-bottom: 0.8rem;">CORTE & ESTILO DE CABELO:</h4>
-              <div class="options-chip-grid">
-                <button class="option-chip active" onclick="setAvatarHair('fade', '#1a1a2e')">✂️ Cyber Fade</button>
-                <button class="option-chip" onclick="setAvatarHair('spiky', '#00f3ff')">⚡ Afro Spiky Néon</button>
-                <button class="option-chip" onclick="setAvatarHair('buzz', '#4a3b32')">💈 Buzzcut Street</button>
-                <button class="option-chip" onclick="setAvatarHair('dreads', '#111424')">🌀 Dreads Tech</button>
-                <button class="option-chip" onclick="setAvatarHair('long', '#ff007f')">🔥 Long Cyber Pink</button>
-              </div>
-
-              <h4 style="color: var(--neon-cyan); font-size: 0.9rem; margin: 1.2rem 0 0.8rem 0;">COR DO CABELO:</h4>
-              <div class="color-dots-row">
-                <div class="color-dot active" style="background: #1a1a2e;" onclick="setAvatarHairColor('#1a1a2e')"></div>
-                <div class="color-dot" style="background: #00f3ff;" onclick="setAvatarHairColor('#00f3ff')"></div>
-                <div class="color-dot" style="background: #ff007f;" onclick="setAvatarHairColor('#ff007f')"></div>
-                <div class="color-dot" style="background: #ffb703;" onclick="setAvatarHairColor('#ffb703')"></div>
-                <div class="color-dot" style="background: #ffffff;" onclick="setAvatarHairColor('#ffffff')"></div>
-              </div>
-            </div>
-
-            <div class="cust-tab-content" id="tab-face">
-              <h4 style="color: var(--neon-cyan); font-size: 0.9rem; margin-bottom: 0.8rem;">TOM DE PELE 3D:</h4>
-              <div class="options-chip-grid">
-                <button class="option-chip active" onclick="setAvatarSkin('#f5c6a5')">👤 Fair Tone</button>
-                <button class="option-chip" onclick="setAvatarSkin('#d08b5b')">👤 Bronze Tan</button>
-                <button class="option-chip" onclick="setAvatarSkin('#704225')">👤 Deep Brown</button>
-                <button class="option-chip" onclick="setAvatarSkin('#00f3ff')">🤖 Cyber Synthetic</button>
-              </div>
-
-              <h4 style="color: var(--neon-cyan); font-size: 0.9rem; margin: 1.2rem 0 0.8rem 0;">EXPRESSÃO DO ROSTO:</h4>
-              <div class="options-chip-grid">
-                <button class="option-chip active" onclick="setAvatarExpression('happy')">😊 Sorriso Confiante</button>
-                <button class="option-chip" onclick="setAvatarExpression('cool')">😎 Cool Streetwear</button>
-                <button class="option-chip" onclick="setAvatarExpression('surprised')">😮 Impressionado</button>
-                <button class="option-chip" onclick="setAvatarExpression('blink')">😉 Piscada Cyber</button>
-              </div>
-            </div>
-
-            <div class="cust-tab-content" id="tab-accessories">
-              <h4 style="color: var(--neon-cyan); font-size: 0.9rem; margin-bottom: 0.8rem;">ACESSÓRIOS CYBER:</h4>
-              <div class="options-chip-grid">
-                <button class="option-chip active" onclick="toggleAvatarAccessory('visor')">🕶️ Visor Néon AR</button>
-                <button class="option-chip" onclick="toggleAvatarAccessory('earring')">💎 Brinco Cyber</button>
-                <button class="option-chip" onclick="toggleAvatarAccessory('mask')">😷 Máscara Tech</button>
-                <button class="option-chip" onclick="toggleAvatarAccessory('cap')">🧢 Boné Heritage</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SEÇÃO 👕 LOOKS & SUB-CATÁLOGO POR ESTAÇÃO (INVERNO VS VERÃO) -->
-      <section id="looks" style="padding: 3rem 0;">
-        <div class="section-header">
-          <div>
-            <h2 class="section-title">👕 SUB-CATÁLOGO DE <span class="text-gradient-cyan">LOOKS & ESTAÇÕES</span></h2>
-            <p class="section-sub">Filtre as coleções de vestuário entre Inverno e Verão conforme as especificações do catálogo.</p>
-          </div>
-        </div>
-
-        <div class="season-tabs-container">
-          <button class="season-tab-btn active" data-season="all">✨ Todos os Looks</button>
-          <button class="season-tab-btn" data-season="inverno">❄️ Roupas de Inverno (Moletons, Jaquetas & Joggers)</button>
-          <button class="season-tab-btn" data-season="verao">☀️ Roupas de Verão (Camisetas, Shorts & Acessórios)</button>
-        </div>
-
-        <div class="products-grid" id="looks-grid"></div>
-      </section>
-
-      <!-- MASCOT METRIK BANNER -->
-      <section class="mascot-hero-card">
-        <img src="assets/mascot.jpg" alt="Mascote Metrik" class="mascot-avatar-img">
-        <div>
-          <div style="font-family: var(--font-subheading); color: var(--neon-cyan); text-transform: uppercase;">MASCOTE OFICIAL DA MARCA</div>
-          <h2 style="font-size: 1.8rem; margin: 0.2rem 0 0.5rem 0;" class="text-gradient-cyan">METRIK</h2>
-          <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">
-            "Salve! Eu sou o <strong>Metrik</strong>. Como mascote e estilista cibernético da Cyber Closet, ajudo você a filtrar mais de 40 produtos do catálogo e vesti-los em 3D!"
-          </p>
-          <button class="cyber-btn" onclick="openDrawer('support-drawer')">
-            <span>💬</span> CHAT COM METRIK
-          </button>
-        </div>
-      </section>
-
-      <!-- SEÇÃO 🔥 MAIS PROCURADOS -->
-      <section id="mais-procurados" style="padding: 2rem 0 4rem 0;">
-        <div class="section-header">
-          <div>
-            <h2 class="section-title">🔥 VESTUÁRIO <span class="text-gradient-magenta">MAIS PROCURADO</span></h2>
-            <p class="section-sub">As camisetas, moletons e jaquetas mais cobiçados da cultura urbana.</p>
-          </div>
-        </div>
-
-        <div class="products-grid" id="featured-grid"></div>
-      </section>
-
-      <!-- SEÇÃO 🏢 SOBRE A EMPRESA & METRIK LABS -->
-      <section id="sobre-empresa" style="padding: 4rem 0;">
-        <div class="section-header">
-          <div>
-            <h2 class="section-title">🏢 SOBRE A <span class="text-gradient-magenta">EMPRESA</span></h2>
-            <p class="section-sub">Conheça a história da Cyber Closet Inc. & Metrik Labs em Neo-Tokyo 2099.</p>
-          </div>
-        </div>
-
-        <div style="background: var(--bg-card); border: 1px solid var(--neon-purple); border-radius: 16px; padding: 2.5rem; display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center;">
-          <div>
-            <h3 style="font-size: 1.6rem; color: var(--neon-cyan); margin-bottom: 1rem;">O FUTURO DA VESTUÁRIO DIGITAL</h3>
-            <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 1.2rem; font-size: 0.95rem;">
-              Fundada na Matrix em <strong>2099</strong> pelo engenheiro e estilista cibernético <strong>Metrik</strong>, a <strong>Cyber Closet Inc.</strong> nasceu com a missão de unificar a moda streetwear física à alta tecnologia holográfica.
-            </p>
-            <p style="color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; font-size: 0.95rem;">
-              Nossas peças combinam fios de algodão orgânico reforçados com fibra ótica néon, permitindo que cada jaqueta ou moletom troque de iluminação de acordo com o ritmo das ruas.
-            </p>
-
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-              <div style="background: rgba(7, 9, 19, 0.7); border: 1px solid rgba(0, 243, 255, 0.2); padding: 1rem; border-radius: 8px;">
-                <h4 style="color: var(--neon-cyan); font-size: 0.9rem;">🎯 NOSSA MISSÃO</h4>
-                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Entregar vestuário de alta performance e estilo ilimitado na velocidade da Matrix.</p>
-              </div>
-
-              <div style="background: rgba(7, 9, 19, 0.7); border: 1px solid rgba(255, 0, 127, 0.2); padding: 1rem; border-radius: 8px;">
-                <h4 style="color: var(--neon-magenta); font-size: 0.9rem;">⚡ INOVAÇÃO AR</h4>
-                <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">Pioneiros no provador virtual holográfico com o mascote Metrik.</p>
-              </div>
-            </div>
-          </div>
-
-          <div style="background: rgba(7, 9, 19, 0.9); border: 1px solid var(--border-cyan); border-radius: 12px; padding: 2rem;">
-            <h3 style="color: #fff; font-size: 1.2rem; margin-bottom: 1rem; text-align: center;">DADOS DA CORPORAÇÃO</h3>
             
-            <ul style="list-style: none; display: flex; flex-direction: column; gap: 0.9rem; font-size: 0.9rem;">
-              <li style="border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.6rem;">
-                <strong style="color: var(--neon-cyan);">Razão Social:</strong> Cyber Closet Vestuários & Metrik Labs Inc.
-              </li>
-              <li style="border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.6rem;">
-                <strong style="color: var(--neon-cyan);">CNPJ:</strong> 99.842.099/0001-77
-              </li>
-              <li style="border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.6rem;">
-                <strong style="color: var(--neon-cyan);">Sede da Empresa:</strong> Neo-Tokyo Sector 7, Cybernetics Hub - Bloco 2099
-              </li>
-              <li style="border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 0.6rem;">
-                <strong style="color: var(--neon-cyan);">E-mail Suporte:</strong> cybercloset2099@gmail.com
-              </li>
-              <li>
-                <strong style="color: var(--neon-cyan);">Central de Atendimento:</strong> +55 (11) 94040-9154
-              </li>
-            </ul>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
+              <div>
+                <label style="font-size: 0.8rem; color: var(--text-muted);">Altura: <strong id="val-height" style="color: var(--neon-cyan);">0.50</strong></label>
+                <input type="range" class="body-slider" id="slider-height" min="0.2" max="0.9" step="0.02" value="0.5" oninput="updateBodySetting('height', this.value)" style="width: 100%;">
+              </div>
+              <div>
+                <label style="font-size: 0.8rem; color: var(--text-muted);">Ombros: <strong id="val-shoulderWidth" style="color: var(--neon-cyan);">0.50</strong></label>
+                <input type="range" class="body-slider" id="slider-shoulderWidth" min="0.3" max="0.9" step="0.02" value="0.5" oninput="updateBodySetting('shoulderWidth', this.value)" style="width: 100%;">
+              </div>
+              <div>
+                <label style="font-size: 0.8rem; color: var(--text-muted);">Peitoral: <strong id="val-chest" style="color: var(--neon-cyan);">0.50</strong></label>
+                <input type="range" class="body-slider" id="slider-chest" min="0.25" max="0.9" step="0.02" value="0.5" oninput="updateBodySetting('chest', this.value)" style="width: 100%;">
+              </div>
+            </div>
+          </div>
+
+          <div class="cust-tab-content" id="tab-clothes">
+            <h4 style="color: var(--neon-purple); font-size: 0.9rem; margin-bottom: 0.8rem;">PEÇAS DE VESTUÁRIO EQUIPÁVEIS:</h4>
+            <div class="avatar-clothes-grid" id="avatar-clothes-selector" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px;"></div>
+          </div>
+
+          <div class="cust-tab-content" id="tab-hair">
+            <h4 style="color: var(--neon-purple); font-size: 0.9rem; margin-bottom: 0.8rem;">ESTILO DE CABELO:</h4>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="option-chip active" onclick="setAvatarHair('fade', '#1a1a2e')">✂️ Cyber Fade</button>
+              <button class="option-chip" onclick="setAvatarHair('spiky', '#00f3ff')">⚡ Spiky Néon</button>
+              <button class="option-chip" onclick="setAvatarHair('buzz', '#4a3b32')">💈 Buzzcut</button>
+              <button class="option-chip" onclick="setAvatarHair('dreads', '#111424')">🌀 Dreads Tech</button>
+            </div>
+          </div>
+
+          <div class="cust-tab-content" id="tab-face">
+            <h4 style="color: var(--neon-purple); font-size: 0.9rem; margin-bottom: 0.8rem;">TOM DE PELE:</h4>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="option-chip active" onclick="setAvatarSkin('#f5c6a5')">👤 Fair Tone</button>
+              <button class="option-chip" onclick="setAvatarSkin('#d08b5b')">👤 Bronze Tan</button>
+              <button class="option-chip" onclick="setAvatarSkin('#704225')">👤 Deep Brown</button>
+              <button class="option-chip" onclick="setAvatarSkin('#00f3ff')">🤖 Cyber Synthetic</button>
+            </div>
+          </div>
+
+          <div class="cust-tab-content" id="tab-bundles">
+            <h4 style="color: var(--neon-purple); font-size: 0.9rem; margin-bottom: 0.8rem;">PACOTES COMPLETOS:</h4>
+            <div class="bundles-grid" id="bundles-container" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px;"></div>
           </div>
         </div>
       </section>
     </main>
 
-    <!-- FLOATING MASCOT SUPPORT TRIGGER BUTTON -->
-    <div class="mascot-floating-btn" id="mascot-support-trigger" title="Suporte com o Mascote Metrik">
-      <img src="assets/mascot.jpg" alt="Metrik" class="mascot-btn-img">
-      <div class="mascot-btn-text">
-        <span class="mascot-btn-name">METRIK 24/7</span>
-        <span class="mascot-btn-sub">Assistente Virtual 💬</span>
+    <!-- GATILHO FLUTUANTE METRIK 24/7 (CANTO INFERIOR DIREITO) -->
+    <div class="metrik-floating-trigger" id="mascot-support-trigger" onclick="openMetrikChat()" title="Suporte com Metrik 24/7">
+      <img src="assets/metrik_robot.svg" alt="Metrik 24/7" class="metrik-trigger-img">
+      <div class="metrik-trigger-text">
+        <span class="metrik-trigger-name">METRIK 24/7</span>
+        <span class="metrik-trigger-status">Assistente Virtual 💬</span>
       </div>
     </div>
 
-    <!-- CUSTOMER SUPPORT DRAWER WITH MODERN TEXT METRIK CHATBOT -->
-    <div class="drawer-overlay" id="support-drawer">
-      <div class="drawer-content metrik-chat-drawer">
-        <!-- 1. Cabeçalho do Chat -->
-        <div class="metrik-chat-header">
-          <div class="metrik-header-left">
-            <img src="assets/mascot.jpg" alt="Metrik" class="metrik-header-avatar">
-            <div class="metrik-header-info">
-              <div class="metrik-header-title-row">
-                <span class="metrik-header-name">Metrik 24/7</span>
-                <span class="metrik-status-badge"><span class="status-dot">●</span> Online</span>
-              </div>
-              <span class="metrik-header-sub">Assistente virtual do Cyber Closet</span>
+    <!-- DRAWER LATERAL METRIK 24/7 (FIEL AO PAINEL DIREITO DO MOCKUP) -->
+    <div class="metrik-drawer-overlay" id="support-drawer" onclick="if(event.target === this) closeMetrikChat()">
+      <div class="metrik-luxury-drawer">
+        <div class="metrik-drawer-header">
+          <div class="metrik-header-identity">
+            <img src="assets/metrik_robot.svg" alt="Metrik Robot" class="metrik-robot-avatar">
+            <div class="metrik-identity-info">
+              <h3>Metrik 24/7</h3>
+              <span>Assistente do Cyber Closet</span>
             </div>
           </div>
-          <div class="metrik-header-actions">
-            <button class="chat-action-btn" id="clear-chat-btn" onclick="clearMetrikChat()" title="Limpar conversa">
-              🗑️ Limpar
-            </button>
-            <button class="drawer-close" title="Fechar">&times;</button>
+          <button class="metrik-close-btn" onclick="closeMetrikChat()" title="Fechar">✕</button>
+        </div>
+
+        <div class="metrik-messages-scroll" id="chat-messages-container">
+          <!-- Balão Inicial de Boas-Vindas Oficial -->
+          <div class="metrik-chat-card-welcome">
+            <div class="metrik-welcome-title">Fala, Enzo! 👋</div>
+            <div class="metrik-welcome-body">Como posso te ajudar hoje?</div>
+            <ul class="metrik-bullet-list">
+              <li>Montar um look</li>
+              <li>Encontrar uma peça</li>
+              <li>Dúvidas sobre o avatar</li>
+              <li>Explorar o catálogo</li>
+            </ul>
           </div>
         </div>
 
-        <!-- 2. Área de Mensagens -->
-        <div class="chat-messages-container" id="chat-messages-container">
-          <!-- Mensagens renderizadas via JS -->
+        <!-- Indicador de Digitação -->
+        <div class="metrik-typing-indicator" id="metrik-typing" style="display: none; padding: 0.6rem; color: var(--neon-cyan); font-size: 0.8rem;">
+          <span>Metrik está digitando...</span>
         </div>
 
-        <!-- 3. Estado de Carregamento ("Metrik está digitando...") -->
-        <div class="metrik-typing-indicator" id="metrik-typing" style="display: none;">
-          <img src="assets/mascot.jpg" alt="Metrik" class="msg-avatar-small">
-          <div class="typing-bubble">
-            <span>Metrik está digitando</span>
-            <span class="typing-dots">
-              <span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
-            </span>
-          </div>
+        <!-- Sugestões Rápidas (Chips Pílula) -->
+        <div class="metrik-quick-pills">
+          <button class="quick-pill-btn" onclick="sendQuickQueryText('Sugerir um look')">
+            ✨ Sugerir um look
+          </button>
+          <button class="quick-pill-btn" onclick="sendQuickQueryText('Ver novidades')">
+            🔥 Ver novidades
+          </button>
+          <button class="quick-pill-btn" onclick="sendQuickQueryText('Como funciona?')">
+            ❓ Como funciona?
+          </button>
         </div>
 
-        <!-- 5. Sugestões Rápidas Acima do Campo -->
-        <div class="chat-quick-suggestions" id="chat-quick-suggestions">
-          <button class="suggestion-chip" onclick="sendQuickQueryText('Monte um look para mim')">✨ Monte um look para mim</button>
-          <button class="suggestion-chip" onclick="sendQuickQueryText('Quero uma camiseta preta')">👕 Quero uma camiseta preta</button>
-          <button class="suggestion-chip" onclick="sendQuickQueryText('Como funciona o avatar?')">👤 Como funciona o avatar?</button>
-          <button class="suggestion-chip" onclick="sendQuickQueryText('Qual tamanho devo escolher?')">📏 Qual tamanho devo escolher?</button>
-        </div>
-
-        <!-- 4. Campo de Texto Fixo na Parte Inferior -->
-        <form id="chat-form" class="metrik-chat-form">
-          <!-- Preparação futura para microfone (desabilitado/slot futuro) -->
-          <div class="mic-btn-placeholder" style="display: none;" title="Microfone (em breve)">
-            🎤
-          </div>
-
-          <textarea
-            id="chat-user-input"
-            class="chat-textarea"
-            placeholder="Digite sua mensagem para o Metrik..."
-            rows="1"
-          ></textarea>
-
-          <button type="submit" id="chat-send-btn" class="cyber-btn chat-send-btn">
-            ⚡ Enviar
+        <!-- Formulário Fixo de Envio -->
+        <form id="chat-form" class="metrik-input-luxury-bar" onsubmit="event.preventDefault(); sendUserChatMessage();">
+          <input type="text" id="chat-user-input" placeholder="Digite sua mensagem...">
+          <button type="submit" id="chat-send-btn" class="metrik-send-purple-btn" title="Enviar">
+            ➤
           </button>
         </form>
       </div>
     </div>
 
-    <!-- Product Detail Modal -->
-    <div class="modal-overlay" id="detail-modal">
-      <div class="modal-content">
-        <button class="modal-close">&times;</button>
-        <div id="product-detail-content"></div>
-      </div>
-    </div>
-
-    <!-- Shopping Cart Side Drawer -->
-    <div class="drawer-overlay" id="cart-drawer">
+    <!-- DRAWER LATERAL DO CARRINHO DE COMPRAS -->
+    <div class="drawer-overlay" id="cart-drawer" onclick="if(event.target === this) closeCartDrawer()">
       <div class="drawer-content">
-        <button class="drawer-close">&times;</button>
-        <h3 style="color: var(--neon-cyan); font-size: 1.4rem; margin-bottom: 0.4rem;">CARRINHO DE VESTUÁRIO</h3>
-        <p style="color: var(--text-muted); font-size: 0.85rem;">Revise os itens selecionados do seu pedido.</p>
+        <button class="drawer-close" onclick="closeCartDrawer()">&times;</button>
+        <h3 style="color: var(--neon-purple); font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 0.4rem;">CARRINHO DE COMPRAS</h3>
+        <p style="color: var(--text-muted); font-size: 0.85rem;">Revise os itens selecionados para seu look digital.</p>
 
         <div class="cart-items-list" id="cart-items-list"></div>
 
-        <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 1rem;">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
-            <span style="color: var(--text-muted);">VALOR TOTAL:</span>
+        <div style="border-top: 1px solid var(--border-glass); padding-top: 1.2rem; margin-top: auto;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.2rem;">
+            <span style="color: var(--text-muted); font-family: var(--font-subheading); font-size: 0.95rem;">VALOR TOTAL:</span>
             <strong id="cart-total-price" style="font-size: 1.4rem; color: var(--neon-cyan); font-family: var(--font-heading);">R$ 0,00</strong>
           </div>
 
-          <button class="cyber-btn" style="width: 100%; justify-content: center;" onclick="checkoutCart()">
+          <button class="cyber-btn cyber-btn-buy-now" style="width: 100%; justify-content: center;" onclick="checkoutCart()">
             FINALIZAR PEDIDO ⚡
           </button>
         </div>
       </div>
-    </footer>
+    </div>
+
+    <!-- MODAL DE DETALHES DO PRODUTO (3D MODEL VIEWER + TRIO DE AÇÕES) -->
+    <div class="modal-overlay" id="detail-modal" onclick="if(event.target === this) closeAllModals()">
+      <div class="modal-content">
+        <button class="modal-close" onclick="closeAllModals()">&times;</button>
+        <div id="product-detail-content"></div>
+      </div>
+    </div>
+
+    <!-- MODAL DE AUTENTICAÇÃO / LOGIN (PAINEL ESQUERDO DO MOCKUP) -->
+    <div class="auth-modal-overlay" id="auth-modal" onclick="if(event.target === this) closeAuthModal()">
+      <div class="auth-luxury-card">
+        <button class="auth-close-btn" onclick="closeAuthModal()" title="Fechar">✕</button>
+
+        <div class="auth-card-banner">
+          <img src="assets/auth_mannequins.svg" alt="Cyber Closet Mannequins">
+        </div>
+
+        <h2 class="auth-card-title">CYBER CLOSET</h2>
+        <p class="auth-card-sub">Seu guarda-roupa digital</p>
+
+        <button class="auth-btn-primary" onclick="showToast('Acesso liberado com sucesso!')">
+          Entrar
+        </button>
+
+        <button class="auth-btn-secondary" onclick="showToast('Modo de cadastro ativo!')">
+          Criar conta
+        </button>
+
+        <div class="auth-social-row">
+          <button class="auth-social-btn" title="Google" onclick="showToast('Login com Google')">G</button>
+          <button class="auth-social-btn" title="Apple" onclick="showToast('Login com Apple')"></button>
+          <button class="auth-social-btn" title="Discord" onclick="showToast('Login com Discord')">🎮</button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- MODAL HOLOGRÁFICO: ITEM INDISPONÍVEL / COMPRA FUTURISTA -->
@@ -688,13 +583,11 @@
 
       <button class="cyber-modal-close-btn" onclick="closeUnavailableModal()" title="Fechar janela" aria-label="Fechar">&times;</button>
 
-      <!-- HUD Tech Accents Top -->
       <div class="cyber-modal-tech-bar top">
         <span class="hud-code">[ SYS.LOCK // PROT-403 ]</span>
         <span class="hud-status">STATUS: BLOQUEADO</span>
       </div>
 
-      <!-- Ícone Tecnológico de Cadeado Digital Holográfico -->
       <div class="cyber-lock-icon-wrapper">
         <div class="cyber-lock-glow-rings"></div>
         <svg class="cyber-lock-svg" viewBox="0 0 80 80" width="72" height="72" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -707,7 +600,6 @@
         </svg>
       </div>
 
-      <!-- Conteúdo Principal -->
       <div class="cyber-modal-content-body">
         <div class="cyber-modal-badge">
           <span class="badge-dot"></span> ACESSO RESTRITO // ACERVO EXCLUSIVO
@@ -725,7 +617,6 @@
           💜 <strong>CYBER CLOSET — O futuro não se espera. Ele se veste.</strong>
         </div>
 
-        <!-- Botão Interativo -->
         <div class="cyber-modal-actions">
           <button class="cyber-modal-btn" id="btn-back-cyber" onclick="closeUnavailableModal()">
             <span class="btn-text">VOLTAR AO UNIVERSO CYBER</span>
@@ -734,7 +625,6 @@
         </div>
       </div>
 
-      <!-- HUD Tech Accents Bottom -->
       <div class="cyber-modal-tech-bar bottom">
         <span class="hud-code">CYBER MATRIX 2099</span>
         <span class="hud-code">PRESSIONE [ESC] PARA FECHAR</span>

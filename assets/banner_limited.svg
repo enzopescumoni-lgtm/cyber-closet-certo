@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 320" width="600" height="320">
+  <defs>
+    <radialGradient id="auroraPurple" cx="70%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#ec4899" stop-opacity="0.8"/>
+      <stop offset="40%" stop-color="#9333ea" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#080814" stop-opacity="0.95"/>
+    </radialGradient>
+  </defs>
+  <rect width="600" height="320" fill="#06060e"/>
+  <rect width="600" height="320" fill="url(#auroraPurple)"/>
+  <!-- Grid Matrix Holográfico -->
+  <g stroke="#a855f7" stroke-width="0.75" opacity="0.3">
+    <line x1="0" y1="60" x2="600" y2="60"/>
+    <line x1="0" y1="120" x2="600" y2="120"/>
+    <line x1="0" y1="180" x2="600" y2="180"/>
+    <line x1="0" y1="240" x2="600" y2="240"/>
+    <line x1="100" y1="0" x2="100" y2="320"/>
+    <line x1="200" y1="0" x2="200" y2="320"/>
+    <line x1="300" y1="0" x2="300" y2="320"/>
+    <line x1="400" y1="0" x2="400" y2="320"/>
+    <line x1="500" y1="0" x2="500" y2="320"/>
+  </g>
+  <!-- Coroa Holográfica Neon -->
+  <g transform="translate(420, 70) scale(1.6)" filter="drop-shadow(0 0 16px #ec4899)">
+    <path d="M10 40 L15 15 L30 30 L45 10 L60 30 L75 15 L80 40 Z" fill="none" stroke="#f472b6" stroke-width="3" stroke-linejoin="round"/>
+    <circle cx="15" cy="12" r="3.5" fill="#fdf2f8"/>
+    <circle cx="45" cy="7" r="4" fill="#fdf2f8"/>
+    <circle cx="75" cy="12" r="3.5" fill="#fdf2f8"/>
+    <rect x="8" y="42" width="74" height="6" rx="3" fill="#ec4899"/>
+  </g>
+</svg>

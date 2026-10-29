@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 320" width="600" height="320">
+  <defs>
+    <linearGradient id="skyInverno" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1e1b4b"/>
+      <stop offset="100%" stop-color="#312e81"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="320" fill="url(#skyInverno)"/>
+  <!-- Aurora Boreal Neon -->
+  <path d="M0 80 Q150 40 300 80 T600 60 L600 140 Q450 180 300 140 T0 120 Z" fill="#a855f7" opacity="0.35"/>
+  <path d="M0 90 Q200 60 400 90 T600 80 L600 150 Q400 190 200 150 T0 130 Z" fill="#00f3ff" opacity="0.3"/>
+  <!-- Montanhas com Neve -->
+  <polygon points="120,320 220,130 320,320" fill="#334155"/>
+  <polygon points="190,185 220,130 250,185 235,175 220,185 205,175" fill="#f8fafc"/>
+  <polygon points="260,320 380,100 500,320" fill="#1e293b"/>
+  <polygon points="340,165 380,100 420,165 400,150 380,165 360,150" fill="#ffffff"/>
+  <polygon points="420,320 510,160 600,320" fill="#334155"/>
+  <polygon points="480,210 510,160 540,210 525,200 510,210 495,200" fill="#f8fafc"/>
+  <!-- Pinheiros Silhueta -->
+  <polygon points="50,320 65,260 80,320" fill="#090d16"/>
+  <polygon points="90,320 105,250 120,320" fill="#090d16"/>
+  <polygon points="140,320 155,270 170,320" fill="#090d16"/>
+  <polygon points="530,320 545,255 560,320" fill="#090d16"/>
+  <polygon points="565,320 580,265 595,320" fill="#090d16"/>
+</svg>

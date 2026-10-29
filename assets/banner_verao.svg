@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 320" width="600" height="320">
+  <defs>
+    <linearGradient id="skyVerao" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#06b6d4"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="320" fill="url(#skyVerao)"/>
+  <!-- Sol Neon -->
+  <circle cx="480" cy="90" r="50" fill="#facc15" opacity="0.85"/>
+  <circle cx="480" cy="90" r="70" fill="#facc15" opacity="0.25"/>
+  <!-- Mar Oceano -->
+  <path d="M0 200 Q150 180 300 200 T600 190 L600 320 L0 320 Z" fill="#0369a1" opacity="0.9"/>
+  <path d="M0 230 Q200 210 400 230 T600 220 L600 320 L0 320 Z" fill="#0284c7" opacity="0.8"/>
+  <!-- Areia da Praia -->
+  <path d="M0 250 Q250 230 600 260 L600 320 L0 320 Z" fill="#d97706" opacity="0.95"/>
+  <!-- Palmeiras Silhueta -->
+  <path d="M520 280 Q510 210 470 170 Q490 180 510 160 Q520 175 540 165 Q530 185 550 180 Q530 195 540 215 Q525 240 520 280 Z" fill="#0f172a"/>
+  <path d="M560 290 Q555 230 525 195 Q540 205 555 185 Q565 200 580 190 Q570 210 585 205 Q570 220 575 235 Q565 260 560 290 Z" fill="#0f172a"/>
+</svg>

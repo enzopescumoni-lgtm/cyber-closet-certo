@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160">
+  <defs>
+    <radialGradient id="haloGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0.8"/>
+      <stop offset="60%" stop-color="#9333ea" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#9333ea" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="headBody" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+    <linearGradient id="visorGlass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#090d16"/>
+      <stop offset="100%" stop-color="#020408"/>
+    </linearGradient>
+    <filter id="eyeGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Halo Roxo -->
+  <circle cx="80" cy="80" r="76" fill="url(#haloGlow)"/>
+  <!-- Antenas Laterais -->
+  <rect x="20" y="70" width="8" height="20" rx="4" fill="#a855f7"/>
+  <rect x="132" y="70" width="8" height="20" rx="4" fill="#a855f7"/>
+  <circle cx="24" cy="68" r="4" fill="#00f3ff"/>
+  <circle cx="136" cy="68" r="4" fill="#00f3ff"/>
+  <!-- Cabeça do Robô -->
+  <rect x="28" y="32" width="104" height="96" rx="42" fill="url(#headBody)" stroke="#a855f7" stroke-width="2.5"/>
+  <!-- Brilho no topo -->
+  <ellipse cx="80" cy="42" rx="34" ry="7" fill="#ffffff" opacity="0.6"/>
+  <!-- Visor Escuro Curvado -->
+  <rect x="42" y="52" width="76" height="56" rx="26" fill="url(#visorGlass)" stroke="#38bdf8" stroke-width="1.5"/>
+  <!-- Olhos Azuis Neon Expressivos -->
+  <rect x="56" y="70" width="16" height="20" rx="8" fill="#00f3ff" filter="url(#eyeGlow)"/>
+  <rect x="88" y="70" width="16" height="20" rx="8" fill="#00f3ff" filter="url(#eyeGlow)"/>
+  <!-- Brilho dos olhos -->
+  <circle cx="61" cy="75" r="3.5" fill="#ffffff"/>
+  <circle cx="93" cy="75" r="3.5" fill="#ffffff"/>
+  <!-- Sorriso / Linha sutil -->
+  <path d="M72 96 Q80 100 88 96" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" fill="none" opacity="0.8"/>
+</svg>

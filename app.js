@@ -773,7 +773,7 @@ window.equipProductOnAvatar3D = function(id) {
 
   equipItemOnAvatar(item.id);
 
-  const avatarSection = document.getElementById('avatar-3d-section');
+  const avatarSection = document.getElementById('customizer-closet-stage') || document.getElementById('hero') || document.getElementById('avatar-3d-section');
   if (avatarSection) {
     avatarSection.scrollIntoView({ behavior: 'smooth' });
   }
@@ -1328,14 +1328,26 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.getElementById('cart-btn')?.addEventListener('click', () => {
-    openDrawer('cart-drawer'); renderCartDrawer(); audio.playShortWhoosh();
+    openCartDrawer();
+  });
+
+  document.getElementById('tab-nav-carrinho')?.addEventListener('click', () => {
+    openCartDrawer();
   });
 
   document.getElementById('mascot-support-trigger')?.addEventListener('click', () => {
-    openDrawer('support-drawer'); renderChatMessages(); audio.playShortWhoosh();
+    openMetrikChat();
   });
 
-  document.querySelectorAll('.modal-close, .drawer-close').forEach(btn => {
+  document.getElementById('header-metrik-btn')?.addEventListener('click', () => {
+    openMetrikChat();
+  });
+
+  document.getElementById('profile-btn')?.addEventListener('click', () => {
+    openAuthModal();
+  });
+
+  document.querySelectorAll('.modal-close, .drawer-close, .auth-close-btn, .metrik-close-btn').forEach(btn => {
     btn.addEventListener('click', () => { closeAllModals(); audio.playShortWhoosh(); });
   });
 
@@ -1658,7 +1670,7 @@ window.equipComboOutfit = function() {
   equipItemOnAvatar(top.id);
   equipItemOnAvatar(bottom.id);
   equipItemOnAvatar(acc.id);
-  const avatarSection = document.getElementById('avatar-3d-section');
+  const avatarSection = document.getElementById('customizer-closet-stage') || document.getElementById('hero') || document.getElementById('avatar-3d-section');
   if (avatarSection) avatarSection.scrollIntoView({ behavior: 'smooth' });
 };
 
@@ -1667,6 +1679,9 @@ window.addComboToCart = function(btnElement) {
   const { top, bottom, acc } = state.aiGenerator.currentOutfit;
   addToCart(top.id, btnElement); addToCart(bottom.id); addToCart(acc.id);
   audio.playCartChime(); showToast('🎉 Combo com 15% OFF adicionado ao carrinho!');
+  setTimeout(() => {
+    openCartDrawer();
+  }, 400);
 };
 
 /* ==========================================================================
@@ -1722,9 +1737,21 @@ function renderChatMessages() {
   if (!container) return;
   const history = getChatHistory();
 
-  container.innerHTML = history.map(msg => {
+  let html = `
+    <div class="metrik-chat-card-welcome">
+      <div class="metrik-welcome-title">Fala, Enzo! 👋</div>
+      <div class="metrik-welcome-body">Como posso te ajudar hoje no Cyber Closet?</div>
+      <ul class="metrik-bullet-list">
+        <li>✨ Descobrir seu estilo Cyberpunk Luxury</li>
+        <li>🎨 Dicas de combinações e visualização 3D</li>
+        <li>📦 Informações sobre pedidos, tamanhos e tecidos</li>
+      </ul>
+    </div>
+  `;
+
+  html += history.map(msg => {
     const isBot = msg.sender === 'bot';
-    const avatarHtml = isBot ? `<img src="assets/mascot.jpg" class="msg-avatar-small" alt="Metrik">` : '';
+    const avatarHtml = isBot ? `<img src="assets/metrik_robot.svg" class="msg-avatar-small" alt="Metrik">` : '';
     const timeHtml = msg.time ? `<span class="msg-time">${msg.time}</span>` : '';
     const formattedText = escapeAndFormatText(msg.text);
 
@@ -1739,6 +1766,7 @@ function renderChatMessages() {
     `;
   }).join('');
 
+  container.innerHTML = html;
   container.scrollTop = container.scrollHeight;
 }
 
@@ -1747,7 +1775,7 @@ async function sendUserChatMessage(textInput) {
   const btnEl = document.getElementById('chat-send-btn');
   const typingEl = document.getElementById('metrik-typing');
 
-  const text = textInput ? textInput.trim() : '';
+  const text = (textInput && typeof textInput === 'string') ? textInput.trim() : (inputEl ? inputEl.value.trim() : '');
   if (!text) return;
 
   const history = getChatHistory();
@@ -1817,10 +1845,23 @@ window.clearMetrikChat = function() {
   if (typeof audio !== 'undefined' && audio.playDescendingClick) audio.playDescendingClick();
 };
 
-function openModal(id) { const modal = document.getElementById(id); if (modal) modal.classList.add('active'); }
-function openDrawer(id) { const drawer = document.getElementById(id); if (drawer) drawer.classList.add('active'); }
+function openModal(id) {
+  const modal = document.getElementById(id);
+  if (modal) modal.classList.add('active');
+}
+
+function openDrawer(id) {
+  const drawer = document.getElementById(id);
+  if (drawer) drawer.classList.add('active');
+}
+
 function closeAllModals() {
-  document.querySelectorAll('.modal-overlay, .drawer-overlay').forEach(m => m.classList.remove('active'));
+  document.querySelectorAll('.modal-overlay, .drawer-overlay, .metrik-drawer-overlay, .auth-modal-overlay, .cyber-modal-overlay').forEach(m => {
+    m.classList.remove('active');
+    m.setAttribute('aria-hidden', 'true');
+  });
+  const siteContent = document.getElementById('site-content');
+  if (siteContent) siteContent.classList.remove('modal-blur-active');
   if (typeof window.cleanupProduct3DViewer === 'function') {
     window.cleanupProduct3DViewer();
   }
@@ -1828,36 +1869,191 @@ function closeAllModals() {
 
 function showToast(message) {
   let container = document.getElementById('toast-container');
-  if (!container) { container = document.createElement('div'); container.id = 'toast-container'; container.className = 'toast-container'; document.body.appendChild(container); }
-  const toast = document.createElement('div'); toast.className = 'cyber-toast';
-  toast.innerHTML = `<span>⚡</span> ${message}`; container.appendChild(toast);
-  setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateX(100%)'; setTimeout(() => toast.remove(), 300); }, 3200);
+  if (!container) {
+    container = document.createElement('div');
+    container.id = 'toast-container';
+    container.className = 'toast-container';
+    document.body.appendChild(container);
+  }
+  const toast = document.createElement('div');
+  toast.className = 'cyber-toast';
+  toast.innerHTML = `<span>⚡</span> ${message}`;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateX(100%)';
+    setTimeout(() => toast.remove(), 300);
+  }, 3200);
 }
 
 /* ==========================================================================
-   SISTEMA DE COMPRA FUTURISTA & MODAL HOLOGRÁFICO CYBERPUNK NEON
+   NAVEGAÇÃO PREMIUM & DIRECIONAMENTO DE TELAS (COMPRA, METRIK, AVATAR, AUTH)
    ========================================================================== */
 
-// Inicializa explicitamente a propriedade de disponibilidade para todos os produtos
-PRODUCTS.forEach(p => {
-  if (p.disponivel === undefined) {
-    p.disponivel = false; // Produtos virtuais do acervo; mude para true para compras reais
+// 1. Direcionamento para a Tela de Compras (Carrinho & Checkout)
+window.openCartDrawer = function() {
+  closeAllModals();
+  const drawer = document.getElementById('cart-drawer');
+  if (drawer) {
+    drawer.classList.add('active');
   }
-});
+  renderCartDrawer();
+  if (typeof audio !== 'undefined' && audio.playShortWhoosh) audio.playShortWhoosh();
+};
 
+window.closeCartDrawer = function() {
+  const drawer = document.getElementById('cart-drawer');
+  if (drawer) {
+    drawer.classList.remove('active');
+  }
+  if (typeof audio !== 'undefined' && audio.playShortWhoosh) audio.playShortWhoosh();
+};
+
+// 2. Direcionamento para a Tela do Assistente Metrik 24/7
+window.openMetrikChat = function() {
+  closeAllModals();
+  const drawer = document.getElementById('support-drawer');
+  if (drawer) {
+    drawer.classList.add('active');
+  }
+  renderChatMessages();
+  if (typeof audio !== 'undefined' && audio.playShortWhoosh) audio.playShortWhoosh();
+  setTimeout(() => {
+    const input = document.getElementById('chat-user-input');
+    if (input) input.focus();
+  }, 250);
+};
+
+window.closeMetrikChat = function() {
+  const drawer = document.getElementById('support-drawer');
+  if (drawer) {
+    drawer.classList.remove('active');
+  }
+  if (typeof audio !== 'undefined' && audio.playShortWhoosh) audio.playShortWhoosh();
+};
+
+// 3. Direcionamento para a Tela de Autenticação / Perfil
+window.openAuthModal = function() {
+  closeAllModals();
+  const modal = document.getElementById('auth-modal');
+  if (modal) {
+    modal.classList.add('active');
+  }
+  if (typeof audio !== 'undefined' && audio.playMinimalPop) audio.playMinimalPop();
+};
+
+window.closeAuthModal = function() {
+  const modal = document.getElementById('auth-modal');
+  if (modal) {
+    modal.classList.remove('active');
+  }
+  if (typeof audio !== 'undefined' && audio.playShortWhoosh) audio.playShortWhoosh();
+};
+
+// 4. Ação de Compra de Produtos: Direciona Imediatamente para a Tela de Compra
 window.handleBuyProduct = function(id) {
   const item = PRODUCTS.find(p => p.id === id);
   if (!item) return;
 
-  // Se o item estiver desbloqueado para compra real
-  if (item.disponivel === true) {
-    addToCart(id);
-    showToast(`🛍️ ${item.nome} pronto para compra!`);
+  // Adiciona ao carrinho se ainda não estiver presente, ou incrementa
+  const existing = state.cart.find(c => c.id === item.id);
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    state.cart.push({ ...item, qty: 1, selectedSize: (item.tamanhos && item.tamanhos[0]) || 'M' });
+  }
+  updateCartBadge();
+
+  // Fecha qualquer modal aberto antes de abrir o carrinho
+  closeAllModals();
+
+  // Direciona imediatamente para a tela das opções de compra (Carrinho / Checkout)
+  openCartDrawer();
+
+  if (typeof audio !== 'undefined' && audio.playCartChime) audio.playCartChime();
+  showToast(`🛍️ "${item.nome}" direcionado para a tela de compras!`);
+};
+
+// 5. Filtro de Categorias via Cards em Destaque
+window.filterCategoryFromPill = function(categoryName) {
+  state.filters.category = categoryName;
+  document.querySelectorAll('.tab-btn-pill, .filter-chip').forEach(btn => {
+    const text = btn.textContent ? btn.textContent.trim().toLowerCase() : '';
+    if (text === categoryName.toLowerCase() || (btn.dataset && btn.dataset.category === categoryName)) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+  renderFullCatalog();
+  const catSection = document.getElementById('catalogo-section');
+  if (catSection) catSection.scrollIntoView({ behavior: 'smooth' });
+  if (typeof audio !== 'undefined' && audio.playMechanicalClick) audio.playMechanicalClick();
+  showToast(`📁 Filtrando catálogo por: ${categoryName}`);
+};
+
+// 6. Filtro de Coleções Sazonais
+window.filterSeasonFromBanner = function(season) {
+  renderLooksGrid(season);
+  const sec = document.getElementById('colecoes-section');
+  if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+  if (typeof audio !== 'undefined' && audio.playMechanicalClick) audio.playMechanicalClick();
+};
+
+// 7. Personalização do Avatar (Menu Lateral Hero)
+window.activateCustomizerCategory = function(tabName) {
+  const section = document.getElementById('avatar-customizer-section');
+  if (section) {
+    section.style.display = 'block';
+    section.scrollIntoView({ behavior: 'smooth' });
+  }
+  document.querySelectorAll('.cust-tab-btn').forEach(btn => {
+    if (btn.dataset && btn.dataset.tab === tabName) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+  document.querySelectorAll('.cust-tab-content').forEach(c => {
+    if (c.id === `tab-${tabName}`) {
+      c.classList.add('active');
+    } else {
+      c.classList.remove('active');
+    }
+  });
+  document.querySelectorAll('.custom-menu-btn').forEach(btn => {
+    if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(tabName)) {
+      btn.classList.add('active');
+    } else {
+      btn.classList.remove('active');
+    }
+  });
+  if (typeof audio !== 'undefined' && audio.playMechanicalClick) audio.playMechanicalClick();
+};
+
+window.closeCustomizerSection = function() {
+  const section = document.getElementById('avatar-customizer-section');
+  if (section) section.style.display = 'none';
+  const hero = document.getElementById('hero');
+  if (hero) hero.scrollIntoView({ behavior: 'smooth' });
+  if (typeof audio !== 'undefined' && audio.playShortWhoosh) audio.playShortWhoosh();
+};
+
+// 8. Filtro de Favoritos
+window.filterFavorites = function() {
+  if (state.favorites.size === 0) {
+    showToast('🤍 Você ainda não favoritou nenhuma peça. Clique no coração dos produtos!');
+    const sec = document.getElementById('catalogo-section');
+    if (sec) sec.scrollIntoView({ behavior: 'smooth' });
     return;
   }
-
-  // Produto indisponível: abrir janela holográfica
-  openUnavailableModal(item);
+  state.filters.onlyFavorites = !state.filters.onlyFavorites;
+  const favTab = document.getElementById('tab-nav-favoritos');
+  if (favTab) favTab.classList.toggle('active', state.filters.onlyFavorites);
+  renderFullCatalog();
+  const sec = document.getElementById('catalogo-section');
+  if (sec) sec.scrollIntoView({ behavior: 'smooth' });
+  showToast(state.filters.onlyFavorites ? '❤️ Mostrando apenas seus looks favoritos!' : '📁 Exibindo todo o catálogo');
 };
 
 window.openUnavailableModal = function(item) {

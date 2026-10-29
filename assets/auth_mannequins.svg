@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 480" width="400" height="480">
+  <defs>
+    <radialGradient id="mannequinGlow" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#05050c" stop-opacity="1"/>
+    </radialGradient>
+    <linearGradient id="chromeBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="50%" stop-color="#0f0e26"/>
+      <stop offset="100%" stop-color="#050510"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="480" fill="url(#mannequinGlow)"/>
+  <!-- Manequim Secundário Esquerda -->
+  <ellipse cx="110" cy="140" rx="36" ry="46" fill="url(#chromeBody)" stroke="#9333ea" stroke-width="1.5" opacity="0.6"/>
+  <path d="M80 186 C60 210 40 250 30 310 L190 310 C180 250 160 210 140 186 Z" fill="url(#chromeBody)" stroke="#9333ea" stroke-width="1.5" opacity="0.6"/>
+  <!-- Manequim Principal Centro/Direita -->
+  <ellipse cx="230" cy="120" rx="44" ry="56" fill="url(#chromeBody)" stroke="#c084fc" stroke-width="2.5"/>
+  <!-- Iluminação de Contorno Neon Roxo -->
+  <path d="M220 68 Q274 90 268 150" stroke="#f472b6" stroke-width="3" fill="none" opacity="0.85"/>
+  <!-- Tronco Manequim -->
+  <path d="M195 174 C160 210 130 260 110 360 L350 360 C330 260 300 210 265 174 Z" fill="url(#chromeBody)" stroke="#c084fc" stroke-width="2.5"/>
+  <path d="M260 178 Q330 240 340 350" stroke="#a855f7" stroke-width="4" fill="none" opacity="0.9"/>
+  <!-- Feixes de Luz Holográfica Vertical -->
+  <line x1="230" y1="0" x2="230" y2="480" stroke="#a855f7" stroke-width="1" stroke-dasharray="8 6" opacity="0.25"/>
+</svg>

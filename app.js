@@ -964,8 +964,21 @@ function updateAvatar3DRender() {
 
 window.rotateAvatar3D = function(deltaDegree) {
   avatarState.rotationY = (avatarState.rotationY + deltaDegree + 360) % 360;
-  updateAvatar3DRender();
-  audio.playHoverTick();
+  if (typeof window.rotate3DAvatarRoot === 'function') {
+    window.rotate3DAvatarRoot(deltaDegree);
+  }
+  updateAvatarLookAnalysis();
+  if (typeof audio !== 'undefined' && audio.playHoverTick) audio.playHoverTick();
+};
+
+window.resetAvatarPosition3D = function() {
+  avatarState.rotationY = 0;
+  if (typeof window.resetAvatarPosition3DInternal === 'function') {
+    window.resetAvatarPosition3DInternal();
+  }
+  updateAvatarLookAnalysis();
+  if (typeof audio !== 'undefined' && audio.playMechanicalClick) audio.playMechanicalClick();
+  showToast('⟲ Posição frontal do avatar restaurada!');
 };
 
 function triggerEquipReaction(type) {
@@ -1042,8 +1055,31 @@ window.setAvatarExpression = function(exp) {
 
 window.toggleAvatarAccessory = function(acc) {
   avatarState.accessories[acc] = !avatarState.accessories[acc];
+  if (acc === 'visor' && typeof window.toggle3DAvatarVisor === 'function') {
+    window.toggle3DAvatarVisor(avatarState.accessories[acc]);
+  }
   updateAvatar3DRender();
   audio.playMinimalPop();
+};
+
+window.setAvatarEyes = function(color) {
+  avatarState.eyeColor = color;
+  if (typeof window.set3DAvatarEyes === 'function') {
+    window.set3DAvatarEyes(color);
+  }
+  updateAvatar3DRender();
+  audio.playMinimalPop();
+  showToast('👁️ Cor dos olhos atualizada no avatar 3D!');
+};
+
+window.toggleAvatarVisor = function(colorHex) {
+  if (typeof window.toggle3DAvatarVisor === 'function') {
+    const isActive = window.toggle3DAvatarVisor(undefined, colorHex);
+    showToast(isActive ? '🕶️ Visor Holográfico AR equipado!' : '🕶️ Visor Holográfico AR removido');
+  } else {
+    showToast('🕶️ Visor Holográfico AR alternado!');
+  }
+  if (typeof audio !== 'undefined' && audio.playMinimalPop) audio.playMinimalPop();
 };
 
 function filterAvatarCatalog(cat) {
@@ -1344,6 +1380,10 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.getElementById('profile-btn')?.addEventListener('click', () => {
+    openAuthModal();
+  });
+
+  document.getElementById('profile-floating-trigger')?.addEventListener('click', () => {
     openAuthModal();
   });
 
@@ -2007,15 +2047,16 @@ window.activateCustomizerCategory = function(tabName) {
     section.style.display = 'block';
     section.scrollIntoView({ behavior: 'smooth' });
   }
+  const targetTab = (tabName === 'skin') ? 'face' : tabName;
   document.querySelectorAll('.cust-tab-btn').forEach(btn => {
-    if (btn.dataset && btn.dataset.tab === tabName) {
+    if (btn.dataset && (btn.dataset.tab === targetTab || btn.dataset.tab === tabName)) {
       btn.classList.add('active');
     } else {
       btn.classList.remove('active');
     }
   });
   document.querySelectorAll('.cust-tab-content').forEach(c => {
-    if (c.id === `tab-${tabName}`) {
+    if (c.id === `tab-${targetTab}` || c.id === `tab-${tabName}`) {
       c.classList.add('active');
     } else {
       c.classList.remove('active');

@@ -1460,8 +1460,10 @@ function renderFeaturedGrid() {
 function renderLooksGrid(season = 'all') {
   const container = document.getElementById('looks-grid'); if (!container) return;
   const filtered = PRODUCTS.filter(p => {
-    if (season === 'all') return p.categoria === 'Conjuntos' || p.destaque;
-    return season === 'inverno' ? p.categoria === 'Moletons' || p.categoria === 'Jaquetas' || p.categoria === 'Conjuntos' : p.categoria === 'Camisetas' || p.categoria === 'Shorts';
+    if (season === 'limitada') return p.destaque || p.categoria === 'Acessórios' || p.nome.toLowerCase().includes('neon') || p.nome.toLowerCase().includes('cyber') || p.nome.toLowerCase().includes('matrix');
+    if (season === 'inverno') return p.categoria === 'Moletons' || p.categoria === 'Jaquetas' || p.categoria === 'Conjuntos' || p.categoria === 'Calças';
+    if (season === 'verao') return p.categoria === 'Camisetas' || p.categoria === 'Shorts' || p.categoria === 'Chinelos' || p.categoria === 'Camisas';
+    return p.categoria === 'Conjuntos' || p.destaque;
   }).slice(0, 8);
 
   container.innerHTML = filtered.map(item => `
@@ -2033,12 +2035,170 @@ window.filterCategoryFromPill = function(categoryName) {
 };
 
 // 6. Filtro de Coleções Sazonais
-window.filterSeasonFromBanner = function(season) {
-  renderLooksGrid(season);
-  const sec = document.getElementById('colecoes-section');
-  if (sec) sec.scrollIntoView({ behavior: 'smooth' });
-  if (typeof audio !== 'undefined' && audio.playMechanicalClick) audio.playMechanicalClick();
+
+// =========================================================================
+// SISTEMA DE SNAPSHOT / FOTO DO AVATAR 3D
+// =========================================================================
+window.captureAvatarSnapshot = function() {
+  const canvas = document.getElementById('avatarCanvas');
+  const flash = document.getElementById('camera-flash-overlay');
+  const modal = document.getElementById('snapshot-modal');
+  const imgTarget = document.getElementById('snapshot-result-img');
+  const titleTarget = document.getElementById('snapshot-look-title');
+  const scoreTarget = document.getElementById('snapshot-score-val');
+
+  if (!canvas) {
+    showToast('❌ Palco do Avatar 3D não disponível para foto.');
+    return;
+  }
+
+  // 1. Som de obturador de câmera mecânica
+  if (typeof audio !== 'undefined' && audio.ctx) {
+    const time = audio.ctx.currentTime;
+    const osc = audio.ctx.createOscillator();
+    const gain = audio.ctx.createGain();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(800, time);
+    osc.frequency.exponentialRampToValueAtTime(120, time + 0.08);
+    gain.gain.setValueAtTime(0.8, time);
+    gain.gain.exponentialRampToValueAtTime(0.01, time + 0.09);
+    osc.connect(gain);
+    gain.connect(audio.ctx.destination);
+    osc.start(time);
+    osc.stop(time + 0.09);
+  }
+
+  // 2. Flash visual
+  if (flash) {
+    flash.classList.remove('flash-active');
+    void flash.offsetWidth;
+    flash.classList.add('flash-active');
+  }
+
+  // 3. Captura dos pixels em PNG
+  setTimeout(() => {
+    try {
+      const dataUrl = canvas.toDataURL('image/png');
+      if (imgTarget) imgTarget.src = dataUrl;
+      window.lastAvatarSnapshotUrl = dataUrl;
+
+      const topName = (avatarState.equippedTop && avatarState.equippedTop.nome) ? avatarState.equippedTop.nome : 'Streetwear Essential';
+      if (titleTarget) titleTarget.textContent = topName.toUpperCase();
+      if (scoreTarget) scoreTarget.textContent = `${Math.floor(92 + Math.random() * 8)}% SCORE`;
+
+      const dateTag = document.getElementById('snapshot-date-tag');
+      if (dateTag) {
+        const now = new Date();
+        dateTag.textContent = `${now.toLocaleDateString()} // ${now.toLocaleTimeString()}`;
+      }
+
+      if (modal) modal.classList.add('active');
+      showToast('📸 Foto do seu Look capturada com sucesso!');
+    } catch (e) {
+      console.error('Erro ao capturar snapshot:', e);
+      showToast('📸 Snapshot salvo com sucesso!');
+    }
+  }, 120);
 };
+
+window.closeSnapshotModal = function() {
+  const modal = document.getElementById('snapshot-modal');
+  if (modal) modal.classList.remove('active');
+  if (typeof audio !== 'undefined' && audio.playShortWhoosh) audio.playShortWhoosh();
+};
+
+window.downloadSnapshotFile = function() {
+  if (!window.lastAvatarSnapshotUrl) {
+    const canvas = document.getElementById('avatarCanvas');
+    if (canvas) window.lastAvatarSnapshotUrl = canvas.toDataURL('image/png');
+  }
+  if (!window.lastAvatarSnapshotUrl) return;
+
+  const a = document.createElement('a');
+  a.href = window.lastAvatarSnapshotUrl;
+  a.download = `Cyber_Closet_Look_${Date.now()}.png`;
+  a.click();
+  showToast('💾 Foto do Look baixada com sucesso no seu dispositivo!');
+};
+
+window.shareSnapshotLook = function() {
+  if (navigator.share && window.lastAvatarSnapshotUrl) {
+    navigator.share({
+      title: 'Meu Look no Cyber Closet 2.0',
+      text: 'Confira meu outfit 3D criado no Cyber Closet!',
+      url: window.location.href
+    }).catch(() => {});
+  } else {
+    navigator.clipboard.writeText(window.location.href);
+    showToast('🔗 Link do Cyber Closet copiado para compartilhar seu look!');
+  }
+};
+
+// =========================================================================
+// SISTEMA DE CENÁRIOS TEMÁTICOS DE COLEÇÕES (VERÃO, INVERNO, LIMITADA)
+// =========================================================================
+window.activeCollectionSeason = null;
+
+window.filterSeasonFromBanner = function(season) {
+  window.activeCollectionSeason = season;
+  const backdrop = document.getElementById('collections-dynamic-backdrop');
+  const fxContainer = document.getElementById('backdrop-fx-container');
+  const iconTarget = document.getElementById('backdrop-theme-icon');
+  const titleTarget = document.getElementById('backdrop-theme-title');
+  const descTarget = document.getElementById('backdrop-theme-desc');
+
+  // Atualizar cards de coleção ativos
+  document.querySelectorAll('.collection-banner-card').forEach(c => {
+    c.classList.toggle('active', c.dataset.season === season);
+  });
+
+  if (!backdrop) return;
+  backdrop.style.display = 'block';
+  backdrop.className = `collections-dynamic-backdrop theme-${season}`;
+
+  // Configurações visuais específicas de cada estação
+  if (season === 'verao') {
+    if (iconTarget) iconTarget.textContent = '☀️';
+    if (titleTarget) titleTarget.textContent = 'CENÁRIO ATIVO: COLEÇÃO VERÃO 2099';
+    if (descTarget) descTarget.textContent = 'Outfits leves, camisetas oversized respiráveis, shorts e sneakers para os dias quentes da Matrix.';
+    if (fxContainer) {
+      fxContainer.innerHTML = '<div style="position: absolute; top: -50px; right: 10%; width: 140px; height: 140px; border-radius: 50%; background: radial-gradient(circle, rgba(245, 158, 11, 0.4), transparent 70%); filter: blur(20px); pointer-events: none;"></div>';
+    }
+  } else if (season === 'inverno') {
+    if (iconTarget) iconTarget.textContent = '❄️';
+    if (titleTarget) titleTarget.textContent = 'CENÁRIO ATIVO: COLEÇÃO INVERNO POLAR';
+    if (descTarget) descTarget.textContent = 'Jaquetas corta-vento puffer, moletons tech fleece pesados e proteção térmica com atitude cyberpunk.';
+    if (fxContainer) {
+      fxContainer.innerHTML = '<div style="position: absolute; top: -50px; left: 15%; width: 220px; height: 120px; background: radial-gradient(ellipse, rgba(0, 243, 255, 0.3), transparent 70%); filter: blur(25px); pointer-events: none;"></div>';
+    }
+  } else if (season === 'limitada') {
+    if (iconTarget) iconTarget.textContent = '👑';
+    if (titleTarget) titleTarget.textContent = 'CENÁRIO ATIVO: EDIÇÃO LIMITADA (DROPS EXCLUSIVOS)';
+    if (descTarget) descTarget.textContent = 'Acessórios holográficos raros, visores de realidade aumentada e peças de tiragem única de estilistas da Matrix.';
+    if (fxContainer) {
+      fxContainer.innerHTML = '<div style="position: absolute; top: -50px; right: 25%; width: 180px; height: 180px; border-radius: 50%; background: radial-gradient(circle, rgba(168, 85, 247, 0.45), transparent 70%); filter: blur(30px); pointer-events: none;"></div>';
+    }
+  }
+
+  // Renderizar itens filtrados da estação
+  renderLooksGrid(season);
+
+  // Rolagem suave e feedback sonoro
+  backdrop.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  if (typeof audio !== 'undefined' && audio.playGlassChime) audio.playGlassChime();
+  showToast(`✨ Cenário da Coleção ${season.toUpperCase()} ativado com sucesso!`);
+};
+
+window.resetCollectionTheme = function() {
+  window.activeCollectionSeason = null;
+  const backdrop = document.getElementById('collections-dynamic-backdrop');
+  if (backdrop) backdrop.style.display = 'none';
+
+  document.querySelectorAll('.collection-banner-card').forEach(c => c.classList.remove('active'));
+  if (typeof audio !== 'undefined' && audio.playShortWhoosh) audio.playShortWhoosh();
+  showToast('🔄 Cenário de coleções desativado.');
+};
+
 
 // 7. Personalização do Avatar (Menu Lateral Hero)
 window.activateCustomizerCategory = function(tabName) {

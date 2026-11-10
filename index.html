@@ -178,6 +178,16 @@
           
           <div class="avatar-viewport-canvas-box avatar-viewer" id="avatarContainer">
             <canvas id="avatarCanvas"></canvas>
+
+            <!-- FLASH OVERLAY PARA A CÂMERA -->
+            <div class="camera-flash-overlay" id="camera-flash-overlay"></div>
+
+            <!-- ÍCONE DE FOTO / SNAPSHOT AO LADO DO AVATAR -->
+            <button class="avatar-photo-action-btn" id="btn-snapshot-avatar" onclick="captureAvatarSnapshot()" title="Tirar Foto do Avatar / Baixar Look">
+              <span class="photo-btn-icon">📸</span>
+              <span class="photo-btn-label">TIRAR FOTO</span>
+              <span class="photo-btn-glow"></span>
+            </button>
           </div>
         </div>
 
@@ -248,39 +258,80 @@
         </div>
       </section>
 
-      <!-- SEÇÃO: COLEÇÕES (3 BANNERS LUXUOSOS) -->
+      <!-- SEÇÃO: COLEÇÕES (3 BANNERS LUXUOSOS & CAPAS REATIVAS COM PLANO DE FUNDO TEMÁTICO) -->
       <section id="colecoes-section" class="collections-section-wrapper">
         <div class="section-headline-row">
-          <h2 class="section-clean-title">Coleções</h2>
+          <div>
+            <h2 class="section-clean-title">Coleções <span style="color: var(--neon-purple); text-shadow: 0 0 12px rgba(168, 85, 247, 0.6);">Exclusivas</span></h2>
+            <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 0.3rem;">
+              Clique nas capas para ativar os cenários temáticos e carregar os looks exclusivos de cada estação.
+            </p>
+          </div>
         </div>
 
         <div class="collections-banners-grid">
-          <div class="collection-banner-card" onclick="filterSeasonFromBanner('verao')">
+          <div class="collection-banner-card banner-verao" id="banner-card-verao" data-season="verao" onclick="filterSeasonFromBanner('verao')">
+            <div class="collection-card-shimmer"></div>
             <img src="assets/banner_verao.svg" alt="Coleção Verão" class="collection-banner-img">
             <div class="collection-card-overlay"></div>
             <div class="collection-banner-content">
+              <span class="collection-pill-tag tag-verao">☀️ VERÃO 2099</span>
               <h3 class="collection-title-text">Coleção Verão</h3>
-              <p class="collection-sub-text">Estilo leve e autêntico.</p>
+              <p class="collection-sub-text">Estilo leve, cores vibrantes e atitude solar.</p>
+              <div class="collection-action-hint">⚡ Clique para Ativar Cenário</div>
             </div>
+            <div class="collection-active-glow glow-verao"></div>
           </div>
 
-          <div class="collection-banner-card" onclick="filterSeasonFromBanner('inverno')">
+          <div class="collection-banner-card banner-inverno" id="banner-card-inverno" data-season="inverno" onclick="filterSeasonFromBanner('inverno')">
+            <div class="collection-card-shimmer"></div>
             <img src="assets/banner_inverno.svg" alt="Coleção Inverno" class="collection-banner-img">
             <div class="collection-card-overlay"></div>
             <div class="collection-banner-content">
+              <span class="collection-pill-tag tag-inverno">❄️ INVERNO POLAR</span>
               <h3 class="collection-title-text">Coleção Inverno</h3>
-              <p class="collection-sub-text">Conforto e atitude.</p>
+              <p class="collection-sub-text">Conforto térmico, jaquetas puffer e hoodies pesados.</p>
+              <div class="collection-action-hint">⚡ Clique para Ativar Cenário</div>
             </div>
+            <div class="collection-active-glow glow-inverno"></div>
           </div>
 
-          <div class="collection-banner-card" onclick="filterSeasonFromBanner('limitada')">
+          <div class="collection-banner-card banner-limitada" id="banner-card-limitada" data-season="limitada" onclick="filterSeasonFromBanner('limitada')">
+            <div class="collection-card-shimmer"></div>
             <img src="assets/banner_limited.svg" alt="Edição Limitada" class="collection-banner-img">
             <div class="collection-card-overlay"></div>
             <div class="collection-banner-content">
+              <span class="collection-pill-tag tag-limitada">👑 DROPS VIP</span>
               <h3 class="collection-title-text">Edição Limitada</h3>
-              <p class="collection-sub-text">Drops exclusivos.</p>
+              <p class="collection-sub-text">Peças raras holográficas e tiragem ultra limitada.</p>
+              <div class="collection-action-hint">⚡ Clique para Ativar Cenário</div>
             </div>
+            <div class="collection-active-glow glow-limitada"></div>
           </div>
+        </div>
+
+        <!-- CENÁRIO TEMÁTICO DINÂMICO DE FUNDO (ATIVADO AO CLICAR) -->
+        <div class="collections-dynamic-backdrop" id="collections-dynamic-backdrop" style="display: none;">
+          <!-- Decorações Visuais Animadas do Cenário -->
+          <div class="backdrop-fx-container" id="backdrop-fx-container"></div>
+
+          <!-- Barra de Status do Cenário Ativo -->
+          <div class="backdrop-header-bar">
+            <div class="backdrop-title-group">
+              <span class="backdrop-icon-badge" id="backdrop-theme-icon">☀️</span>
+              <div>
+                <h3 class="backdrop-theme-title" id="backdrop-theme-title">CENÁRIO: COLEÇÃO VERÃO 2099</h3>
+                <p class="backdrop-theme-desc" id="backdrop-theme-desc">Exibindo os outfits mais frescos e leves da temporada.</p>
+              </div>
+            </div>
+
+            <button class="backdrop-reset-btn" onclick="resetCollectionTheme()" title="Restaurar visual padrão">
+              ✕ Fechar Cenário
+            </button>
+          </div>
+
+          <!-- Grade de Looks e Peças da Coleção -->
+          <div class="backdrop-looks-grid" id="looks-grid"></div>
         </div>
       </section>
 
@@ -738,6 +789,43 @@
           <button class="auth-social-btn" title="Apple" onclick="showToast('Login com Apple')"></button>
           <button class="auth-social-btn" title="Discord" onclick="showToast('Login com Discord')">🎮</button>
         </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL HOLOGRÁFICO DE FOTO DO LOOK (POLAROID TECH 2099) -->
+  <div class="snapshot-modal-overlay" id="snapshot-modal" onclick="if(event.target === this) closeSnapshotModal()">
+    <div class="snapshot-polaroid-card">
+      <button class="snapshot-close-btn" onclick="closeSnapshotModal()" title="Fechar">&times;</button>
+      
+      <div class="snapshot-frame">
+        <div class="snapshot-hud-header">
+          <span class="snapshot-hud-badge">● LIVE CAPTURE // 2099</span>
+          <span class="snapshot-hud-meta" id="snapshot-date-tag">MATRIX ARCHIVE</span>
+        </div>
+        
+        <div class="snapshot-image-container">
+          <img id="snapshot-result-img" alt="Foto do Avatar 3D" class="snapshot-img">
+          <div class="snapshot-watermark">CYBER CLOSET 2.0</div>
+        </div>
+
+        <div class="snapshot-caption-row">
+          <div>
+            <div class="snapshot-title" id="snapshot-look-title">OUTFIT TECHWEAR ONYX</div>
+            <div class="snapshot-sub" id="snapshot-look-sub">Avatar 3D Personalizado</div>
+          </div>
+          <div class="snapshot-score-badge" id="snapshot-score-val">98% SCORE</div>
+        </div>
+      </div>
+
+      <div class="snapshot-actions-row">
+        <button class="cyber-btn" onclick="downloadSnapshotFile()" style="flex: 1; justify-content: center;">
+          💾 BAIXAR FOTO (PNG)
+        </button>
+        <button class="cyber-btn cyber-btn-secondary" onclick="shareSnapshotLook()" style="flex: 1; justify-content: center;">
+          🔗 COMPARTILHAR
+        </button>
       </div>
     </div>
   </div>

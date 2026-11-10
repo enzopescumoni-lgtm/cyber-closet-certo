@@ -2,43 +2,69 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>CYBER CLOSET 2099 — Comercial Oficial (Áudio & Vídeo)</title>
-  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CYBER CLOSET 2.0 — Comercial Cinematográfico Oficial (4K Cinema Edition)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;800&family=Syne:wght@700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Syne:wght@700;800;900&family=JetBrains+Mono:wght@500;700&display=swap');
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    
     body {
-      background: #05050d;
+      background: #030308;
       color: #ffffff;
       font-family: 'Space Grotesk', sans-serif;
       overflow-x: hidden;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      padding: 1.5rem;
+      padding: 1.5rem 1rem;
+      background-image: 
+        radial-gradient(circle at 50% 0%, rgba(168, 85, 247, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 50% 100%, rgba(0, 243, 255, 0.12) 0%, transparent 60%);
     }
 
-    .video-viewport-wrapper {
+    .cinema-container {
       position: relative;
       width: 100%;
-      max-width: 860px;
+      max-width: 980px;
       aspect-ratio: 16 / 9;
       background: #000000;
       border-radius: 20px;
       overflow: hidden;
-      border: 2px solid #a855f7;
-      box-shadow: 0 0 50px rgba(168, 85, 247, 0.4), 0 20px 40px rgba(0, 0, 0, 0.8);
+      border: 1.5px solid rgba(168, 85, 247, 0.4);
+      box-shadow: 
+        0 0 60px rgba(168, 85, 247, 0.35),
+        0 0 120px rgba(0, 243, 255, 0.2),
+        0 25px 60px rgba(0, 0, 0, 0.95);
+      transition: all 0.3s ease;
     }
+
+    .cinema-container.letterbox-mode::before,
+    .cinema-container.letterbox-mode::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 9%;
+      background: #000000;
+      z-index: 15;
+      pointer-events: none;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+    }
+    .cinema-container.letterbox-mode::before { top: 0; }
+    .cinema-container.letterbox-mode::after { bottom: 0; }
 
     #commercialCanvas {
       width: 100%;
       height: 100%;
       display: block;
+      object-fit: cover;
     }
 
+    /* HUD OVERLAY */
     .hud-overlay {
       position: absolute;
       inset: 0;
@@ -46,28 +72,30 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 1.5rem;
-      background: radial-gradient(circle at center, transparent 40%, rgba(0, 0, 0, 0.6) 100%);
+      padding: 1.25rem 1.5rem;
+      z-index: 20;
     }
 
     .hud-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       letter-spacing: 2px;
       font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
     }
 
     .rec-badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 7px;
       color: #ff0055;
       background: rgba(255, 0, 85, 0.15);
-      border: 1px solid #ff0055;
-      padding: 4px 10px;
+      border: 1px solid rgba(255, 0, 85, 0.6);
+      padding: 4px 12px;
       border-radius: 9999px;
+      backdrop-filter: blur(8px);
     }
 
     .rec-dot {
@@ -76,268 +104,391 @@
       background: #ff0055;
       border-radius: 50%;
       animation: blinkRec 1s infinite;
+      box-shadow: 0 0 8px #ff0055;
     }
 
-    @keyframes blinkRec { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+    @keyframes blinkRec { 0%, 100% { opacity: 1; } 50% { opacity: 0.15; } }
 
     .hud-subtitle-box {
-      background: rgba(8, 8, 20, 0.88);
+      background: rgba(6, 6, 18, 0.88);
       border: 1px solid rgba(0, 243, 255, 0.4);
-      border-radius: 12px;
-      padding: 0.9rem 1.4rem;
+      border-radius: 14px;
+      padding: 0.9rem 1.5rem;
       text-align: center;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 0 25px rgba(0, 243, 255, 0.25);
-      max-width: 90%;
-      margin: 0 auto 0.5rem auto;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 0 30px rgba(0, 243, 255, 0.25), inset 0 0 15px rgba(168, 85, 247, 0.15);
+      max-width: 92%;
+      margin: 0 auto 0.6rem auto;
+      transition: all 0.25s ease;
+    }
+
+    .hud-scene-tag {
+      font-size: 0.72rem;
+      color: #a855f7;
+      letter-spacing: 2px;
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      font-weight: 800;
+      font-family: 'JetBrains Mono', monospace;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
     }
 
     .hud-subtitle-text {
       font-size: 1.05rem;
       font-weight: 700;
       color: #00f3ff;
-      text-shadow: 0 0 10px rgba(0, 243, 255, 0.6);
-      line-height: 1.4;
+      text-shadow: 0 0 12px rgba(0, 243, 255, 0.7);
+      line-height: 1.45;
     }
 
-    .hud-scene-tag {
-      font-size: 0.72rem;
-      color: #a855f7;
-      letter-spacing: 1.5px;
-      margin-bottom: 4px;
-      text-transform: uppercase;
-      font-weight: 800;
-    }
-
-    .controls-panel {
-      margin-top: 1.5rem;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      align-items: center;
-      max-width: 860px;
-      width: 100%;
-    }
-
-    .btn-cyber {
-      background: linear-gradient(135deg, #a855f7, #ec4899);
-      color: #ffffff;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 800;
-      font-size: 0.95rem;
-      padding: 0.8rem 1.8rem;
-      border-radius: 9999px;
-      border: none;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      box-shadow: 0 0 20px rgba(168, 85, 247, 0.5);
-      transition: all 0.2s ease;
-    }
-
-    .btn-cyber:hover {
-      transform: translateY(-2px) scale(1.03);
-      box-shadow: 0 0 30px rgba(236, 72, 153, 0.7);
-    }
-
-    .btn-cyber-secondary {
-      background: rgba(18, 18, 38, 0.85);
-      border: 1px solid rgba(0, 243, 255, 0.4);
-      color: #00f3ff;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 0.9rem;
-      padding: 0.8rem 1.4rem;
-      border-radius: 9999px;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.2s ease;
-    }
-
-    .btn-cyber-secondary:hover {
-      background: rgba(0, 243, 255, 0.15);
-      border-color: #00f3ff;
-      box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
-      transform: translateY(-2px);
-    }
-
+    /* TIMELINE */
     .timeline-bar-bg {
       width: 100%;
-      height: 6px;
-      background: rgba(255, 255, 255, 0.12);
-      border-radius: 3px;
+      height: 7px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 4px;
       overflow: hidden;
-      margin-top: 1rem;
       cursor: pointer;
+      pointer-events: auto;
+      position: relative;
     }
 
     .timeline-bar-progress {
       height: 100%;
       width: 0%;
       background: linear-gradient(90deg, #00f3ff, #a855f7, #ec4899);
-      box-shadow: 0 0 10px #00f3ff;
-      transition: width 0.1s linear;
+      box-shadow: 0 0 12px #00f3ff;
+      transition: width 0.08s linear;
+    }
+
+    /* SCENE CHIPS NAVIGATION */
+    .scene-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 1rem;
+      max-width: 980px;
+      width: 100%;
+    }
+
+    .scene-chip {
+      background: rgba(18, 18, 38, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #94a3b8;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 0.4rem 0.9rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .scene-chip:hover {
+      background: rgba(168, 85, 247, 0.2);
+      border-color: #a855f7;
+      color: #ffffff;
+      transform: translateY(-1px);
+    }
+
+    .scene-chip.active {
+      background: linear-gradient(135deg, rgba(0, 243, 255, 0.3), rgba(168, 85, 247, 0.3));
+      border-color: #00f3ff;
+      color: #00f3ff;
+      box-shadow: 0 0 12px rgba(0, 243, 255, 0.4);
+    }
+
+    /* CONTROLS */
+    .controls-panel {
+      margin-top: 1.2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      align-items: center;
+      max-width: 980px;
+      width: 100%;
+    }
+
+    .btn-cyber-primary {
+      background: linear-gradient(135deg, #00f3ff, #a855f7 50%, #ec4899);
+      color: #ffffff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      padding: 0.85rem 2rem;
+      border-radius: 9999px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 0 25px rgba(168, 85, 247, 0.6);
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn-cyber-primary:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 0 35px rgba(236, 72, 153, 0.8), 0 0 15px rgba(0, 243, 255, 0.8);
+    }
+
+    .btn-cyber-tool {
+      background: rgba(18, 18, 38, 0.9);
+      border: 1px solid rgba(0, 243, 255, 0.35);
+      color: #00f3ff;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      padding: 0.8rem 1.3rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(8px);
+    }
+
+    .btn-cyber-tool:hover {
+      background: rgba(0, 243, 255, 0.15);
+      border-color: #00f3ff;
+      box-shadow: 0 0 20px rgba(0, 243, 255, 0.4);
+      transform: translateY(-2px);
+    }
+
+    /* SCANLINE EFFECT */
+    .scanlines-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%);
+      background-size: 100% 4px;
+      pointer-events: none;
+      z-index: 10;
+      opacity: 0.5;
     }
   </style>
 </head>
 <body>
 
-  <!-- CABEÇALHO -->
-  <div class="text-center mb-4">
-    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-900/30 border border-purple-500/40 text-purple-300 text-xs font-bold tracking-wider mb-2">
-      ⚡ PROPAGANDA OFICIAL // NEO-TOKYO 2099
+  <!-- HEADER BRAND -->
+  <div class="text-center mb-3">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-950/60 border border-purple-500/40 text-purple-300 text-xs font-bold tracking-widest uppercase mb-1 shadow-[0_0_15px_rgba(168,85,247,0.3)]">
+      <span>⚡ CINEMATIC BROADCAST // NEO-TOKYO 2099</span>
     </div>
-    <h1 class="text-3xl font-extrabold tracking-tight text-white mb-1" style="font-family: 'Syne', sans-serif;">
-      CYBER CLOSET <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">2.0</span>
+    <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-0.5" style="font-family: 'Syne', sans-serif;">
+      CYBER CLOSET <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-500">2.0</span>
     </h1>
-    <p class="text-sm text-gray-400">Comercial completo com áudio synthwave, narração e animação cinematográfica.</p>
+    <p class="text-xs md:text-sm text-gray-400 font-medium">Comercial oficial de alta definição com narração de estúdio, trilha synthwave dinâmica e efeitos 3D.</p>
   </div>
 
-  <!-- PLAYER DE VÍDEO & CANVAS -->
-  <div class="video-viewport-wrapper">
-    <canvas id="commercialCanvas" width="1280" height="720"></canvas>
+  <!-- PLAYER CINEMATOGRÁFICO -->
+  <div class="cinema-container letterbox-mode" id="cinemaWrapper">
+    <canvas id="commercialCanvas" width="1920" height="1080"></canvas>
+    <div class="scanlines-overlay"></div>
 
+    <!-- HUD OVERLAY -->
     <div class="hud-overlay">
       <div class="hud-top">
         <div class="rec-badge">
           <span class="rec-dot"></span>
-          <span>REC // 60 FPS</span>
+          <span>4K // 60 FPS MASTER</span>
         </div>
-        <div class="text-cyan-400 drop-shadow-[0_0_8px_rgba(0,243,255,0.7)]">
-          CYBER MATRIX BROADCAST
+        <div class="hidden sm:block text-cyan-400 drop-shadow-[0_0_10px_rgba(0,243,255,0.8)] font-bold tracking-widest">
+          CYBER MATRIX BROADCAST SYSTEM
         </div>
-        <div class="text-gray-400" id="timerLabel">00:00 / 00:27</div>
+        <div class="text-gray-300 font-mono text-xs bg-black/60 px-2 py-1 rounded border border-white/10" id="timerLabel">
+          00:00 / 00:34
+        </div>
       </div>
 
       <div class="hud-bottom">
         <div class="hud-subtitle-box" id="subtitleBox">
-          <div class="hud-scene-tag" id="sceneTag">CENA 1: O DESPERTAR DA MATRIX</div>
+          <div class="hud-scene-tag" id="sceneTag">
+            <span>⚡</span> <span id="sceneTagName">CENA 1: O DESPERTAR DA MATRIX</span>
+          </div>
           <div class="hud-subtitle-text" id="subtitleText">
             "Esqueça tudo o que você sabe sobre comprar roupas pela internet."
           </div>
         </div>
 
-        <div class="timeline-bar-bg" onclick="seekCommercial(event)">
+        <div class="timeline-bar-bg" onclick="seekCommercial(event)" title="Clique para navegar na linha do tempo">
           <div class="timeline-bar-progress" id="timelineBar"></div>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- ATALHOS DE CENAS (CHAPTERS) -->
+  <div class="scene-chips">
+    <button class="scene-chip active" onclick="jumpToScene(0)">01 // INTRODUÇÃO</button>
+    <button class="scene-chip" onclick="jumpToScene(1)">02 // AVATAR 3D 360°</button>
+    <button class="scene-chip" onclick="jumpToScene(2)">03 // COLEÇÕES REATIVAS</button>
+    <button class="scene-chip" onclick="jumpToScene(3)">04 // IA METRIK 24/7</button>
+    <button class="scene-chip" onclick="jumpToScene(4)">05 // VISTA O FUTURO</button>
+  </div>
+
   <!-- PAINEL DE CONTROLES DO COMERCIAL -->
   <div class="controls-panel">
-    <button class="btn-cyber" id="playBtn" onclick="togglePlayCommercial()">
-      <span id="playIcon">▶</span> <span id="playLabel">INICIAR COMERCIAL</span>
+    <button class="btn-cyber-primary" id="playBtn" onclick="togglePlayCommercial()">
+      <span id="playIcon">▶</span> <span id="playLabel">ASSISTIR COMERCIAL</span>
     </button>
-    <button class="btn-cyber-secondary" onclick="restartCommercial()">
+    <button class="btn-cyber-tool" onclick="restartCommercial()">
       ⟲ REINICIAR
     </button>
-    <button class="btn-cyber-secondary" id="muteBtn" onclick="toggleMute()">
-      🔊 ÁUDIO: ATIVADO
+    <button class="btn-cyber-tool" id="muteBtn" onclick="toggleMute()">
+      🔊 ÁUDIO: ATIVO
     </button>
-    <button class="btn-cyber-secondary" onclick="downloadCommercialVideo()" id="recordBtn" style="border-color: #ec4899; color: #ec4899;">
+    <button class="btn-cyber-tool" onclick="toggleLetterbox()" id="letterboxBtn">
+      🎞️ CINEMA 2.39:1
+    </button>
+    <button class="btn-cyber-tool" onclick="toggleFullScreen()">
+      ⛶ TELA CHEIA
+    </button>
+    <button class="btn-cyber-tool" onclick="downloadCommercialVideo()" id="recordBtn" style="border-color: #ec4899; color: #f472b6;">
       📹 BAIXAR VÍDEO (.WEBM / MP4)
     </button>
   </div>
 
-  <!-- LINK PARA A PLATAFORMA -->
-  <div class="mt-5 text-center">
-    <a href="https://cyber-closet-certo.vercel.app/" target="_blank" class="text-cyan-400 hover:text-white text-sm font-semibold tracking-wider transition underline">
-      🌐 ACESSAR A PLATAFORMA ONLINE: cyber-closet-certo.vercel.app ↗
+  <!-- LINK DIRETO PARA O CYBER CLOSET -->
+  <div class="mt-4 text-center">
+    <a href="https://cyber-closet-certo.vercel.app/" target="_blank" class="inline-flex items-center gap-2 text-cyan-400 hover:text-white text-sm font-bold tracking-wider transition bg-cyan-950/40 hover:bg-cyan-900/60 border border-cyan-500/50 px-5 py-2 rounded-full shadow-[0_0_20px_rgba(0,243,255,0.25)]">
+      <span>🌐 EXPERIMENTAR CYBER CLOSET AGORA AO VIVO</span>
+      <span class="text-xs bg-cyan-400 text-black px-1.5 py-0.5 rounded font-black">ONLINE ↗</span>
     </a>
   </div>
 
+  <!-- ELEMENTO DE ÁUDIO DE ESTÚDIO PARA A NARRAÇÃO -->
+  <audio id="narratorAudio" src="assets/comercial_narracao.wav" preload="auto"></audio>
+
   <script>
     // =========================================================================
-    // 1. MOTOR GRÁFICO (CANVAS 2D & CINEMÁTICA 60FPS)
+    // 1. CONFIGURAÇÃO DO CANVAS E TIMING
     // =========================================================================
     const canvas = document.getElementById('commercialCanvas');
     const ctx = canvas.getContext('2d');
-    const W = 1280;
-    const H = 720;
+    const W = 1920;
+    const H = 1080;
+    canvas.width = W;
+    canvas.height = H;
+
+    const narratorAudio = document.getElementById('narratorAudio');
 
     let isPlaying = false;
     let isMuted = false;
     let currentTime = 0;
-    const TOTAL_DURATION = 27.0; // 27 segundos
+    const TOTAL_DURATION = 34.1; // Sincronizado perfeitamente com comercial_narracao.wav
     let lastTimestamp = 0;
 
-    // Roteiro de Cenas & Legendas
+    // Carregamento de imagem promocional em alta definição
+    const promoImage = new Image();
+    promoImage.src = 'assets/cyber_closet_promo_ad.jpg';
+    let promoLoaded = false;
+    promoImage.onload = () => { promoLoaded = true; };
+
+    // Roteiro Sincronizado com a Narração
     const SCENES = [
       {
         start: 0.0,
-        end: 5.0,
-        tag: 'CENA 1: INTRODUÇÃO DISTÓPICA',
+        end: 6.0,
+        tag: 'CENA 1: O DESPERTAR DA MATRIX',
         voiceText: 'Esqueça tudo o que você sabe sobre comprar roupas pela internet.',
-        title: 'CYBER CLOSET',
-        subtitle: 'MODA STREETWEAR // 2099',
+        title: 'CYBER CLOSET 2.0',
+        subtitle: 'A NOVA ERA DO FASHION TECH',
         accent: '#00f3ff'
       },
       {
-        start: 5.0,
-        end: 11.0,
+        start: 6.0,
+        end: 13.5,
         tag: 'CENA 2: AVATAR 3D EM TEMPO REAL',
         voiceText: 'Conheça o primeiro provador virtual com avatar tridimensional interativo em tempo real.',
         title: 'AVATAR 3D INTERATIVO',
-        subtitle: 'ROTAÇÃO 360° // CONTROLE BIOMÉTRICO',
+        subtitle: 'ROTAÇÃO 360° // CONTROLE BIOMÉTRICO THREE.JS',
         accent: '#a855f7'
       },
       {
-        start: 11.0,
-        end: 17.5,
-        tag: 'CENA 3: PROVADOR VIRTUAL STREETWEAR',
-        voiceText: 'Personalize seu estilo, troque cortes de cabelo e experimente todas as peças na hora.',
-        title: 'PROVADOR VIRTUAL',
-        subtitle: 'DROP EXCLUSIVO DE ROUPAS & SNEAKERS',
+        start: 13.5,
+        end: 20.0,
+        tag: 'CENA 3: PROVADOR VIRTUAL & COLEÇÕES REATIVAS',
+        voiceText: 'Personalize seu estilo e experimente peças streetwear na hora.',
+        title: 'COLEÇÕES REATIVAS',
+        subtitle: 'VERÃO TECH • INVERNO CIBERNÉTICO • EDIÇÃO LIMITADA',
         accent: '#ec4899'
       },
       {
-        start: 17.5,
-        end: 22.5,
-        tag: 'CENA 4: INTELIGÊNCIA ARTIFICIAL',
-        voiceText: 'Com a inteligência artificial do Metrik vinte e quatro sete para montar o look perfeito para você.',
+        start: 20.0,
+        end: 25.5,
+        tag: 'CENA 4: INTELIGÊNCIA ARTIFICIAL METRIK 24/7',
+        voiceText: 'Com a inteligência artificial do Metrik vinte e quatro sete.',
         title: 'METRIK 24/7',
-        subtitle: 'ASSISTENTE VIRTUAL COM IA INTEGRADA',
+        subtitle: 'PERSONAL STYLIST COM REDE NEURAL INTEGRADA',
         accent: '#00f3ff'
       },
       {
-        start: 22.5,
-        end: 27.0,
-        tag: 'CENA 5: O FUTURO DO ESTILO',
-        voiceText: 'Cyber Closet. O futuro não se espera. Ele se veste. Acesse agora!',
-        title: 'VISTA O FUTURO',
+        start: 25.5,
+        end: 34.1,
+        tag: 'CENA 5: VISTA O FUTURO',
+        voiceText: 'Cyber Closet. O futuro não se espera. Ele se veste. Acesse agora cyber-closet-certo.vercel.app!',
+        title: 'O FUTURO NÃO SE ESPERA. ELE SE VESTE.',
         subtitle: 'cyber-closet-certo.vercel.app',
         accent: '#a855f7'
       }
     ];
 
-    // Partículas de fundo
+    // Partículas flutuantes de ambiente
     const particles = [];
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < 100; i++) {
       particles.push({
         x: Math.random() * W,
         y: Math.random() * H,
-        size: Math.random() * 3 + 1,
-        speedX: (Math.random() - 0.5) * 1.5,
-        speedY: (Math.random() - 0.5) * 1.5,
+        size: Math.random() * 4 + 1.5,
+        speedX: (Math.random() - 0.5) * 1.8,
+        speedY: (Math.random() - 0.5) * 1.8,
         color: Math.random() > 0.5 ? '#00f3ff' : '#a855f7',
         alpha: Math.random() * 0.8 + 0.2
       });
     }
 
-    function renderScene(t) {
-      // Limpeza com rastro suave
-      ctx.fillStyle = '#060610';
+    // =========================================================================
+    // 2. RENDERIZADOR GRÁFICO DO COMERCIAL (60 FPS)
+    // =========================================================================
+    function renderCommercial(t) {
+      // Limpeza com tom cyberpunk profundo
+      ctx.fillStyle = '#04040c';
       ctx.fillRect(0, 0, W, H);
 
-      // Grade Cyberpunk em perspectiva
-      drawCyberGrid(t);
+      const sceneIndex = SCENES.findIndex(s => t >= s.start && t < s.end);
+      const curIndex = sceneIndex !== -1 ? sceneIndex : (t >= TOTAL_DURATION ? 4 : 0);
+      const sc = SCENES[curIndex];
+      const p = Math.max(0, Math.min(1, (t - sc.start) / (sc.end - sc.start)));
 
-      // Partículas
+      // Render da cena correspondente
+      if (curIndex === 0) {
+        drawScene1(t, p);
+      } else if (curIndex === 1) {
+        drawScene2(t, p);
+      } else if (curIndex === 2) {
+        drawScene3(t, p);
+      } else if (curIndex === 3) {
+        drawScene4(t, p);
+      } else {
+        drawScene5(t, p);
+      }
+
+      // Efeitos de finalização cinemática
+      drawParticles(t);
+      drawAnamorphicFlares(t, sc.accent);
+      drawHUDTelemetry(t, curIndex);
+    }
+
+    // Partículas
+    function drawParticles(t) {
+      ctx.save();
       particles.forEach(p => {
         p.x += p.speedX;
         p.y += p.speedY;
@@ -347,51 +498,68 @@
         if (p.y > H) p.y = 0;
 
         ctx.fillStyle = p.color;
-        ctx.globalAlpha = p.alpha * (0.6 + Math.sin(t * 4 + p.x) * 0.4);
+        ctx.globalAlpha = p.alpha * (0.6 + Math.sin(t * 3 + p.x * 0.05) * 0.4);
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
-        ctx.globalAlpha = 1.0;
       });
-
-      // Cena atual
-      const currentScene = SCENES.find(s => t >= s.start && t < s.end) || SCENES[SCENES.length - 1];
-      const sceneProgress = (t - currentScene.start) / (currentScene.end - currentScene.start);
-
-      // Desenhar conteúdo específico de cada cena
-      if (t < 5.0) {
-        drawScene1(t, sceneProgress);
-      } else if (t < 11.0) {
-        drawScene2(t, sceneProgress);
-      } else if (t < 17.5) {
-        drawScene3(t, sceneProgress);
-      } else if (t < 22.5) {
-        drawScene4(t, sceneProgress);
-      } else {
-        drawScene5(t, sceneProgress);
-      }
-
-      // Scanner Laser Horizontal
-      drawLaserSweep(t);
+      ctx.restore();
     }
 
-    // Fundo Grade Perspectiva
-    function drawCyberGrid(t) {
+    // Flare Anamórfico Horizontal
+    function drawAnamorphicFlares(t, color) {
       ctx.save();
-      ctx.strokeStyle = 'rgba(168, 85, 247, 0.15)';
-      ctx.lineWidth = 1.5;
-      const horizon = H * 0.65;
-      const step = 40;
+      const flareY = H * 0.5 + Math.sin(t * 1.5) * 120;
+      const grad = ctx.createLinearGradient(0, flareY, W, flareY);
+      grad.addColorStop(0, 'transparent');
+      grad.addColorStop(0.3, 'rgba(0, 243, 255, 0.04)');
+      grad.addColorStop(0.5, color === '#ec4899' ? 'rgba(236, 72, 153, 0.18)' : 'rgba(0, 243, 255, 0.22)');
+      grad.addColorStop(0.7, 'rgba(168, 85, 247, 0.05)');
+      grad.addColorStop(1, 'transparent');
 
-      for (let x = -W; x < W * 2; x += 80) {
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, flareY - 12, W, 24);
+      ctx.restore();
+    }
+
+    // Telemetria HUD
+    function drawHUDTelemetry(t, sceneIdx) {
+      ctx.save();
+      ctx.font = '600 18px "JetBrains Mono", monospace';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.35)';
+      ctx.fillText(`FRAME: ${Math.floor(t * 60).toString().padStart(5, '0')}`, 60, H - 55);
+      ctx.fillText(`NEURAL_LATENCY: 1.2MS`, 240, H - 55);
+      ctx.fillText(`AUDIO_SRC: STUDIO_HQ`, 490, H - 55);
+
+      // Mini VU Meter animado no canto direito
+      const vuX = W - 260;
+      const vuY = H - 65;
+      for (let i = 0; i < 16; i++) {
+        const val = Math.abs(Math.sin(t * 12 + i * 0.7));
+        const barH = val * 22 + 4;
+        ctx.fillStyle = i > 12 ? '#ff0055' : (i > 8 ? '#ec4899' : '#00f3ff');
+        ctx.fillRect(vuX + i * 11, vuY + (26 - barH), 7, barH);
+      }
+      ctx.restore();
+    }
+
+    // Grade Cyberpunk em perspectiva
+    function drawCyberGrid(t, speed = 60) {
+      ctx.save();
+      ctx.strokeStyle = 'rgba(168, 85, 247, 0.22)';
+      ctx.lineWidth = 2;
+      const horizon = H * 0.65;
+      const step = 60;
+
+      for (let x = -W; x < W * 2; x += 110) {
         ctx.beginPath();
-        ctx.moveTo(W / 2 + (x - W / 2) * 0.1, horizon);
+        ctx.moveTo(W / 2 + (x - W / 2) * 0.08, horizon);
         ctx.lineTo(x, H);
         ctx.stroke();
       }
 
-      const offset = (t * 80) % step;
-      for (let y = horizon; y <= H; y += Math.pow((y - horizon + 10) / 10, 1.35)) {
+      const offset = (t * speed) % step;
+      for (let y = horizon; y <= H; y += Math.pow((y - horizon + 10) / 10, 1.45)) {
         ctx.beginPath();
         ctx.moveTo(0, y);
         ctx.lineTo(W, y);
@@ -400,388 +568,593 @@
       ctx.restore();
     }
 
-    // CENA 1: LOGO E REVELAÇÃO
+    // =========================================================================
+    // CENA 1: O DESPERTAR DA MATRIX (INTRO)
+    // =========================================================================
     function drawScene1(t, p) {
       ctx.save();
-      const scale = 1.0 + (1 - p) * 0.15;
-      ctx.translate(W / 2, H / 2 - 20);
-      ctx.scale(scale, scale);
 
-      // Círculo Neon central
+      // Poster com efeito Ken Burns cinematográfico
+      if (promoLoaded) {
+        const scale = 1.05 + p * 0.08;
+        const panX = (1 - p) * -40;
+        const panY = (1 - p) * -30;
+        ctx.save();
+        ctx.translate(W / 2 + panX, H / 2 + panY);
+        ctx.scale(scale, scale);
+        ctx.globalAlpha = 0.55;
+        ctx.drawImage(promoImage, -W / 2, -H / 2, W, H);
+        ctx.restore();
+      }
+
+      // Vinheta e grade
+      const radGrad = ctx.createRadialGradient(W / 2, H / 2, 100, W / 2, H / 2, 800);
+      radGrad.addColorStop(0, 'rgba(5, 5, 20, 0.4)');
+      radGrad.addColorStop(1, 'rgba(2, 2, 8, 0.95)');
+      ctx.fillStyle = radGrad;
+      ctx.fillRect(0, 0, W, H);
+
+      drawCyberGrid(t, 80);
+
+      // Círculo Neon Pulverizado
+      const cx = W / 2;
+      const cy = H / 2 - 30;
+
       ctx.strokeStyle = '#00f3ff';
-      ctx.lineWidth = 3;
+      ctx.lineWidth = 4;
       ctx.shadowColor = '#00f3ff';
-      ctx.shadowBlur = 30;
+      ctx.shadowBlur = 35;
       ctx.beginPath();
-      ctx.arc(0, 0, 120 + Math.sin(t * 5) * 8, 0, Math.PI * 2);
+      ctx.arc(cx, cy, 180 + Math.sin(t * 6) * 12, 0, Math.PI * 2);
       ctx.stroke();
 
-      // Cabide Holográfico Estilizado (Logo Cyber Closet)
+      // Cabide Holográfico
       ctx.strokeStyle = '#ffffff';
-      ctx.lineWidth = 6;
+      ctx.lineWidth = 8;
+      ctx.shadowColor = '#ffffff';
+      ctx.shadowBlur = 20;
       ctx.beginPath();
-      ctx.arc(0, -50, 22, Math.PI, 0, false);
-      ctx.moveTo(-90, 30);
-      ctx.lineTo(0, -28);
-      ctx.lineTo(90, 30);
+      ctx.arc(cx, cy - 80, 36, Math.PI, 0, false);
+      ctx.moveTo(cx - 140, cy + 50);
+      ctx.lineTo(cx, cy - 44);
+      ctx.lineTo(cx + 140, cy + 50);
       ctx.closePath();
       ctx.stroke();
 
-      // Texto Principal com Glitch
-      ctx.font = '900 68px Syne, sans-serif';
+      // Glitch Chromatic Aberration no Texto Principal
+      const glitch = Math.sin(t * 30) > 0.85 ? 6 : 0;
+
+      ctx.font = '900 96px "Syne", sans-serif';
       ctx.textAlign = 'center';
+
+      if (glitch > 0) {
+        ctx.fillStyle = '#ff0055';
+        ctx.fillText('CYBER CLOSET', cx + glitch, cy + 185);
+        ctx.fillStyle = '#00f3ff';
+        ctx.fillText('CYBER CLOSET', cx - glitch, cy + 185);
+      }
+
       ctx.fillStyle = '#ffffff';
       ctx.shadowColor = '#a855f7';
-      ctx.shadowBlur = 25;
-      ctx.fillText('CYBER CLOSET', 0, 120);
+      ctx.shadowBlur = 40;
+      ctx.fillText('CYBER CLOSET', cx, cy + 185);
 
-      // Subtítulo Tag
-      ctx.font = '700 20px Space Grotesk, sans-serif';
+      // Badge 2.0
+      ctx.font = '800 28px "Space Grotesk", sans-serif';
       ctx.fillStyle = '#00f3ff';
       ctx.shadowColor = '#00f3ff';
-      ctx.shadowBlur = 15;
-      ctx.fillText('MODA STREETWEAR // MATRIX 2099', 0, 155);
+      ctx.shadowBlur = 20;
+      ctx.fillText('MODA STREETWEAR // VIRTUAL PROVADOR 2099', cx, cy + 240);
 
       ctx.restore();
     }
 
-    // CENA 2: AVATAR 3D NO PÓDIO
+    // =========================================================================
+    // CENA 2: AVATAR 3D EM TEMPO REAL (PÓDIO 360°)
+    // =========================================================================
     function drawScene2(t, p) {
       ctx.save();
-      const cx = W / 2;
-      const cy = H / 2 + 30;
+      drawCyberGrid(t, 120);
 
-      // Pódio Holográfico Néon (Elipses em perspectiva)
-      const rot = t * 2;
+      const cx = W / 2;
+      const cy = H / 2 + 60;
+
+      // Pódio Tridimensional Holográfico
+      ctx.save();
+      ctx.translate(cx, cy + 180);
+
+      // Anéis de rotação
+      const rot = t * 1.8;
+      for (let r = 260; r >= 140; r -= 40) {
+        ctx.strokeStyle = r === 260 ? '#00f3ff' : '#a855f7';
+        ctx.lineWidth = 3;
+        ctx.shadowColor = ctx.strokeStyle;
+        ctx.shadowBlur = 20;
+        ctx.beginPath();
+        ctx.ellipse(0, 0, r, r * 0.32, 0, 0, Math.PI * 2);
+        ctx.stroke();
+      }
+
+      // Marcadores angulares de graus
+      ctx.font = '700 16px "JetBrains Mono", monospace';
+      ctx.fillStyle = '#00f3ff';
+      ctx.shadowBlur = 10;
+      const deg = Math.floor((rot * 180 / Math.PI) % 360);
+      ctx.fillText(`AZIMUTH: ${deg}° // 360° ORBIT`, -110, 45);
+      ctx.restore();
+
+      // Silhueta do Avatar Estilizado Cyberpunk
+      ctx.save();
+      ctx.translate(cx, cy - 80);
+
+      // Feixe de elevação holográfica vertical
+      const beamGrad = ctx.createLinearGradient(0, -320, 0, 240);
+      beamGrad.addColorStop(0, 'rgba(0, 243, 255, 0.0)');
+      beamGrad.addColorStop(0.5, 'rgba(0, 243, 255, 0.15)');
+      beamGrad.addColorStop(1, 'rgba(168, 85, 247, 0.35)');
+      ctx.fillStyle = beamGrad;
+      ctx.fillRect(-180, -320, 360, 560);
+
+      // Cabeça estilizada com Visor Neon Cyberpunk
+      const floatY = Math.sin(t * 3) * 8;
+
+      ctx.fillStyle = '#1e1b4b';
       ctx.strokeStyle = '#00f3ff';
       ctx.lineWidth = 4;
       ctx.shadowColor = '#00f3ff';
       ctx.shadowBlur = 25;
+
+      // Cabeça
       ctx.beginPath();
-      ctx.ellipse(cx, cy + 180, 220, 45, 0, 0, Math.PI * 2);
+      ctx.roundRect(-45, -230 + floatY, 90, 100, 35);
+      ctx.fill();
       ctx.stroke();
 
-      ctx.strokeStyle = '#ff007f';
-      ctx.lineWidth = 3;
-      ctx.shadowColor = '#ff007f';
+      // Visor Neon Brilhante
+      ctx.fillStyle = '#00f3ff';
+      ctx.shadowColor = '#00f3ff';
+      ctx.shadowBlur = 30;
+      ctx.beginPath();
+      ctx.roundRect(-40, -195 + floatY, 80, 28, 12);
+      ctx.fill();
+
+      // Jaqueta Streetwear Tech
+      ctx.fillStyle = '#0f172a';
+      ctx.strokeStyle = '#a855f7';
+      ctx.lineWidth = 4;
+      ctx.shadowColor = '#a855f7';
+      ctx.beginPath();
+      ctx.roundRect(-85, -115 + floatY, 170, 180, 22);
+      ctx.fill();
+      ctx.stroke();
+
+      // Zíper Neon e Detalhes
+      ctx.strokeStyle = '#ec4899';
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(0, -115 + floatY);
+      ctx.lineTo(0, 65 + floatY);
+      ctx.stroke();
+
+      // Braços Dinâmicos
+      ctx.strokeStyle = '#00f3ff';
+      ctx.lineWidth = 14;
+      ctx.lineCap = 'round';
+      ctx.beginPath();
+      ctx.moveTo(-85, -95 + floatY);
+      ctx.lineTo(-125, -20 + floatY);
+      ctx.lineTo(-90, 40 + floatY);
+      ctx.moveTo(85, -95 + floatY);
+      ctx.lineTo(125, -20 + floatY);
+      ctx.lineTo(90, 40 + floatY);
+      ctx.stroke();
+
+      // Pernas & Sneakers
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 18;
+      ctx.beginPath();
+      ctx.moveTo(-40, 65 + floatY);
+      ctx.lineTo(-45, 190);
+      ctx.moveTo(40, 65 + floatY);
+      ctx.lineTo(45, 190);
+      ctx.stroke();
+
+      // Sneakers Neon Cyber
+      ctx.fillStyle = '#ec4899';
+      ctx.shadowColor = '#ec4899';
       ctx.shadowBlur = 20;
+      ctx.fillRect(-70, 185, 45, 20);
+      ctx.fillRect(25, 185, 45, 20);
+
+      ctx.restore();
+
+      // Callouts Holográficos Laterais
+      drawCallout(cx - 240, cy - 180, 'VISOR CYBER // HUD HUD-OS', '#00f3ff', true);
+      drawCallout(cx + 240, cy - 40, 'JAQUETA BOMBER OVERSIZED', '#a855f7', false);
+      drawCallout(cx - 240, cy + 120, 'SNEAKERS RETRO-FUTURISTAS', '#ec4899', true);
+
+      ctx.restore();
+    }
+
+    function drawCallout(x, y, text, color, isLeft) {
+      ctx.save();
+      ctx.font = '700 20px "Space Grotesk", sans-serif';
+      ctx.fillStyle = '#ffffff';
+      ctx.shadowColor = color;
+      ctx.shadowBlur = 15;
+
+      // Ponto de mira
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
       ctx.beginPath();
-      ctx.ellipse(cx, cy + 180, 170, 35, 0, 0, Math.PI * 2);
+      ctx.arc(isLeft ? x + 180 : x - 180, y, 6, 0, Math.PI * 2);
       ctx.stroke();
 
-      // Silhueta do Avatar 3D com rotação estilizada
-      const avatarAngle = t * 1.5;
+      ctx.beginPath();
+      ctx.moveTo(isLeft ? x + 174 : x - 174, y);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+
+      ctx.textAlign = isLeft ? 'right' : 'left';
+      ctx.fillText(text, isLeft ? x - 10 : x + 10, y + 6);
+      ctx.restore();
+    }
+
+    // =========================================================================
+    // CENA 3: COLEÇÕES REATIVAS & PROVADOR (VERÃO, INVERNO, LIMITADA)
+    // =========================================================================
+    function drawScene3(t, p) {
       ctx.save();
-      ctx.translate(cx, cy - 20);
+      drawCyberGrid(t, 140);
 
-      // Cabeça estilizada
-      ctx.fillStyle = '#fce0d2';
-      ctx.shadowColor = 'rgba(0,0,0,0.5)';
-      ctx.shadowBlur = 10;
+      const cx = W / 2;
+
+      // Título da Cena
+      ctx.font = '900 58px "Syne", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#ffffff';
+      ctx.shadowColor = '#ec4899';
+      ctx.shadowBlur = 30;
+      ctx.fillText('COLEÇÕES REATIVAS 2099', cx, 160);
+
+      ctx.font = '700 22px "Space Grotesk", sans-serif';
+      ctx.fillStyle = '#00f3ff';
+      ctx.shadowColor = '#00f3ff';
+      ctx.shadowBlur = 15;
+      ctx.fillText('3 DROPS EXCLUSIVOS COM AMBIENTAÇÃO DINÂMICA & PROVADOR 3D', cx, 205);
+
+      // 3 CARDS CINEMATOGRÁFICOS DAS COLEÇÕES
+      const collections = [
+        {
+          name: 'VERÃO TECH',
+          color1: '#f59e0b',
+          color2: '#00f3ff',
+          icon: '☀️',
+          desc: 'Tons solares de Neo-Miami',
+          sub: 'ROUPAS LEVES // 14 ITENS'
+        },
+        {
+          name: 'INVERNO CIBERNÉTICO',
+          color1: '#38bdf8',
+          color2: '#1e3a8a',
+          icon: '❄️',
+          desc: 'Proteção polar em Neo-Siberia',
+          sub: 'TECH FLEECE & BOMBERS // 16 ITENS'
+        },
+        {
+          name: 'EDIÇÃO LIMITADA',
+          color1: '#a855f7',
+          color2: '#ec4899',
+          icon: '⚡',
+          desc: 'Drops raros e numerados 2099',
+          sub: 'GRAIL STREETWEAR // 12 ITENS'
+        }
+      ];
+
+      const cardW = 380;
+      const cardH = 480;
+      const spacing = 430;
+      const startX = cx - spacing;
+
+      collections.forEach((col, i) => {
+        const x = startX + i * spacing;
+        const bounce = Math.sin(t * 3.5 + i * 1.6) * 12;
+        const y = 320 + bounce;
+
+        ctx.save();
+        ctx.translate(x, y);
+
+        // Brilho do Card
+        ctx.fillStyle = 'rgba(10, 10, 26, 0.9)';
+        ctx.strokeStyle = col.color1;
+        ctx.lineWidth = 3.5;
+        ctx.shadowColor = col.color1;
+        ctx.shadowBlur = 30;
+
+        ctx.beginPath();
+        ctx.roundRect(-cardW / 2, 0, cardW, cardH, 24);
+        ctx.fill();
+        ctx.stroke();
+
+        // Shimmer reativo varrendo o card
+        const shimmerOffset = ((t * 220 + i * 100) % (cardW * 2)) - cardW;
+        const shimGrad = ctx.createLinearGradient(shimmerOffset - 60, 0, shimmerOffset + 60, 0);
+        shimGrad.addColorStop(0, 'transparent');
+        shimGrad.addColorStop(0.5, 'rgba(255, 255, 255, 0.22)');
+        shimGrad.addColorStop(1, 'transparent');
+        ctx.fillStyle = shimGrad;
+        ctx.beginPath();
+        ctx.roundRect(-cardW / 2, 0, cardW, cardH, 24);
+        ctx.fill();
+
+        // Top Banner Cor
+        const topGrad = ctx.createLinearGradient(-cardW / 2, 0, cardW / 2, 120);
+        topGrad.addColorStop(0, col.color1);
+        topGrad.addColorStop(1, col.color2);
+        ctx.fillStyle = topGrad;
+        ctx.beginPath();
+        ctx.roundRect(-cardW / 2, 0, cardW, 120, [24, 24, 0, 0]);
+        ctx.fill();
+
+        // Ícone e Nome
+        ctx.font = '900 50px "Space Grotesk", sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText(col.icon, 0, 80);
+
+        ctx.font = '900 30px "Syne", sans-serif';
+        ctx.fillStyle = '#ffffff';
+        ctx.shadowColor = '#000000';
+        ctx.shadowBlur = 10;
+        ctx.fillText(col.name, 0, 185);
+
+        ctx.font = '700 16px "JetBrains Mono", monospace';
+        ctx.fillStyle = col.color1;
+        ctx.shadowBlur = 0;
+        ctx.fillText(col.sub, 0, 225);
+
+        ctx.font = '500 18px "Space Grotesk", sans-serif';
+        ctx.fillStyle = '#94a3b8';
+        ctx.fillText(col.desc, 0, 275);
+
+        // Selo Reativo "EXPERIMENTAR NO AVATAR"
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.08)';
+        ctx.strokeStyle = col.color2;
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.roundRect(-140, 360, 280, 55, 28);
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.font = '800 16px "Space Grotesk", sans-serif';
+        ctx.fillStyle = '#ffffff';
+        ctx.fillText('VER LOOKS NO PROVADOR →', 0, 395);
+
+        ctx.restore();
+      });
+
+      // Callout do novo recurso: TIRAR FOTOS
+      ctx.save();
+      ctx.translate(cx, H - 120);
+      ctx.fillStyle = 'rgba(6, 6, 20, 0.9)';
+      ctx.strokeStyle = '#00f3ff';
+      ctx.lineWidth = 2;
+      ctx.shadowColor = '#00f3ff';
+      ctx.shadowBlur = 25;
       ctx.beginPath();
-      ctx.arc(0, -110, 45, 0, Math.PI * 2);
+      ctx.roundRect(-300, 0, 600, 60, 30);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.font = '800 20px "Space Grotesk", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#ffffff';
+      ctx.fillText('📸 NOVIDADE: FOTOGRAFE E COMPARTILHE SEU LOOK POLAROID', 0, 37);
+      ctx.restore();
+
+      ctx.restore();
+    }
+
+    // =========================================================================
+    // CENA 4: INTELIGÊNCIA ARTIFICIAL METRIK 24/7
+    // =========================================================================
+    function drawScene4(t, p) {
+      ctx.save();
+      drawCyberGrid(t, 90);
+
+      const cx = W / 2;
+      const cy = H / 2 - 20;
+
+      // Esfera de IA Central com Anéis Orbitais
+      const floatY = Math.sin(t * 3.5) * 12;
+
+      // Anéis de Energia Quântica
+      for (let i = 0; i < 4; i++) {
+        ctx.save();
+        ctx.translate(cx, cy - 80 + floatY);
+        ctx.rotate(t * (1.2 + i * 0.4) * (i % 2 === 0 ? 1 : -1));
+        ctx.strokeStyle = i % 2 === 0 ? '#00f3ff' : '#a855f7';
+        ctx.lineWidth = 3;
+        ctx.shadowColor = ctx.strokeStyle;
+        ctx.shadowBlur = 25;
+        ctx.beginPath();
+        ctx.ellipse(0, 0, 160 + i * 25, (160 + i * 25) * 0.38, 0, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.restore();
+      }
+
+      // Núcleo da IA Metrik
+      ctx.save();
+      ctx.translate(cx, cy - 80 + floatY);
+      const coreGrad = ctx.createRadialGradient(0, 0, 10, 0, 0, 85);
+      coreGrad.addColorStop(0, '#ffffff');
+      coreGrad.addColorStop(0.3, '#00f3ff');
+      coreGrad.addColorStop(0.8, '#a855f7');
+      coreGrad.addColorStop(1, 'transparent');
+      ctx.fillStyle = coreGrad;
+      ctx.shadowColor = '#00f3ff';
+      ctx.shadowBlur = 50;
+      ctx.beginPath();
+      ctx.arc(0, 0, 85, 0, Math.PI * 2);
       ctx.fill();
 
-      // Cabelo Tech
-      ctx.fillStyle = '#0e101c';
+      // Olhos Holográficos de Robô
+      ctx.fillStyle = '#060618';
       ctx.beginPath();
-      ctx.arc(0, -125, 46, Math.PI, 0);
+      ctx.roundRect(-45, -12, 35, 24, 10);
+      ctx.roundRect(10, -12, 35, 24, 10);
       ctx.fill();
 
-      // Olhos néon
-      const eyeOffset = Math.sin(avatarAngle) * 12;
       ctx.fillStyle = '#00f3ff';
       ctx.shadowColor = '#00f3ff';
       ctx.shadowBlur = 15;
       ctx.beginPath();
-      ctx.arc(-16 + eyeOffset, -108, 6, 0, Math.PI * 2);
-      ctx.arc(16 + eyeOffset, -108, 6, 0, Math.PI * 2);
+      ctx.arc(-28, 0, 8, 0, Math.PI * 2);
+      ctx.arc(28, 0, 8, 0, Math.PI * 2);
       ctx.fill();
+      ctx.restore();
 
-      // Sorriso
-      ctx.strokeStyle = '#d48b5b';
+      // Caixa de Diálogo Inteligente
+      ctx.save();
+      ctx.fillStyle = 'rgba(8, 8, 25, 0.92)';
+      ctx.strokeStyle = '#00f3ff';
       ctx.lineWidth = 3;
-      ctx.beginPath();
-      ctx.arc(0 + eyeOffset * 0.8, -95, 12, 0.2, Math.PI - 0.2);
-      ctx.stroke();
-
-      // Camiseta Streetwear Preta
-      ctx.fillStyle = '#111424';
-      ctx.fillRect(-65, -60, 130, 120);
-
-      // Logo Patch Néon
-      ctx.fillStyle = '#00f3ff';
-      ctx.fillRect(-15, -40, 30, 22);
-
-      // Braços
-      ctx.fillStyle = '#fce0d2';
-      ctx.fillRect(-88, -50, 20, 95);
-      ctx.fillRect(68, -50, 20, 95);
-
-      // Calça Cargo
-      ctx.fillStyle = '#1b1f38';
-      ctx.fillRect(-55, 60, 48, 115);
-      ctx.fillRect(7, 60, 48, 115);
-
-      // Bolsos 3D
-      ctx.fillStyle = '#282d4d';
-      ctx.fillRect(-62, 90, 12, 35);
-      ctx.fillRect(50, 90, 12, 35);
-
-      // Tênis High-Top
-      ctx.fillStyle = '#ffffff';
-      ctx.fillRect(-60, 175, 55, 20);
-      ctx.fillRect(5, 175, 55, 20);
-      ctx.fillStyle = '#00f3ff';
-      ctx.fillRect(-58, 170, 50, 6);
-      ctx.fillRect(7, 170, 50, 6);
-
-      ctx.restore();
-
-      // Anéis de Medição Biométrica HUD
-      ctx.strokeStyle = 'rgba(0, 243, 255, 0.6)';
-      ctx.lineWidth = 1;
-      ctx.setLineDash([4, 4]);
-      ctx.strokeRect(cx - 160, cy - 200, 320, 400);
-      ctx.setLineDash([]);
-
-      ctx.font = '700 14px Space Grotesk, sans-serif';
-      ctx.fillStyle = '#00f3ff';
-      ctx.fillText('[ ROTATION: 360° WEBGL ]', cx - 145, cy - 180);
-      ctx.fillText('[ HEIGHT: 1.82M // SLIM-FIT ]', cx - 145, cy + 180);
-
-      ctx.restore();
-    }
-
-    // CENA 3: PROVADOR VIRTUAL E CATÁLOGO
-    function drawScene3(t, p) {
-      ctx.save();
-      const cx = W / 2;
-
-      // 3 Cards de Peças Streetwear em Carrossel
-      const items = [
-        { name: 'HOODIE OVERSIZED ONYX', cat: 'MOLETOM TECH', color: '#a855f7', icon: '🥋' },
-        { name: 'CARGO PANTS MATRIX', cat: 'CALÇA STREET', color: '#00f3ff', icon: '👖' },
-        { name: 'SNEAKERS HIGH-TOP CYBR', cat: 'CALÇADO AR', color: '#ec4899', icon: '👟' }
-      ];
-
-      items.forEach((item, idx) => {
-        const offset = (idx - 1) * 320 + Math.sin(t * 3 + idx) * 15;
-        const x = cx + offset;
-        const y = H / 2 - 30;
-
-        ctx.fillStyle = 'rgba(14, 14, 30, 0.85)';
-        ctx.strokeStyle = item.color;
-        ctx.lineWidth = 2;
-        ctx.shadowColor = item.color;
-        ctx.shadowBlur = 20;
-
-        // Card com cantos arredondados
-        ctx.beginPath();
-        ctx.roundRect(x - 140, y - 180, 280, 360, 20);
-        ctx.fill();
-        ctx.stroke();
-
-        // Ícone em destaque
-        ctx.font = '72px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText(item.icon, x, y - 40);
-
-        // Nome
-        ctx.font = '800 18px Syne, sans-serif';
-        ctx.fillStyle = '#ffffff';
-        ctx.shadowBlur = 0;
-        ctx.fillText(item.name, x, y + 60);
-
-        // Categoria
-        ctx.font = '700 13px Space Grotesk, sans-serif';
-        ctx.fillStyle = item.color;
-        ctx.fillText(item.cat, x, y + 85);
-
-        // Botão Experimentar
-        ctx.fillStyle = item.color;
-        ctx.beginPath();
-        ctx.roundRect(x - 100, y + 115, 200, 36, 18);
-        ctx.fill();
-
-        ctx.fillStyle = '#000000';
-        ctx.font = '800 13px Space Grotesk, sans-serif';
-        ctx.fillText('⚡ EXPERIMENTAR NO AVATAR', x, y + 138);
-      });
-
-      ctx.restore();
-    }
-
-    // CENA 4: METRIK 24/7 ASSISTENTE IA
-    function drawScene4(t, p) {
-      ctx.save();
-      const cx = W / 2;
-      const cy = H / 2 - 20;
-
-      // Robô Metrik Holográfico Central
-      const floatY = Math.sin(t * 4) * 15;
-
-      // Cabeça do Robô
-      ctx.fillStyle = '#ffffff';
       ctx.shadowColor = '#00f3ff';
       ctx.shadowBlur = 35;
       ctx.beginPath();
-      ctx.roundRect(cx - 100, cy - 110 + floatY, 200, 160, 40);
-      ctx.fill();
-
-      // Viseira Preta do Robô
-      ctx.fillStyle = '#080816';
-      ctx.beginPath();
-      ctx.roundRect(cx - 80, cy - 90 + floatY, 160, 100, 25);
-      ctx.fill();
-
-      // Olhos Ciano do Robô
-      ctx.fillStyle = '#00f3ff';
-      ctx.shadowColor = '#00f3ff';
-      ctx.shadowBlur = 20;
-      ctx.beginPath();
-      ctx.ellipse(cx - 38, cy - 40 + floatY, 18, 22, 0, 0, Math.PI * 2);
-      ctx.ellipse(cx + 38, cy - 40 + floatY, 18, 22, 0, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Antenas Néon
-      ctx.strokeStyle = '#ec4899';
-      ctx.lineWidth = 5;
-      ctx.beginPath();
-      ctx.moveTo(cx - 50, cy - 110 + floatY);
-      ctx.lineTo(cx - 75, cy - 145 + floatY);
-      ctx.moveTo(cx + 50, cy - 110 + floatY);
-      ctx.lineTo(cx + 75, cy - 145 + floatY);
-      ctx.stroke();
-
-      // Balão de Diálogo de IA
-      ctx.fillStyle = 'rgba(12, 12, 28, 0.9)';
-      ctx.strokeStyle = '#a855f7';
-      ctx.lineWidth = 2;
-      ctx.shadowColor = '#a855f7';
-      ctx.shadowBlur = 25;
-      ctx.beginPath();
-      ctx.roundRect(cx - 240, cy + 100, 480, 85, 16);
+      ctx.roundRect(cx - 480, cy + 120, 960, 140, 24);
       ctx.fill();
       ctx.stroke();
 
-      ctx.font = '800 20px Syne, sans-serif';
+      ctx.font = '800 24px "JetBrains Mono", monospace';
       ctx.fillStyle = '#00f3ff';
       ctx.textAlign = 'center';
-      ctx.fillText('METRIK 24/7: "SUGIRO ESTE LOOK STREETWEAR!"', cx, cy + 135);
+      ctx.fillText('METRIK 24/7 // ASSISTENTE DE MODA CIBERNÉTICA', cx, cy + 165);
 
-      ctx.font = '600 14px Space Grotesk, sans-serif';
-      ctx.fillStyle = '#e2e8f0';
-      ctx.fillText('Consultoria de moda inteligente com Inteligência Artificial', cx, cy + 162);
-
-      ctx.restore();
-    }
-
-    // CENA 5: CALL TO ACTION FINAL
-    function drawScene5(t, p) {
-      ctx.save();
-      const cx = W / 2;
-      const cy = H / 2 - 20;
-
-      // Glow radial expansivo
-      const gradient = ctx.createRadialGradient(cx, cy, 20, cx, cy, 400);
-      gradient.addColorStop(0, 'rgba(168, 85, 247, 0.35)');
-      gradient.addColorStop(0.6, 'rgba(0, 243, 255, 0.15)');
-      gradient.addColorStop(1, 'transparent');
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, W, H);
-
-      // Título Impactante
-      ctx.font = '900 64px Syne, sans-serif';
-      ctx.textAlign = 'center';
+      ctx.font = '700 28px "Space Grotesk", sans-serif';
       ctx.fillStyle = '#ffffff';
-      ctx.shadowColor = '#ec4899';
-      ctx.shadowBlur = 35;
-      ctx.fillText('O FUTURO NÃO SE ESPERA.', cx, cy - 60);
-
-      ctx.fillStyle = '#00f3ff';
-      ctx.shadowColor = '#00f3ff';
-      ctx.fillText('ELE SE VESTE.', cx, cy + 15);
-
-      // Caixa da URL com Borda Brilhante
-      ctx.fillStyle = 'rgba(10, 10, 25, 0.9)';
-      ctx.strokeStyle = '#a855f7';
-      ctx.lineWidth = 3;
       ctx.shadowColor = '#a855f7';
-      ctx.shadowBlur = 30;
-      ctx.beginPath();
-      ctx.roundRect(cx - 280, cy + 80, 560, 60, 30);
-      ctx.fill();
-      ctx.stroke();
-
-      ctx.font = '800 24px Space Grotesk, sans-serif';
-      ctx.fillStyle = '#ffffff';
-      ctx.shadowBlur = 0;
-      ctx.fillText('cyber-closet-certo.vercel.app', cx, cy + 118);
-
-      ctx.font = '700 15px Space Grotesk, sans-serif';
-      ctx.fillStyle = '#ec4899';
-      ctx.fillText('⚡ ACESSE AGORA GRATUITAMENTE NO SEU NAVEGADOR ⚡', cx, cy + 175);
+      ctx.shadowBlur = 15;
+      ctx.fillText('"Look perfeito calculado: Jaqueta Firebird + Visor Neon + Samba 2099."', cx, cy + 215);
 
       ctx.restore();
-    }
 
-    // Varredura Laser Horizontal
-    function drawLaserSweep(t) {
-      const laserY = (Math.sin(t * 2) * 0.5 + 0.5) * H;
-      ctx.strokeStyle = 'rgba(0, 243, 255, 0.15)';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(0, laserY);
-      ctx.lineTo(W, laserY);
-      ctx.stroke();
+      ctx.restore();
     }
 
     // =========================================================================
-    // 2. MOTOR DE ÁUDIO SYNTHWAVE (WEB AUDIO API - SINTETIZADOR PURO)
+    // CENA 5: CALL TO ACTION // O FUTURO SE VESTE
+    // =========================================================================
+    function drawScene5(t, p) {
+      ctx.save();
+
+      // Poster com zoom dramático
+      if (promoLoaded) {
+        ctx.save();
+        const scale = 1.0 + Math.sin(t * 1.5) * 0.03;
+        ctx.translate(W / 2, H / 2);
+        ctx.scale(scale, scale);
+        ctx.globalAlpha = 0.65;
+        ctx.drawImage(promoImage, -W / 2, -H / 2, W, H);
+        ctx.restore();
+      }
+
+      // Vinheta de fechamento
+      const radGrad = ctx.createRadialGradient(W / 2, H / 2, 150, W / 2, H / 2, 900);
+      radGrad.addColorStop(0, 'rgba(10, 5, 25, 0.45)');
+      radGrad.addColorStop(1, 'rgba(2, 2, 8, 0.96)');
+      ctx.fillStyle = radGrad;
+      ctx.fillRect(0, 0, W, H);
+
+      const cx = W / 2;
+      const cy = H / 2 - 30;
+
+      // Tipografia Gigante
+      ctx.font = '900 88px "Syne", sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillStyle = '#ffffff';
+      ctx.shadowColor = '#ec4899';
+      ctx.shadowBlur = 40;
+      ctx.fillText('O FUTURO NÃO SE ESPERA.', cx, cy - 80);
+
+      ctx.fillStyle = '#00f3ff';
+      ctx.shadowColor = '#00f3ff';
+      ctx.shadowBlur = 50;
+      ctx.fillText('ELE SE VESTE.', cx, cy + 25);
+
+      // Caixa da URL Estilizada
+      ctx.fillStyle = 'rgba(8, 8, 25, 0.95)';
+      ctx.strokeStyle = '#a855f7';
+      ctx.lineWidth = 4;
+      ctx.shadowColor = '#a855f7';
+      ctx.shadowBlur = 40;
+      ctx.beginPath();
+      ctx.roundRect(cx - 460, cy + 110, 920, 90, 45);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.font = '800 36px "Space Grotesk", sans-serif';
+      ctx.fillStyle = '#ffffff';
+      ctx.shadowBlur = 0;
+      ctx.fillText('cyber-closet-certo.vercel.app', cx, cy + 168);
+
+      // Chamada inferior
+      ctx.font = '800 22px "Space Grotesk", sans-serif';
+      ctx.fillStyle = '#ec4899';
+      ctx.shadowColor = '#ec4899';
+      ctx.shadowBlur = 20;
+      ctx.fillText('⚡ ACESSE AGORA GRATUITAMENTE NO SEU NAVEGADOR • MOBILE & DESKTOP ⚡', cx, cy + 265);
+
+      ctx.restore();
+    }
+
+    // =========================================================================
+    // 3. MOTOR DE ÁUDIO (SYNTHWAVE + VOICEOVER DE ESTÚDIO)
     // =========================================================================
     let audioCtx = null;
     let musicInterval = null;
     let stepCount = 0;
+    let musicGain = null;
 
     function initAudio() {
       if (!audioCtx) {
         const AudioClass = window.AudioContext || window.webkitAudioContext;
         audioCtx = new AudioClass();
+        musicGain = audioCtx.createGain();
+        musicGain.gain.setValueAtTime(0.65, audioCtx.currentTime);
+        musicGain.connect(audioCtx.destination);
       }
       if (audioCtx.state === 'suspended') {
         audioCtx.resume();
       }
     }
 
-    // Kick 808
+    // Instrumentos Virtuais
     function playKick(time) {
       if (!audioCtx || isMuted) return;
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
 
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(150, time);
-      osc.frequency.exponentialRampToValueAtTime(38, time + 0.12);
+      osc.frequency.setValueAtTime(160, time);
+      osc.frequency.exponentialRampToValueAtTime(35, time + 0.15);
 
-      gain.gain.setValueAtTime(0.9, time);
-      gain.gain.exponentialRampToValueAtTime(0.001, time + 0.35);
+      gain.gain.setValueAtTime(1.0, time);
+      gain.gain.exponentialRampToValueAtTime(0.001, time + 0.4);
 
       osc.connect(gain);
-      gain.connect(audioCtx.destination);
+      gain.connect(musicGain);
 
       osc.start(time);
-      osc.stop(time + 0.35);
+      osc.stop(time + 0.4);
     }
 
-    // Snare / Hi-Tech Clap
     function playSnare(time) {
       if (!audioCtx || isMuted) return;
-      const bufferSize = audioCtx.sampleRate * 0.15;
+      const bufferSize = audioCtx.sampleRate * 0.18;
       const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
       const data = buffer.getChannelData(0);
       for (let i = 0; i < bufferSize; i++) {
-        data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (audioCtx.sampleRate * 0.04));
+        data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (audioCtx.sampleRate * 0.045));
       }
 
       const noise = audioCtx.createBufferSource();
@@ -789,21 +1162,20 @@
 
       const filter = audioCtx.createBiquadFilter();
       filter.type = 'highpass';
-      filter.frequency.setValueAtTime(1200, time);
+      filter.frequency.setValueAtTime(1000, time);
 
       const gain = audioCtx.createGain();
-      gain.gain.setValueAtTime(0.5, time);
-      gain.gain.exponentialRampToValueAtTime(0.01, time + 0.18);
+      gain.gain.setValueAtTime(0.6, time);
+      gain.gain.exponentialRampToValueAtTime(0.01, time + 0.2);
 
       noise.connect(filter);
       filter.connect(gain);
-      gain.connect(audioCtx.destination);
+      gain.connect(musicGain);
 
       noise.start(time);
     }
 
-    // Bassline Synth (Arp)
-    function playBassNote(freq, time, dur = 0.18) {
+    function playBass(freq, time, dur = 0.2) {
       if (!audioCtx || isMuted) return;
       const osc = audioCtx.createOscillator();
       const filter = audioCtx.createBiquadFilter();
@@ -813,23 +1185,22 @@
       osc.frequency.setValueAtTime(freq, time);
 
       filter.type = 'lowpass';
-      filter.frequency.setValueAtTime(450, time);
-      filter.frequency.exponentialRampToValueAtTime(180, time + dur);
-      filter.Q.value = 6;
+      filter.frequency.setValueAtTime(500, time);
+      filter.frequency.exponentialRampToValueAtTime(200, time + dur);
+      filter.Q.value = 5;
 
-      gain.gain.setValueAtTime(0.35, time);
+      gain.gain.setValueAtTime(0.4, time);
       gain.gain.exponentialRampToValueAtTime(0.001, time + dur);
 
       osc.connect(filter);
       filter.connect(gain);
-      gain.connect(audioCtx.destination);
+      gain.connect(musicGain);
 
       osc.start(time);
       osc.stop(time + dur);
     }
 
-    // Lead Synth Chime
-    function playLeadChime(freq, time) {
+    function playLead(freq, time) {
       if (!audioCtx || isMuted) return;
       const osc = audioCtx.createOscillator();
       const gain = audioCtx.createGain();
@@ -837,45 +1208,40 @@
       osc.type = 'sine';
       osc.frequency.setValueAtTime(freq, time);
 
-      gain.gain.setValueAtTime(0.25, time);
-      gain.gain.exponentialRampToValueAtTime(0.001, time + 0.45);
+      gain.gain.setValueAtTime(0.28, time);
+      gain.gain.exponentialRampToValueAtTime(0.001, time + 0.5);
 
       osc.connect(gain);
-      gain.connect(audioCtx.destination);
+      gain.connect(musicGain);
 
       osc.start(time);
-      osc.stop(time + 0.45);
+      osc.stop(time + 0.5);
     }
 
-    // Sequenciador de Trilha Sonora Synthwave
     function startSoundtrack() {
       if (musicInterval) clearInterval(musicInterval);
       stepCount = 0;
 
-      const bassNotes = [55, 55, 65.4, 73.4, 55, 55, 82.4, 73.4]; // Linha de baixo (A - C - D)
-      const leadNotes = [440, 523.25, 659.25, 783.99, 880];
+      const bassNotes = [55, 55, 65.4, 73.4, 55, 55, 82.4, 73.4];
+      const leadNotes = [440, 523.25, 659.25, 783.99, 880, 1046.5];
 
       musicInterval = setInterval(() => {
         if (!isPlaying || !audioCtx) return;
         const now = audioCtx.currentTime;
 
-        // Bumbo no tempo 1 e 3
         if (stepCount % 4 === 0) playKick(now);
-        // Caixa no tempo 2 e 4
         if (stepCount % 4 === 2) playSnare(now);
 
-        // Baixo a cada colcheia
         const note = bassNotes[stepCount % bassNotes.length];
-        playBassNote(note, now, 0.16);
+        playBass(note, now, 0.17);
 
-        // Arpejo de Lead melódico
-        if (stepCount % 2 === 1 && currentTime > 5.0) {
+        if (stepCount % 2 === 1 && currentTime > 5.5) {
           const lNote = leadNotes[(stepCount * 2) % leadNotes.length];
-          playLeadChime(lNote, now);
+          playLead(lNote, now);
         }
 
         stepCount++;
-      }, 140); // ~107 BPM
+      }, 140);
     }
 
     function stopSoundtrack() {
@@ -883,27 +1249,6 @@
         clearInterval(musicInterval);
         musicInterval = null;
       }
-    }
-
-    // =========================================================================
-    // 3. MOTOR DE LOCUÇÃO SINCRONIZADA (SPEECH SYNTHESIS API)
-    // =========================================================================
-    let currentVoiceIndex = -1;
-
-    function speakSceneNarrator(scene) {
-      if (isMuted || !window.speechSynthesis) return;
-
-      window.speechSynthesis.cancel();
-      const utterance = new SpeechSynthesisUtterance(scene.voiceText);
-      utterance.lang = 'pt-BR';
-      utterance.rate = 1.05; // Ritmo dinâmico comercial
-      utterance.pitch = 0.95; // Tom firme futurista
-
-      const voices = window.speechSynthesis.getVoices();
-      const ptVoice = voices.find(v => v.lang.includes('pt') || v.lang.includes('BR'));
-      if (ptVoice) utterance.voice = ptVoice;
-
-      window.speechSynthesis.speak(utterance);
     }
 
     // =========================================================================
@@ -923,25 +1268,39 @@
           pauseCommercial();
         }
 
-        // Atualizar cena e locução
-        const sceneIndex = SCENES.findIndex(s => currentTime >= s.start && currentTime < s.end);
-        if (sceneIndex !== -1 && sceneIndex !== lastSceneIndex) {
-          lastSceneIndex = sceneIndex;
-          const sc = SCENES[sceneIndex];
-          document.getElementById('sceneTag').textContent = sc.tag;
-          document.getElementById('subtitleText').textContent = `"${sc.voiceText}"`;
-          speakSceneNarrator(sc);
+        // Sincronização de Áudio de Estúdio
+        if (narratorAudio && !narratorAudio.paused) {
+          // Se houver desvio maior que 0.3s, resincroniza
+          if (Math.abs(narratorAudio.currentTime - currentTime) > 0.3) {
+            narratorAudio.currentTime = currentTime;
+          }
         }
 
-        // Atualizar barra de progresso e timer
+        // Atualizar cena ativa e legenda
+        const sceneIndex = SCENES.findIndex(s => currentTime >= s.start && currentTime < s.end);
+        const curIndex = sceneIndex !== -1 ? sceneIndex : (currentTime >= TOTAL_DURATION ? 4 : 0);
+
+        if (curIndex !== lastSceneIndex) {
+          lastSceneIndex = curIndex;
+          const sc = SCENES[curIndex];
+          document.getElementById('sceneTagName').textContent = sc.tag;
+          document.getElementById('subtitleText').textContent = `"${sc.voiceText}"`;
+
+          // Atualizar botão de cena ativo
+          document.querySelectorAll('.scene-chip').forEach((btn, idx) => {
+            btn.classList.toggle('active', idx === curIndex);
+          });
+        }
+
+        // Atualizar timeline e timer
         const pct = (currentTime / TOTAL_DURATION) * 100;
         document.getElementById('timelineBar').style.width = `${pct}%`;
         const mins = Math.floor(currentTime / 60).toString().padStart(2, '0');
         const secs = Math.floor(currentTime % 60).toString().padStart(2, '0');
-        document.getElementById('timerLabel').textContent = `${mins}:${secs} / 00:27`;
+        document.getElementById('timerLabel').textContent = `${mins}:${secs} / 00:34`;
       }
 
-      renderScene(currentTime);
+      renderCommercial(currentTime);
       requestAnimationFrame(gameLoop);
     }
 
@@ -963,11 +1322,11 @@
       document.getElementById('playLabel').textContent = 'PAUSAR';
       startSoundtrack();
 
-      // Disparar locução da cena atual
-      const sceneIndex = SCENES.findIndex(s => currentTime >= s.start && currentTime < s.end);
-      if (sceneIndex !== -1) {
-        speakSceneNarrator(SCENES[sceneIndex]);
-        lastSceneIndex = sceneIndex;
+      // Reproduzir áudio de locução
+      if (narratorAudio) {
+        narratorAudio.currentTime = currentTime;
+        narratorAudio.muted = isMuted;
+        narratorAudio.play().catch(e => console.log('Audio autoplay prevented, playing soundtrack only:', e));
       }
     }
 
@@ -976,20 +1335,45 @@
       document.getElementById('playIcon').textContent = '▶';
       document.getElementById('playLabel').textContent = 'CONTINUAR';
       stopSoundtrack();
-      if (window.speechSynthesis) window.speechSynthesis.cancel();
+      if (narratorAudio) narratorAudio.pause();
     }
 
     function restartCommercial() {
       currentTime = 0;
       lastSceneIndex = -1;
       document.getElementById('timelineBar').style.width = '0%';
+      if (narratorAudio) narratorAudio.currentTime = 0;
       playCommercial();
     }
 
     function toggleMute() {
       isMuted = !isMuted;
-      document.getElementById('muteBtn').textContent = isMuted ? '🔇 ÁUDIO: MUTADO' : '🔊 ÁUDIO: ATIVADO';
-      if (isMuted && window.speechSynthesis) window.speechSynthesis.cancel();
+      document.getElementById('muteBtn').textContent = isMuted ? '🔇 ÁUDIO: MUTADO' : '🔊 ÁUDIO: ATIVO';
+      if (narratorAudio) narratorAudio.muted = isMuted;
+    }
+
+    function toggleLetterbox() {
+      const wrapper = document.getElementById('cinemaWrapper');
+      wrapper.classList.toggle('letterbox-mode');
+    }
+
+    function toggleFullScreen() {
+      const wrapper = document.getElementById('cinemaWrapper');
+      if (!document.fullscreenElement) {
+        wrapper.requestFullscreen().catch(err => alert(`Erro ao entrar em tela cheia: ${err.message}`));
+      } else {
+        document.exitFullscreen();
+      }
+    }
+
+    function jumpToScene(idx) {
+      if (idx >= 0 && idx < SCENES.length) {
+        currentTime = SCENES[idx].start;
+        lastSceneIndex = -1;
+        if (narratorAudio) narratorAudio.currentTime = currentTime;
+        renderCommercial(currentTime);
+        if (!isPlaying) playCommercial();
+      }
     }
 
     function seekCommercial(e) {
@@ -998,11 +1382,12 @@
       const pct = clickX / rect.width;
       currentTime = pct * TOTAL_DURATION;
       lastSceneIndex = -1;
-      renderScene(currentTime);
+      if (narratorAudio) narratorAudio.currentTime = currentTime;
+      renderCommercial(currentTime);
     }
 
     // =========================================================================
-    // 5. GRAVADOR DE VÍDEO (EXPORTAÇÃO DIRETA .WEBM / MP4)
+    // 5. EXPORTAÇÃO DE VÍDEO (.WEBM / MP4) COM ÁUDIO INTEGRADO
     // =========================================================================
     let mediaRecorder = null;
     let recordedChunks = [];
@@ -1020,10 +1405,15 @@
 
       try {
         const stream = canvas.captureStream(60);
-        // Se houver suporte a gravação de áudio do contexto, conecta
+
+        // Mixar áudio se suportado
         if (audioCtx) {
           const dest = audioCtx.createMediaStreamDestination();
-          // Mixa trilha sonora com destino
+          musicGain.connect(dest);
+          const audioTracks = dest.stream.getAudioTracks();
+          if (audioTracks.length > 0) {
+            stream.addTrack(audioTracks[0]);
+          }
         }
 
         recordedChunks = [];
@@ -1038,24 +1428,23 @@
           const url = URL.createObjectURL(blob);
           const a = document.createElement('a');
           a.href = url;
-          a.download = 'Cyber_Closet_2099_Comercial_Oficial.webm';
+          a.download = 'Cyber_Closet_2.0_Comercial_Oficial_4K.webm';
           a.click();
           recordBtn.textContent = '✅ VÍDEO BAIXADO COM SUCESSO!';
           setTimeout(() => { recordBtn.textContent = '📹 BAIXAR VÍDEO (.WEBM / MP4)'; }, 4000);
         };
 
         mediaRecorder.start();
-        recordBtn.textContent = '⏹️ GRAVANDO... (CLIQUE PARA SALVAR)';
+        recordBtn.textContent = '⏹️ GRAVANDO MASTER... (CLIQUE PARA SALVAR)';
 
-        // Parar automaticamente no final do vídeo
         setTimeout(() => {
           if (mediaRecorder && mediaRecorder.state === 'recording') {
             mediaRecorder.stop();
           }
-        }, TOTAL_DURATION * 1000 + 500);
+        }, TOTAL_DURATION * 1000 + 800);
 
       } catch (err) {
-        alert('Gravação automática não suportada neste navegador. Você pode reproduzir diretamente na tela!');
+        alert('Gravação automática via MediaRecorder não disponível. Você pode assistir e gravar sua tela diretamente!');
         console.error(err);
       }
     }
